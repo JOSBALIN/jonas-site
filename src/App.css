@@ -4,7 +4,7 @@
   height:100vh;
 }
 
-#current-time{
+#current-time, #app-title{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -19,8 +19,14 @@
   right:0;
 }
 
+.taskbar-application{
+  position: absolute;
+  bottom:0;
+  right:50%;
+  color:white;
+}
+
 .start-bar{
-  background-color: red;
   position:absolute;
   bottom:0;
   width:100%;
