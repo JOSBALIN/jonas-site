@@ -1,30 +1,33 @@
-.app-root{
+.desktop-background{
+  background-image: url("images/desktop-background.jpg");
+  background-size: cover;
+  height:100vh;
+}
+
+#current-time{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size:8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.task-bar-right {
+  position: absolute;
+  bottom:0;
+  right:0;
+}
+
+.start-bar{
   background-color: red;
-  height:100vh;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  height:30px;
 }
 
-div[class^="block"] {
-  height:100vh;
-}
-
-.block-1{
-  background-color: rgb(0, 0, 0);
-  text-align: center;
-}
-
-.block-1 h1{
-  font-family: 'Helvetica Neue', 'Arial', sans-serif;
-  color: rgb(255, 255, 255);
-}
-
-.block-2{
-  background-color: green;
-}
-
-.block-3{
-  background-color: yellow;
-}
-
-.block-4{
-  background-color: green;
+.start-button{
+  position:absolute;
+  bottom:0;
 }
