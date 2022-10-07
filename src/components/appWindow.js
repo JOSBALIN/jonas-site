@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Draggable from "./hooks/Draggable";
 
 export function AppWindow() {
   const [diffX, setDiffX] = useState(0);
@@ -9,7 +10,6 @@ export function AppWindow() {
   const [resizing, setResizing] = useState(false);
   const [resizeDiffX, setResizeDiffX] = useState(0);
   const [origWidth, setOrigWidth] = useState(0);
- 
 
   function dragStart(e) {
     setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
@@ -19,7 +19,7 @@ export function AppWindow() {
 
   function draggingMid(e) {
     if (dragging) {
-        console.log(e.screenX);
+      console.log(e.screenX);
       setStyles({
         left: e.screenX - diffX,
         top: e.screenY - diffY,
@@ -32,45 +32,56 @@ export function AppWindow() {
     setDragging(false);
   }
 
-  function resizeStart(e){
+  function resizeStart(e) {
     setResizeDiffX(e.screenX);
-    console.log(origWidth);
-    // console.log(origWidth);
+    setOrigWidth(e.currentTarget.offsetWidth);
     setResizing(true);
   }
 
   function resizeRight(e) {
-    if(resizing){
-        console.log("Resizing");
-        console.log(e.screenX)
-        console.log((-1)*e.screenX)
+    if (resizing) {
       setStyles({
-        width: (-1)*e.screenX-origWidth,
+        width: origWidth - (resizeDiffX - e.screenX) + 500,
       });
     }
   }
 
-  
+  function resizeEnd() {
+    setResizing(false);
+  }
+
+  // DraggableElement function interpreted from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/index.js
+  const DraggableElement = ({ dragElement, parentElement }) => {
+    const dragRef = useRef(null);
+    const dragRefParent = useRef(null);
+    Draggable(dragRef, dragRefParent);
+
+    return (
+      <div ref={dragRefParent} className="draggable Dialog">
+        <div ref={dragRef}>{dragElement}</div>
+        {parentElement}
+      </div>
+    );
+  };
 
   return (
-    
-
-        <div className='Dialog' style={styles}>
-        <div className='DialogTitle'
-        onMouseDown={dragStart}
-        onMouseMove={draggingMid}
-        onMouseUp={dragEnd}>My Dialog</div>
-
-        <div className='rightBar' onMouseDown={resizeStart} onMouseMove={resizeRight}>aa</div>
-        <div className='Contents'>
-            Contents of the Dialog: 
-                - one
-                - two
-                - three 
-        </div>
-        <div className='closeButton'>
-            Close
-        </div>
+    <div className="Dialog Outer" style={styles}>
+      <DraggableElement
+        dragElement={
+          <div
+            className="DialogTitle">
+            My Dialog
+          </div>
+        }
+        parentElement={
+          <div>
+            <div className="Contents">
+              Contents of the Dialog: - one - two - three
+            </div>
+            <div className="closeButton">Close</div>
+          </div>
+        }
+      ></DraggableElement>
     </div>
   );
 }
