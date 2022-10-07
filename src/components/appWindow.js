@@ -6,6 +6,10 @@ export function AppWindow() {
   const [dragging, setDragging] = useState(false);
   const [styles, setStyles] = useState({});
 
+  const [resizing, setResizing] = useState(false);
+  const [resizeDiffX, setResizeDiffX] = useState(0);
+  const [origWidth, setOrigWidth] = useState(0);
+ 
 
   function dragStart(e) {
     setDiffX(e.screenX - e.currentTarget.getBoundingClientRect().left);
@@ -15,10 +19,10 @@ export function AppWindow() {
 
   function draggingMid(e) {
     if (dragging) {
+        console.log(e.screenX);
       setStyles({
-        // left: e.screenX - diffX,
-        // top: e.screenY - diffY,
-        width: e.screenX-diffX,
+        left: e.screenX - diffX,
+        top: e.screenY - diffY,
       });
       console.log(styles);
     }
@@ -28,6 +32,25 @@ export function AppWindow() {
     setDragging(false);
   }
 
+  function resizeStart(e){
+    setResizeDiffX(e.screenX);
+    console.log(origWidth);
+    // console.log(origWidth);
+    setResizing(true);
+  }
+
+  function resizeRight(e) {
+    if(resizing){
+        console.log("Resizing");
+        console.log(e.screenX)
+        console.log((-1)*e.screenX)
+      setStyles({
+        width: (-1)*e.screenX-origWidth,
+      });
+    }
+  }
+
+  
 
   return (
     
@@ -37,6 +60,8 @@ export function AppWindow() {
         onMouseDown={dragStart}
         onMouseMove={draggingMid}
         onMouseUp={dragEnd}>My Dialog</div>
+
+        <div className='rightBar' onMouseDown={resizeStart} onMouseMove={resizeRight}>aa</div>
         <div className='Contents'>
             Contents of the Dialog: 
                 - one
