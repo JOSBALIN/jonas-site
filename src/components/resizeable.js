@@ -125,7 +125,7 @@ function Resizeable(props) {
   return (
     <div className="container">
       <div ref={ref} className="resizeable">
-      <p>{test}</p>
+      {test}
         <div ref={refLeft} className="resizer resizer-l"></div>
         <div ref={refTop} className="resizer resizer-t"></div>
         <div ref={refRight} className="resizer resizer-r"></div>

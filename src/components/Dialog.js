@@ -33,10 +33,11 @@ export default class Dialog extends Component {
             var left = e.screenX - this.state.diffX;
             var top = e.screenY - this.state.diffY;
     
+            // Setting styles when dragging
             this.setState({
                 styles: {
                     left: left,
-                    top: top
+                    top: top,
                 }
             });
         }
