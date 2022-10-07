@@ -1,8 +1,9 @@
   .resizeable {
+    overflow: hidden;
     position: absolute;
+    height:100%;
+    width:100%;
     border: 2px solid #533535;
-    width: 100px;
-    height: 100px;
     border-radius: 3px;
     display: flex;
     justify-content: center;

@@ -19,8 +19,6 @@ function Resizeable(props) {
     let x = 0;
     let y = 0;
 
-    resizeableEle.style.top = "50px";
-    resizeableEle.style.left = "50px";
 
     // Right resize
     const onMouseMoveRightResize = (event) => {
@@ -121,6 +119,8 @@ function Resizeable(props) {
       resizerLeft.removeEventListener("mousedown", onMouseDownLeftResize);
     };
   }, []);
+
+  console.log(test);
 
   return (
     <div className="container">
