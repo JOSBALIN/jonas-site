@@ -28,9 +28,14 @@
     padding-right:20px;
 }
 
-#maximize-button{
-    image: url("../images/application-topbar/desktop-app-topbar-expand.png");
+.topbar-buttons > button{
+    background-color:transparent;
+    padding:0;
+    border:none;
 }
+
+
+
 
 .contents {
     padding-top: 50px;

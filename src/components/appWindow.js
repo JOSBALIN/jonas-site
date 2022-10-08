@@ -8,6 +8,7 @@ export function AppWindow(props) {
     // app information
     const [title, setTitle] = useState(props.title);
     const [contents, setContents] = useState(props.contents);
+    const [draggable, setDraggable] = useState(true);
 
   // window dimensions
   const [maximized, setMaximized] = useState(false);
@@ -20,9 +21,11 @@ export function AppWindow(props) {
     if (!maximized) {
       setWindowDimensions({ height: "100%", width: "100%", transform: "none" });
       setMaximized(true);
+      setDraggable(false);
     } else {
       setWindowDimensions({ height: "50%", width: "50%" });
       setMaximized(false);
+      setDraggable(true);
     }
   };
 
@@ -32,7 +35,7 @@ export function AppWindow(props) {
         <div className="topbar">
           <div className="topbar-buttons">
           <button id="maximize-button" onClick={() => MaximizeWindow()}>O</button>
-          <button id="close-button" onClick={() => console.log("Hide")}><img src="../images/application-topbar/desktop-app-topbar-expand.png" alt="my image" onClick={console.log("hide")} /></button>
+          <button id="close-button" onClick={() => console.log("Hide")}><img src="../images/application-topbar/desktop-app-topbar-close.png" alt="my image" onClick={console.log("hide")} /></button>
           </div>
           <div className="topbar-title">{title}</div>
         </div>
@@ -43,6 +46,7 @@ export function AppWindow(props) {
         </div>
       }
       style={windowDimensions}
+      dragEnabled={draggable}
     ></DraggableElement>
   );
 }

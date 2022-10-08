@@ -8,7 +8,7 @@ export default function TaskbarApps(props) {
   return (
     <div className="taskbar-application">
       <div id="app-title">{appTitle}</div>
-      <img className="taskbar-application-img" src={taskbarAppImage}></img>
+      <img className="taskbar-application-img" src="../../public/images/desktop-taskbar-app.png"></img>
     </div>
   );
 }

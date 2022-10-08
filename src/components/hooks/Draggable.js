@@ -4,19 +4,20 @@ import { useState, useEffect, useRef } from "react";
 // Changes include adding an el2, which is the element to be moved, whereas el is the element that is held to drag.
 // Also preventing selection of text during drag
 
-export default function Draggable(el, el2) {
+export default function Draggable(el, el2, dragEnabled) {
   const [{ dx, dy }, setOffset] = useState({ dx: 0, dy: 0 });
 
-  
+  console.log(dragEnabled);
+
   useEffect(() => {
-    const handleMouseDown = event => {
+    const handleMouseDown = (event) => {
       // prevent text-selection during drag
       event.preventDefault();
       event.stopPropagation();
       const startX = event.pageX - dx;
       const startY = event.pageY - dy;
 
-      const handleMouseMove = event => {
+      const handleMouseMove = (event) => {
         const newDx = event.pageX - startX;
         const newDy = event.pageY - startY;
         setOffset({ dx: newDx, dy: newDy });
@@ -32,7 +33,6 @@ export default function Draggable(el, el2) {
         { once: true }
       );
     };
-    
 
     el.current.addEventListener("mousedown", handleMouseDown);
 
@@ -42,28 +42,36 @@ export default function Draggable(el, el2) {
   }, [dx, dy]);
 
   useEffect(() => {
-    el2.current.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+    // code that executes dragging - can be toggled
+    if (dragEnabled) {
+      el2.current.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+    }
   }, [dx, dy]);
 }
 
-
 // DraggableElement function interpreted from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/index.js
-  export function DraggableElement ({ dragElement, parentElement, style}) {
-    const dragRef = useRef(null);
-    const dragRefParent = useRef(null);
-    Draggable(dragRef, dragRefParent);
+export function DraggableElement({
+  dragElement,
+  parentElement,
+  style,
+  dragEnabled,
+}) {
+  const dragRef = useRef(null);
+  const dragRefParent = useRef(null);
 
-    return (
-      <div
-        ref={dragRefParent}
-        className={"draggable-parent app-container"}
-        style={style}
-      >
+  // create instance of draggable
+  Draggable(dragRef, dragRefParent, dragEnabled);
 
-        <div ref={dragRef} className="draggable-child app-contents">
-          {dragElement}
-        </div>
-        {parentElement}
+  return (
+    <div
+      ref={dragRefParent}
+      className={"draggable-parent app-container"}
+      style={style}
+    >
+      <div ref={dragRef} className="draggable-child app-contents">
+        {dragElement}
       </div>
-    );
-  };
+      {parentElement}
+    </div>
+  );
+}
