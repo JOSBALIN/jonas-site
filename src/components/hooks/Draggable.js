@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // This code is borrowed from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/useDraggable.js:0-1009
 // Changes include adding an el2, which is the element to be moved, whereas el is the element that is held to drag.
@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 export default function Draggable(el, el2) {
   const [{ dx, dy }, setOffset] = useState({ dx: 0, dy: 0 });
 
+  
   useEffect(() => {
     const handleMouseDown = event => {
       // prevent text-selection during drag
@@ -44,3 +45,25 @@ export default function Draggable(el, el2) {
     el2.current.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
   }, [dx, dy]);
 }
+
+
+// DraggableElement function interpreted from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/index.js
+  export function DraggableElement ({ dragElement, parentElement, style}) {
+    const dragRef = useRef(null);
+    const dragRefParent = useRef(null);
+    Draggable(dragRef, dragRefParent);
+
+    return (
+      <div
+        ref={dragRefParent}
+        className={"draggable-parent dialog"}
+        style={style}
+      >
+
+        <div ref={dragRef} className="draggable-child">
+          {dragElement}
+        </div>
+        {parentElement}
+      </div>
+    );
+  };

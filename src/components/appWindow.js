@@ -1,68 +1,51 @@
-import {useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Draggable from "./hooks/draggable";
+import { DraggableElement } from "./hooks/draggable";
 
 export function AppWindow(props) {
   // Initial width
-  const [width, setWidth] = useState(400)
-  
+  const [width, setWidth] = useState(200);
+  const [maximized, setMaximized] = useState(false);
+  const [windowDimensions, setWindowDimensions] = useState({
+    height: "50%",
+    widgth: "50%",
+  });
+
   // app information
-  const [title, setTitle] = useState(props.title)
-  const [contents, setContents] = useState(props.contents)
+  const [title, setTitle] = useState(props.title);
+  const [contents, setContents] = useState(props.contents);
 
-
-  // DraggableElement function interpreted from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/index.js
-  const DraggableElement = ({ dragElement, parentElement }) => {
-    const dragRef = useRef(null);
-    const dragRefParent = useRef(null);
-    Draggable(dragRef, dragRefParent);
-
-    return (
-      <div
-        ref={dragRefParent}
-        className={"draggable-parent dialog"}
-        style={{width: width}} // mutable width value
-      >
-
-        <div ref={dragRef} className="draggable-child">
-          {dragElement}
-        </div>
-        {parentElement}
-      </div>
-    );
+  const MaximizeWindow = () => {
+    if (!maximized) {
+      setWindowDimensions({ height: "100%", width: "100%", transform: "none" });
+      setMaximized(true);
+    } else {
+      setWindowDimensions({ height: "50%", width: "50%" });
+      setMaximized(false);
+    }
   };
-
-  const MaximizeButton = ({ givenWidth }) => {
-    return (
-      <button onClick={() => setWidth(givenWidth)} >MAXIMIZE</button>
-    )
-  }
 
   return (
     <DraggableElement
       dragElement={
         <div className="app-topbar">
-                      <button onClick={() => setWidth(600)}>X</button>
-          <div className="app-title">
-            {title}
-            
-          </div>
+          <button onClick={() => MaximizeWindow()}>O</button>
+          <button onClick={() => setWidth("100%")}>X</button>
+          <div className="app-title">{title}</div>
         </div>
       }
       parentElement={
         <div>
-          <div className="contents">
-            {contents}
-          </div>
+          <div className="contents">{contents}</div>
         </div>
       }
+      style={windowDimensions}
     ></DraggableElement>
   );
 }
 
-
-
-  // Explainers
-  // <DraggableElement dragElement={element mouse hold} parentElement={parent to drag}
+// Explainers
+// <DraggableElement dragElement={element mouse hold} parentElement={parent to drag}
 
 // useEffect explainer
 
