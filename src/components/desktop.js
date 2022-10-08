@@ -19,8 +19,6 @@ export default function Desktop() {
       title: "My CV",
       icon: "empty",
       component: <AppWindow open={true} title={"First title!"} />,
-      selected: "false",
-      open: "false",
       style: { backgroundColor: "transparent" },
     },
     {
@@ -28,8 +26,6 @@ export default function Desktop() {
       title: "Photos",
       icon: "empty",
       component: <AppWindow open={true} title={"second title!"} contents={<Resizeable/>}/>,
-      selected: "false",
-      open: "false",
       style: { backgroundColor: "transparent" },
     },
     {
@@ -37,8 +33,6 @@ export default function Desktop() {
       title: "Music",
       icon: "empty",
       component: <AppWindow open={true} />,
-      selected: "false",
-      open: "false",
       style: { backgroundColor: "transparent" },
     },
     {
@@ -46,8 +40,6 @@ export default function Desktop() {
       title: "Trivia",
       icon: "empty",
       component: <AppWindow open={true} />,
-      selected: "false",
-      open: "false",
       style: { backgroundColor: "transparent" },
     },
   ];

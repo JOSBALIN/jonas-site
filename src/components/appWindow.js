@@ -3,17 +3,17 @@ import Draggable from "./hooks/draggable";
 import { DraggableElement } from "./hooks/draggable";
 
 export function AppWindow(props) {
-  // Initial width
-  const [width, setWidth] = useState(200);
+
+    // app information
+    const [title, setTitle] = useState(props.title);
+    const [contents, setContents] = useState(props.contents);
+
+  // window dimensions
   const [maximized, setMaximized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState({
     height: "50%",
-    widgth: "50%",
+    width: "50%",
   });
-
-  // app information
-  const [title, setTitle] = useState(props.title);
-  const [contents, setContents] = useState(props.contents);
 
   const MaximizeWindow = () => {
     if (!maximized) {
@@ -28,10 +28,12 @@ export function AppWindow(props) {
   return (
     <DraggableElement
       dragElement={
-        <div className="app-topbar">
+        <div className="topbar">
+          <div className="topbar-buttons">
           <button onClick={() => MaximizeWindow()}>O</button>
-          <button onClick={() => setWidth("100%")}>X</button>
-          <div className="app-title">{title}</div>
+          <button onClick={() => console.log("Hide")}>X</button>
+          </div>
+          <div className="topbar-title">{title}</div>
         </div>
       }
       parentElement={

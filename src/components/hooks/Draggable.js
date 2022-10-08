@@ -56,11 +56,11 @@ export default function Draggable(el, el2) {
     return (
       <div
         ref={dragRefParent}
-        className={"draggable-parent dialog"}
+        className={"draggable-parent app-container"}
         style={style}
       >
 
-        <div ref={dragRef} className="draggable-child">
+        <div ref={dragRef} className="draggable-child app-contents">
           {dragElement}
         </div>
         {parentElement}
