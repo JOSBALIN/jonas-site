@@ -3,17 +3,8 @@ import Draggable from "./hooks/Draggable";
 import Resizeable from "./resizeable";
 
 export function AppWindow(props) {
-  const [isOpen, setIsOpen] = useState(props.open);
-  console.log(isOpen);
+  const [maximize, setMaximize] = useState("");
 
-  const [styles, setStyles] = useState({
-    styles: {
-      width:"400px",
-      height:"600px"
-    }
-  })
-
- 
   // DraggableElement function interpreted from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/index.js
   const DraggableElement = ({ dragElement, parentElement }) => {
     const dragRef = useRef(null);
@@ -21,7 +12,10 @@ export function AppWindow(props) {
     Draggable(dragRef, dragRefParent);
 
     return (
-      <div ref={dragRefParent} className="draggable Dialog parent"     style={styles}>
+      <div
+        ref={dragRefParent}
+        className={"draggable parent Dialog " + maximize}
+      >
         <div ref={dragRef} className="draggable child">
           {dragElement}
         </div>
@@ -29,7 +23,10 @@ export function AppWindow(props) {
       </div>
     );
   };
-  
+
+  const maximizeWindow = () => {
+    setMaximize("maximize");
+  }
 
   return (
     <DraggableElement
@@ -37,7 +34,7 @@ export function AppWindow(props) {
         <div className="appTitle">
           My Dialog
           <div className="appTopBar">
-            <button onClick={e => console.log(styles)}>Maximize</button>
+            <button onClick={maximizeWindow}>Maximize</button>
             <button>X</button>
           </div>
         </div>
