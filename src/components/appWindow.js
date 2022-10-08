@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import Draggable from "./hooks/draggable";
 import { DraggableElement } from "./hooks/draggable";
 
+
 export function AppWindow(props) {
 
     // app information
@@ -30,8 +31,8 @@ export function AppWindow(props) {
       dragElement={
         <div className="topbar">
           <div className="topbar-buttons">
-          <button onClick={() => MaximizeWindow()}>O</button>
-          <button onClick={() => console.log("Hide")}>X</button>
+          <button id="maximize-button" onClick={() => MaximizeWindow()}>O</button>
+          <button id="close-button" onClick={() => console.log("Hide")}><img src="../images/application-topbar/desktop-app-topbar-expand.png" alt="my image" onClick={console.log("hide")} /></button>
           </div>
           <div className="topbar-title">{title}</div>
         </div>

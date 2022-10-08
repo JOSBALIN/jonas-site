@@ -28,6 +28,10 @@
     padding-right:20px;
 }
 
+#maximize-button{
+    image: url("../images/application-topbar/desktop-app-topbar-expand.png");
+}
+
 .contents {
     padding-top: 50px;
     padding-bottom: 200px;
