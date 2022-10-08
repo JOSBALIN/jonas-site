@@ -1,9 +1,14 @@
-import { useEffect, useRef, useState } from "react";
-import Draggable from "./hooks/Draggable";
-import Resizeable from "./resizeable";
+import {useRef, useState } from "react";
+import Draggable from "./hooks/draggable";
 
 export function AppWindow(props) {
-  const [maximize, setMaximize] = useState("");
+  // Initial width
+  const [width, setWidth] = useState(400)
+  
+  // app information
+  const [title, setTitle] = useState(props.title)
+  const [contents, setContents] = useState(props.contents)
+
 
   // DraggableElement function interpreted from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/index.js
   const DraggableElement = ({ dragElement, parentElement }) => {
@@ -14,9 +19,11 @@ export function AppWindow(props) {
     return (
       <div
         ref={dragRefParent}
-        className={"draggable parent Dialog " + maximize}
+        className={"draggable-parent dialog"}
+        style={{width: width}} // mutable width value
       >
-        <div ref={dragRef} className="draggable child">
+
+        <div ref={dragRef} className="draggable-child">
           {dragElement}
         </div>
         {parentElement}
@@ -24,34 +31,38 @@ export function AppWindow(props) {
     );
   };
 
-  const maximizeWindow = () => {
-    setMaximize("maximize");
+  const MaximizeButton = ({ givenWidth }) => {
+    return (
+      <button onClick={() => setWidth(givenWidth)} >MAXIMIZE</button>
+    )
   }
 
   return (
     <DraggableElement
       dragElement={
-        <div className="appTitle">
-          My Dialog
-          <div className="appTopBar">
-            <button onClick={maximizeWindow}>Maximize</button>
-            <button>X</button>
+        <div className="app-topbar">
+                      <button onClick={() => setWidth(600)}>X</button>
+          <div className="app-title">
+            {title}
+            
           </div>
         </div>
       }
       parentElement={
         <div>
-          <div className="Contents">
-            Contents of the Dialog: - one - two - three
+          <div className="contents">
+            {contents}
           </div>
-          <div className="closeButton">Close</div>
         </div>
       }
     ></DraggableElement>
   );
 }
 
-// Draggable window is a custom hook conversion of this source: https://github.com/Harjotb/TechLifeJo-Draggable-Element/blob/master/src/Components/Dialog.js
+
+
+  // Explainers
+  // <DraggableElement dragElement={element mouse hold} parentElement={parent to drag}
 
 // useEffect explainer
 
@@ -67,4 +78,3 @@ export function AppWindow(props) {
 
 // useEffect(() => {
 //     return () => This part runs when component is removed from UI
-// })

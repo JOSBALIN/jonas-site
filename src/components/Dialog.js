@@ -35,10 +35,7 @@ export default class Dialog extends Component {
     
             // Setting styles when dragging
             this.setState({
-                styles: {
-                    left: left,
-                    top: top,
-                }
+                 
             });
         }
     }    
