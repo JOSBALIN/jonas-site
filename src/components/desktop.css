@@ -12,7 +12,13 @@
     .div4 { grid-area: 1 / 4 / 2 / 5; }
     
     div[class^="app-grid"]{
-        /* styles for all application icons */
+        margin: auto;
+        text-align: center;
+        font-family: "Segoe UI", sans-serif;
+        font-smooth:never;
+        -webkit-font-smoothing : none;
+        color:white;
+        text-shadow: 2px 1px 2px black
     }
 
     .selected{

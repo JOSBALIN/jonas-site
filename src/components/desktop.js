@@ -7,6 +7,7 @@ import "./desktop.css";
 import { render } from "@testing-library/react";
 import Resizeable from "./resizeable";
 import { useState } from "react";
+import AppIcon from "./appIcon";
 
 export default function Desktop() {
   // List of open apps to control taskbar icons
@@ -101,8 +102,7 @@ export default function Desktop() {
             app={app.component}
             style={app.style}
           >
-            {app.title}
-            {app.selected}
+            <AppIcon title={app.title}></AppIcon>
           </div>
         ))}
       </div>
