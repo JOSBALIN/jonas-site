@@ -41,14 +41,15 @@ export default function Taskbar(props) {
         <img className="start-bar-right" src={taskBarRight}></img>
       </div>
       <div className="taskbar-middle">
-        {props.openApps.map((app, key) => (
-          <div className={"div"+app.id} key={app.title}>
-            {app.title}
+        {props.openApps.reverse().map((app, index) => (
+          // Fix the div naming, not app.id but instead an incrementing value
+          <div className={"div"+index} key={app.title}>
+            {console.log(index)}
+            {console.log(app)}
+            <TaskbarApps title={app.title}/>
           </div>
         ))}
       </div>
-
-      <TaskbarApps title={"aaaaaaa"} icon={"aa"} />
     </div>
   );
 }

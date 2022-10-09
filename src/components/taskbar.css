@@ -1,5 +1,5 @@
 
-#current-time, #app-title{
+#current-time{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -25,6 +25,10 @@
 .start-button{
   position:absolute;
   bottom:0;
+}
+
+.taskbar-application{
+    background-color: red;
 }
 
 .taskbar-middle {
