@@ -4,19 +4,23 @@ import { DraggableElement } from "./hooks/draggable";
 
 
 export function AppWindow(props) {
+  // app information
+  const [title, setTitle] = useState(props.title);
+  const [contents, setContents] = useState(props.contents);
 
-    // app information
-    const [title, setTitle] = useState(props.title);
-    const [contents, setContents] = useState(props.contents);
-    const [draggable, setDraggable] = useState(true);
+  // toggle for dragging window
+  const [draggable, setDraggable] = useState(true);
 
   // window dimensions
   const [maximized, setMaximized] = useState(false);
+  const [minimized, setMinimized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState({
     height: "50%",
     width: "50%",
+    display:""
   });
 
+  // maximizes application window; disables dragging
   const MaximizeWindow = () => {
     if (!maximized) {
       setWindowDimensions({ height: "100%", width: "100%", transform: "none" });
@@ -29,13 +33,37 @@ export function AppWindow(props) {
     }
   };
 
+    // maximizes application window; disables dragging
+    const minimizeWindow = () => {
+      setWindowDimensions({display:"none"})
+    };
+
   return (
     <DraggableElement
       dragElement={
         <div className="topbar">
           <div className="topbar-buttons">
-          <button id="maximize-button" onClick={() => MaximizeWindow()}>O</button>
-          <button id="close-button" onClick={() => console.log("Hide")}><img src="../images/application-topbar/desktop-app-topbar-close.png" alt="my image" onClick={console.log("hide")} /></button>
+          <button id="minimize-button" onClick={() => minimizeWindow()}>
+            <img
+                src="../images/application-topbar/desktop-app-topbar-minimize.png"
+                alt="my image"
+                onClick={console.log("hide")}
+              />
+            </button>
+            <button id="maximize-button" onClick={() => MaximizeWindow()}>
+            <img
+                src="../images/application-topbar/desktop-app-topbar-expand.png"
+                alt="my image"
+                onClick={console.log("hide")}
+              />
+            </button>
+            <button id="close-button" onClick={() => console.log("Hide")}>
+              <img
+                src="../images/application-topbar/desktop-app-topbar-close.png"
+                alt="my image"
+                onClick={console.log("hide")}
+              />
+            </button>
           </div>
           <div className="topbar-title">{title}</div>
         </div>
