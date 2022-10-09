@@ -1,5 +1,4 @@
 .parent {
-    height:100%;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
@@ -12,11 +11,12 @@
     .div3 { grid-area: 1 / 3 / 2 / 4; }
     .div4 { grid-area: 1 / 4 / 2 / 5; }
     
-    div[class^="div"]{
-        background-color: red;
+    div[class^="app-grid"]{
+        /* styles for all application icons */
     }
 
     .selected{
         background-color: lightblue;
         transform:none
     }
+

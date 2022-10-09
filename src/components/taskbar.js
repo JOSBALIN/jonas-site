@@ -5,9 +5,12 @@ import startButtonHover from ".././images/desktop-startbutton-hover.png";
 import startButtonPressed from ".././images/desktop-startbutton-pressed.png";
 import TaskbarApps from "./taskbar-apps";
 import * as React from "react";
+import { useState } from "react";
+import "./taskbar.css";
 
-export default function Taskbar() {
-  const [time, setTime] = React.useState();
+export default function Taskbar(props) {
+  const [time, setTime] = useState();
+  const [openApps, setOpenApps] = useState([]);
 
   // Updating time in taskbar
   React.useEffect(() => {
@@ -22,6 +25,7 @@ export default function Taskbar() {
 
   return (
     <div className="taskbar">
+      
       <img className="start-bar" src={taskBar}></img>
       <img
         className="start-button"
@@ -30,10 +34,20 @@ export default function Taskbar() {
         onMouseLeave={(e) => (e.currentTarget.src = startButton)}
         onMouseDown={(e) => (e.currentTarget.src = startButtonPressed)}
       ></img>
-      <div className="task-bar-right">
+      
+      <div className="taskbar-right">
+        
         <div id="current-time">{time}</div>
         <img className="start-bar-right" src={taskBarRight}></img>
       </div>
+      <div className="taskbar-middle">
+        {props.openApps.map((app, key) => (
+          <div className={"div"+app.id} key={app.title}>
+            {app.title}
+          </div>
+        ))}
+      </div>
+
       <TaskbarApps title={"aaaaaaa"} icon={"aa"} />
     </div>
   );

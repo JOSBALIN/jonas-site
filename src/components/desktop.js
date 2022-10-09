@@ -46,21 +46,23 @@ export default function Desktop() {
 
   const [applications, setApplications] = useState(initialAppStates);
 
+
   const launchApp = (app) => {
-    console.log("launch!");
     render(app);
   };
 
+  // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, key, app) => {
-    console.log(app);
     updateObjectInArray(app[key])
 
-    console.log(applications);
+
     if (event.detail === 2) {
+      setOpenApps((current) => [...current, app[key]]);
       launchApp(app[key].component);
     }
   };
 
+  // add an application to list
   const addApplication = (obj) => {
     setApplications((current) => [...current, obj]);
   };
@@ -69,7 +71,6 @@ export default function Desktop() {
   const updateObjectInArray = (selectedApp) => {
     setApplications((current) =>
       current.map((app) => {
-        console.log(app);
         if (app.id == selectedApp.id) {
           return { ...app, style: { backgroundColor: "lightblue" } };
         } else return { ...app, style: { backgroundColor: "transparent" } };
@@ -77,7 +78,7 @@ export default function Desktop() {
     );
   };
 
-    // ✅ Update one or more objects in a state array
+    // Sets all app-icons to have transparent background
     const deselectApps = () => {
       setApplications((current) =>
         current.map((app) => {
@@ -87,26 +88,11 @@ export default function Desktop() {
 
   return (
     <div className="desktop-background">
-      <button onClick={() => console.log(applications)}>CONSOLE LOG</button>
-      <button
-        onClick={(e) =>
-          addApplication({
-            id: "5",
-            title: "Trivia2",
-            icon: "empty",
-            component: <AppWindow open={true} />,
-            selected: "false",
-            open: "false",
-            style: { backgroundColor: "lightblue" },
-          })
-        }
-      >
-        asdasdsad
-      </button>
-      <div className="parent" onClick={(event) => deselectApps}>
+      <button onClick={() => console.log(openApps)}>CONSOLE LOG</button>
+      <div className="parent" onClick={() => deselectApps}>
         {applications.map((app, key, appComp) => (
           <div
-            className={"div" + app.id}
+            className={"app-grid" + app.id}
             onClick={(event) =>
               handleClick(event, key, appComp)
               //updateObjectInArray(app)
@@ -122,8 +108,28 @@ export default function Desktop() {
       </div>
       <div className="desktop-frontlayer">
         {/* <AppWindow /> */}
-        <Taskbar className="taskbar" />
+        <Taskbar className="taskbar" openApps={openApps} />
       </div>
     </div>
   );
 }
+
+
+
+// Button that creates a new application, internal use
+
+// <button
+// onClick={(e) =>
+//   addApplication({
+//     id: "5",
+//     title: "Trivia2",
+//     icon: "empty",
+//     component: <AppWindow open={true} />,
+//     selected: "false",
+//     open: "false",
+//     style: { backgroundColor: "lightblue" },
+//   })
+// }
+// >
+// asdasdsad
+// </button>
