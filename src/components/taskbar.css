@@ -27,14 +27,22 @@
   bottom:0;
 }
 
+.app-title{
+  position:relative;
+  bottom:0px;
+  left: 32px;
+}
+
 .taskbar-application{
-    background-color: red;
+  color:white;
 }
 
 .taskbar-middle {
 
+  position:absolute;
+  bottom:0;
+  left:106px;
     width:500px;
-    height:200px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;

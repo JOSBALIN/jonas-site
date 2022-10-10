@@ -23,6 +23,8 @@ export default function Taskbar(props) {
     };
   }, []);
 
+
+
   return (
     <div className="taskbar">
       
@@ -42,10 +44,8 @@ export default function Taskbar(props) {
       </div>
       <div className="taskbar-middle">
         {props.openApps.reverse().map((app, index) => (
-          // Fix the div naming, not app.id but instead an incrementing value
-          <div className={"div"+index} key={app.title}>
-            {console.log(index)}
-            {console.log(app)}
+          <div className={"div"+index+1} key={app.title}>
+            {console.log(index + " " + app.title)}
             <TaskbarApps title={app.title}/>
           </div>
         ))}

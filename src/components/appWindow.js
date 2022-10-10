@@ -46,22 +46,20 @@ export function AppWindow(props) {
           <button id="minimize-button" onClick={() => minimizeWindow()}>
             <img
                 src="../images/application-topbar/desktop-app-topbar-minimize.png"
-                alt="my image"
-                onClick={console.log("hide")}
+                alt="minimize button"
               />
             </button>
             <button id="maximize-button" onClick={() => MaximizeWindow()}>
             <img
                 src="../images/application-topbar/desktop-app-topbar-expand.png"
-                alt="my image"
-                onClick={console.log("hide")}
+                alt="maximize button"
+                
               />
             </button>
             <button id="close-button" onClick={() => console.log("Hide")}>
               <img
                 src="../images/application-topbar/desktop-app-topbar-close.png"
-                alt="my image"
-                onClick={console.log("hide")}
+                alt="close button"
               />
             </button>
           </div>

@@ -58,8 +58,12 @@ export default function Desktop() {
 
 
     if (event.detail === 2) {
+      if(openApps.length <= 4){
       setOpenApps((current) => [...current, app[key]]);
       launchApp(app[key].component);
+      } else alert(`You can't have more than five apps open at once
+      
+      Are you trying to crash this poor old PC?!`)
     }
   };
 
@@ -85,6 +89,11 @@ export default function Desktop() {
         current.map((app) => {
             return { ...app, style: { backgroundColor: "transparent" } };
         }));
+
+        setOpenApps((current) =>
+        current.map((app) => {
+            return { ...app, style: { backgroundColor: "transparent" } };
+        }));
     };
 
   return (
@@ -96,7 +105,6 @@ export default function Desktop() {
             className={"app-grid" + app.id}
             onClick={(event) =>
               handleClick(event, key, appComp)
-              //updateObjectInArray(app)
             }
             key={key}
             app={app.component}

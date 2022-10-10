@@ -9,7 +9,7 @@ export default function AppIcon(props){
     return(
         <div className="app-icon">
 <img className="icon-img" src={iconTest}></img>
-        <div className="app-title"> {title} </div>
+        <div className="app-tile-title"> {title} </div>
         </div>
     )
 }

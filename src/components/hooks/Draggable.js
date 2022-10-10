@@ -7,7 +7,6 @@ import { useState, useEffect, useRef } from "react";
 export default function Draggable(el, el2, dragEnabled) {
   const [{ dx, dy }, setOffset] = useState({ dx: 0, dy: 0 });
 
-  console.log(dragEnabled);
 
   useEffect(() => {
     const handleMouseDown = (event) => {
