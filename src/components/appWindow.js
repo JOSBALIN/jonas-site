@@ -41,7 +41,7 @@ export function AppWindow(props) {
 
   return (
     <DraggableElement
-      dragElement={
+      dragElement={ 
         <div className="topbar">
           <div className="topbar-buttons">
           <button id="minimize-button" onClick={() => minimizeWindow()}>
@@ -72,7 +72,7 @@ export function AppWindow(props) {
           <div className="contents">{contents}</div>
         </div>
       }
-      style={windowDimensions}
+      style={props.style}
       dragEnabled={draggable}
     ></DraggableElement>
   );

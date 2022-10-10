@@ -55,6 +55,7 @@ export function DraggableElement({
   style,
   dragEnabled,
 }) {
+  console.log(style);
   const dragRef = useRef(null);
   const dragRefParent = useRef(null);
 

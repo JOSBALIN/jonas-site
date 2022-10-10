@@ -12,6 +12,7 @@ import AppIcon from "./appIcon";
 export default function Desktop() {
   // List of open apps to control taskbar icons
   const [openApps, setOpenApps] = useState([]);
+  const [appOrder, setAppOrder] = useState([]);
 
   // all applications to be displayed on the desktop, initial states
   const initialAppStates = [
@@ -26,7 +27,13 @@ export default function Desktop() {
       id: "2",
       title: "Photos",
       icon: "empty",
-      component: <AppWindow open={true} title={"second title!"} contents={<Resizeable/>}/>,
+      component: (
+        <AppWindow
+          open={true}
+          title={"second title!"}
+          contents={<Resizeable />}
+        />
+      ),
       style: { backgroundColor: "transparent" },
     },
     {
@@ -40,10 +47,11 @@ export default function Desktop() {
       id: "4",
       title: "Trivia",
       icon: "empty",
-      component: <AppWindow open={true} />,
+      component: <AppWindow open={true} title={"friend"} style={{zIndex:100}} />,
       style: { backgroundColor: "transparent" },
     },
   ];
+
 
   const [applications, setApplications] = useState(initialAppStates);
 
@@ -52,22 +60,17 @@ export default function Desktop() {
   };
 
 
-  const unHideApp = (app) => {
-    
-  }
-
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, key, app) => {
-    updateObjectInArray(app[key])
-
+    updateObjectInArray(app[key]);
 
     if (event.detail === 2) {
-      if(openApps.length <= 4){
-      setOpenApps((current) => [...current, app[key]]);
-      launchApp(app[key].component);
-      } else alert(`You can't have more than five apps open at once
-      
-      Are you trying to crash this poor old PC?!`)
+      if (openApps.length <= 4) {
+        setOpenApps((current) => [...current, app[key]]);
+        launchApp(app[key].component);
+      } else
+        alert(`You can't have more than five apps open at once
+        Are you trying to crash this poor old PC?!`);
     }
   };
 
@@ -87,18 +90,20 @@ export default function Desktop() {
     );
   };
 
-    // Sets all app-icons to have transparent background
-    const deselectApps = () => {
-      setApplications((current) =>
-        current.map((app) => {
-            return { ...app, style: { backgroundColor: "transparent" } };
-        }));
+  // Sets all app-icons to have transparent background
+  const deselectApps = () => {
+    setApplications((current) =>
+      current.map((app) => {
+        return { ...app, style: { backgroundColor: "transparent" } };
+      })
+    );
 
-        setOpenApps((current) =>
-        current.map((app) => {
-            return { ...app, style: { backgroundColor: "transparent" } };
-        }));
-    };
+    setOpenApps((current) =>
+      current.map((app) => {
+        return { ...app, style: { backgroundColor: "transparent" } };
+      })
+    );
+  };
 
   return (
     <div className="desktop-background">
@@ -107,9 +112,7 @@ export default function Desktop() {
         {applications.map((app, key, appComp) => (
           <div
             className={"app-grid" + app.id + " prevent-select"}
-            onClick={(event) =>
-              handleClick(event, key, appComp)
-            }
+            onClick={(event) => handleClick(event, key, appComp)}
             key={key}
             app={app.component}
             style={app.style}
@@ -120,13 +123,11 @@ export default function Desktop() {
       </div>
       <div className="desktop-frontlayer">
         {/* <AppWindow /> */}
-        <Taskbar className="taskbar" openApps={openApps}/>
+        <Taskbar className="taskbar" openApps={openApps} />
       </div>
     </div>
   );
 }
-
-
 
 // Button that creates a new application, internal use
 
