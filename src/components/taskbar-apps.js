@@ -8,7 +8,7 @@ export default function TaskbarApps(props) {
 
   return (
     <div className="taskbar-application">
-      <div className="app-title">{appIcon} {appTitle}</div>
+      <div className="app-title prevent-select">{appIcon} {appTitle}</div>
       <img className="taskbar-application-img" src={taskbarAppImage}></img>
     </div>
   );

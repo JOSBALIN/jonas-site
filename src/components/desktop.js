@@ -47,10 +47,14 @@ export default function Desktop() {
 
   const [applications, setApplications] = useState(initialAppStates);
 
-
   const launchApp = (app) => {
     render(app);
   };
+
+
+  const unHideApp = (app) => {
+    
+  }
 
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, key, app) => {
@@ -102,7 +106,7 @@ export default function Desktop() {
       <div className="parent" onClick={() => deselectApps}>
         {applications.map((app, key, appComp) => (
           <div
-            className={"app-grid" + app.id}
+            className={"app-grid" + app.id + " prevent-select"}
             onClick={(event) =>
               handleClick(event, key, appComp)
             }
@@ -116,7 +120,7 @@ export default function Desktop() {
       </div>
       <div className="desktop-frontlayer">
         {/* <AppWindow /> */}
-        <Taskbar className="taskbar" openApps={openApps} />
+        <Taskbar className="taskbar" openApps={openApps}/>
       </div>
     </div>
   );

@@ -17,7 +17,8 @@ export function AppWindow(props) {
   const [windowDimensions, setWindowDimensions] = useState({
     height: "50%",
     width: "50%",
-    display:""
+    display:"",
+    zIndex:"0"
   });
 
   // maximizes application window; disables dragging

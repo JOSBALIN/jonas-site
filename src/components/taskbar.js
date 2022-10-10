@@ -46,7 +46,8 @@ export default function Taskbar(props) {
         {props.openApps.reverse().map((app, index) => (
           <div className={"div"+index+1} key={app.title}>
             {console.log(index + " " + app.title)}
-            <TaskbarApps title={app.title}/>
+            <TaskbarApps title={app.title}
+            onClick={props.unHide}/>
           </div>
         ))}
       </div>
