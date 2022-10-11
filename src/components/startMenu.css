@@ -1,7 +1,19 @@
-.start-menu{
+.start-menu-background{
     position:absolute;
-    bottom:24px;
-    left:0;
-    width: 30%;
-    height: auto;
+    bottom:6px;
+    background: no-repeat url("../images/desktop-start-menu-compact.png") 50% / 100%;
+}
+
+.invisible-image {
+    width: 100%; /* max width */
+    opacity: 0;  /* make it transparent */
+}
+
+.turn-off-computer{
+    position:relative;
+    bottom:40px;
+    width:50%;
+    height:40px;
+    left:50%;
+    background: rgba(0,0,0,0.5);
 }

@@ -8,6 +8,7 @@ import * as React from "react";
 import { useState } from "react";
 import "./taskbar.css";
 import StartMenu from "./startMenu";
+import { AppWindow } from "./appWindow";
 
 export default function Taskbar(props) {
   const [time, setTime] = useState();
@@ -29,8 +30,8 @@ export default function Taskbar(props) {
   return (
     <div className="taskbar noselect">
     
+    <StartMenu/>
       <img className="start-bar" src={taskBar}></img>
-      <StartMenu/>
       <img
         className="start-button"
         src={startButton}

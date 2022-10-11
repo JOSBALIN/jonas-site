@@ -2,6 +2,9 @@ import "./startMenu.css"
 
 export default function StartMenu () {
     return(
-            <img className="start-menu" src={require("../images/desktop-start-menu.png")}></img>
+        <div className={"start-menu-background"}>
+            <img className="invisible-image" src={require("../images/desktop-start-menu-compact.png")}></img>
+            <div className="turn-off-computer"></div>
+            </div>
     )
 }
