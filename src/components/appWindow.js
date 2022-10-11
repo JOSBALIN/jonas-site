@@ -49,7 +49,6 @@ export function AppWindow(props) {
   };
 
   return (
-    <div id={"absoluteTest"}>
       <DraggableElement
         dragElement={
           <div
@@ -146,7 +145,6 @@ export function AppWindow(props) {
         zIndex={zIndex}
         dragEnabled={draggable}
       ></DraggableElement>
-    </div>
   );
 }
 

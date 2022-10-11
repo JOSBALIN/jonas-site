@@ -14,10 +14,10 @@ export default function Desktop() {
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
 
+  // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
   const passZIndex = (ref) => {
     setZIndex((zIndex) => zIndex + 1);
     ref.current.style.zIndex = zIndex;
-    console.log(zIndex);
   };
 
   // all applications to be displayed on the desktop, initial states
@@ -64,9 +64,6 @@ export default function Desktop() {
 
   const [applications, setApplications] = useState(initialAppStates);
 
-  const launchApp = (app) => {
-    return <AppWindow passZIndex={passZIndex} />;
-  };
 
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, key, app) => {
@@ -81,7 +78,7 @@ export default function Desktop() {
     }
   };
 
-  const generateThing = (app) => {
+  const launchApplication = (app) => {
     return (
       <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} />
     );
@@ -104,15 +101,13 @@ export default function Desktop() {
   };
 
   // Sets all app-icons to have transparent background
+  // Not functional for the moment due to click-through
   const deselectApps = () => {
     setApplications((current) =>
       current.map((app) => {
-        return { ...app, style: { backgroundColor: "transparent" } };
-      })
-    );
-
-    setOpenApps((current) =>
-      current.map((app) => {
+        if (app.style.backgroundColor == "lightblue") {
+          console.log(app);
+        }
         return { ...app, style: { backgroundColor: "transparent" } };
       })
     );
@@ -120,7 +115,7 @@ export default function Desktop() {
 
   return (
     <div className="desktop-background noselect">
-      <div className="parent" onClick={() => deselectApps}>
+      <div className="parent">
         {applications.map((app, key, appComp) => (
           <div
             className={"app-grid" + app.id}
@@ -133,7 +128,7 @@ export default function Desktop() {
           </div>
         ))}
         {openApps.map((appComp, key) => (
-          <div key={key}>{generateThing(appComp)}</div>
+          <div key={key}>{launchApplication(appComp)}</div>
         ))}
       </div>
       <div className="desktop-frontlayer">
