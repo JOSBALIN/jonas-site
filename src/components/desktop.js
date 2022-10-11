@@ -8,7 +8,6 @@ import { render } from "@testing-library/react";
 import Resizeable from "./resizeable";
 import { useState } from "react";
 import AppIcon from "./appIcon";
-import { useRef } from "react";
 
 export default function Desktop() {
   // List of open apps to control taskbar icons
@@ -16,8 +15,8 @@ export default function Desktop() {
   const [zIndex, setZIndex] = useState(1);
 
   const passZIndex = (ref) => {
-    ref.current.style.zIndex = zIndex;
     setZIndex((zIndex) => zIndex + 1);
+    ref.current.style.zIndex = zIndex;
     console.log(zIndex);
   };
 
@@ -28,7 +27,7 @@ export default function Desktop() {
       title: "My CV",
       icon: "empty",
       component: (
-        <AppWindow title={"This is an App Title!"} passZIndex={passZIndex} zIndex={zIndex} />
+        <AppWindow title={"This is an App Title!"} passZIndex={passZIndex} />
       ),
       style: { backgroundColor: "transparent" },
     },
@@ -66,7 +65,7 @@ export default function Desktop() {
   const [applications, setApplications] = useState(initialAppStates);
 
   const launchApp = (app) => {
-    render(app)
+    return <AppWindow passZIndex={passZIndex} />;
   };
 
   // single-click, color app-icon. Double-click, launch app
@@ -76,12 +75,16 @@ export default function Desktop() {
     if (event.detail === 2) {
       if (openApps.length <= 4) {
         setOpenApps((current) => [...current, app[key]]);
-        console.log(app[key]);
-        launchApp(app[key].component);
       } else
         alert(`You can't have more than five apps open at once
         Are you trying to crash this poor old PC?!`);
     }
+  };
+
+  const generateThing = (app) => {
+    return (
+      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} />
+    );
   };
 
   // add an application to list
@@ -116,11 +119,11 @@ export default function Desktop() {
   };
 
   return (
-    <div className="desktop-background">
+    <div className="desktop-background noselect">
       <div className="parent" onClick={() => deselectApps}>
         {applications.map((app, key, appComp) => (
           <div
-            className={"app-grid" + app.id + " prevent-select"}
+            className={"app-grid" + app.id}
             onClick={(event) => handleClick(event, key, appComp)}
             key={key}
             app={app.component}
@@ -128,6 +131,9 @@ export default function Desktop() {
           >
             <AppIcon title={app.title}></AppIcon>
           </div>
+        ))}
+        {openApps.map((appComp, key) => (
+          <div key={key}>{generateThing(appComp)}</div>
         ))}
       </div>
       <div className="desktop-frontlayer">

@@ -6,6 +6,9 @@ export function AppWindow(props) {
   const [title, setTitle] = useState(props.title);
   const [contents, setContents] = useState(props.contents);
   const noteRef = useRef();
+  const [zIndex, setZIndex] = useState({
+    zIndex: props.zIndex,
+  });
 
   // toggle for dragging window
   const [draggable, setDraggable] = useState(true);
@@ -15,10 +18,6 @@ export function AppWindow(props) {
   const [windowDimensions, setWindowDimensions] = useState({
     height: "50%",
     width: "50%",
-  });
-
-  const [backgroundColor2, setBackgroundColor] = useState({
-    backgroundColor: "red",
   });
 
   // maximizes application window; disables dragging
@@ -36,8 +35,7 @@ export function AppWindow(props) {
 
   const zIndexHandler = () => {
     props.passZIndex(noteRef);
-    console.log(noteRef);
-    console.log(props.zIndex);
+    setZIndex({zIndex: props.zIndex});
   };
 
   // "minimizes" window - really just hides it
@@ -51,11 +49,13 @@ export function AppWindow(props) {
   };
 
   return (
-    <div ref={noteRef} id={"absoluteTest"}>
+    <div id={"absoluteTest"}>
       <DraggableElement
         dragElement={
           <div
+          onMouseDownCapture={zIndexHandler}
             className="topbar"
+            ref={noteRef}
             style={
               maximized
                 ? { borderRadius: "0" }
@@ -79,7 +79,7 @@ export function AppWindow(props) {
                 maximized ? { marginRight: "20px" } : { marginRight: "0px" }
               }
             >
-              <button onClick={() => minimizeWindow()}>
+              <button>
                 <img
                   id="minimize"
                   alt="minimize button"
@@ -92,10 +92,10 @@ export function AppWindow(props) {
                     (e.currentTarget.src =
                       "../images/application-topbar/desktop-app-topbar-minimize.png")
                   }
-                  onMouseDownCapture={(e) =>
-                    (e.currentTarget.src =
-                      "../images/application-topbar/desktop-app-topbar-minimize-pressed.png")
-                  }
+                  // onMouseDownCapture={(e) =>
+                  //   (e.currentTarget.src =
+                  //     "../images/application-topbar/desktop-app-topbar-minimize-pressed.png")
+                  // }
                 />
               </button>
               <button onClick={() => MaximizeWindow()}>
@@ -117,7 +117,7 @@ export function AppWindow(props) {
                   }
                 />
               </button>
-              <button onClick={zIndexHandler}>
+              <button onClick={minimizeWindow}>
                 <img
                   id="close"
                   src="../images/application-topbar/desktop-app-topbar-close.png"
@@ -140,12 +140,10 @@ export function AppWindow(props) {
           </div>
         }
         parentElement={
-          <div>
-            <div className="contents">{contents}</div>
-          </div>
+            <div className="contents" onMouseDownCapture={zIndexHandler}>{contents}</div>
         }
         style={windowDimensions}
-        style2={backgroundColor2}
+        zIndex={zIndex}
         dragEnabled={draggable}
       ></DraggableElement>
     </div>

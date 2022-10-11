@@ -1,3 +1,10 @@
+.taskbar{
+  width:100%;
+  position:absolute;
+  bottom:0;
+  left:0;
+  z-index:10000
+}
 
 #current-time{
     position: relative;

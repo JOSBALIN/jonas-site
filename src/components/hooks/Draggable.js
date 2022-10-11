@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Resizeable from "../resizeable";
 
 // This code is borrowed from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/useDraggable.js:0-1009
 // Changes include adding an el2, which is the element to be moved, whereas el is the element that is held to drag.
@@ -53,7 +54,7 @@ export function DraggableElement({
   dragElement,
   parentElement,
   style,
-  style2,
+  zIndex,
   dragEnabled,
 }) {
 
@@ -67,7 +68,7 @@ export function DraggableElement({
     <div
       ref={dragRefParent}
       className={"draggable-parent app-container"}
-      style={{... style2, ...style}}
+      style={{...style, ...zIndex}}
     >
       <div ref={dragRef} className="draggable-child app-contents">
         {dragElement}

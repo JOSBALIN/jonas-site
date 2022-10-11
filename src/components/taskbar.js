@@ -26,7 +26,7 @@ export default function Taskbar(props) {
 
 
   return (
-    <div className="taskbar">
+    <div className="taskbar noselect">
       
       <img className="start-bar" src={taskBar}></img>
       <img
@@ -45,7 +45,7 @@ export default function Taskbar(props) {
       <div className="taskbar-middle">
         {props.openApps.reverse().map((app, index) => (
           <div className={"taskbar-app-div"+(index+1)} key={index}>
-            {console.log(index + " " + app.title)}
+            {/* {console.log(index + " " + app.title)} */}
             <TaskbarApps title={app.title}
             onClick={props.unHide}/>
           </div>
