@@ -3,52 +3,66 @@
     right: 0;
     top: 0;
     left:0;
-    background-color: lightblue;
-    border-radius: 10px;
-    border: 4px solid #005bf2;
-    cursor:alias;
+    border-radius: 16px 16px 0px 0px;
 }
 
 .topbar {
     float:left;
     width:100%;
     font-weight: bold;
-    padding-bottom: 10px;
-    border-bottom: 3px solid;
-    background-color: #0058ee;
-    cursor:move;
+    background-image: url("../images/application-topbar/desktop-app-topbar-background.png");
+    color:white;
+}
+
+.topbar, .contents {
+    border-radius: 16px 16px 0px 0px
 }
 
 .topbar-title{
     padding-left: 8px;
+    padding-top:16px;
+    float:left;
+    font-size: 20px;
+    text-shadow: 1px 1px 1px #000000
+}
+
+.topbar-right{
+    position:relative;
+    float:right;
+    height:60px;
+}
+
+.topbar-left{
+    position:relative;
+    float:left;
+    height:60px;
 }
 
 .topbar-buttons{
     float:right;
-    padding-right:20px;
+    padding-top: 8px;
 }
 
-img {
-    size:50%;
-    display:hidden;
-}
+
 
 .topbar-buttons > button{
     background-color:transparent;
     padding:0;
     border:none;
-    padding-left:4px;
-    padding-right:4px;
+    padding-top: 6px;
 }
 
+.topbar-buttons > button > img{
+    box-shadow: 1px 1px 6px #000000;
+    height:75%;
+    width:75%;
+}
 
 .contents{
     max-width: 100%;
     max-height:100%;
-    background-color: red;
+    background-color: olive;
 }
-
-
 
 
 .contents {

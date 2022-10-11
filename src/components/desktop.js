@@ -8,11 +8,18 @@ import { render } from "@testing-library/react";
 import Resizeable from "./resizeable";
 import { useState } from "react";
 import AppIcon from "./appIcon";
+import { useRef } from "react";
 
 export default function Desktop() {
   // List of open apps to control taskbar icons
   const [openApps, setOpenApps] = useState([]);
-  const [appOrder, setAppOrder] = useState([]);
+  const [zIndex, setZIndex] = useState(1);
+
+  const passZIndex = (ref) => {
+    ref.current.style.zIndex = zIndex;
+    setZIndex((zIndex) => zIndex + 1);
+    console.log(zIndex);
+  };
 
   // all applications to be displayed on the desktop, initial states
   const initialAppStates = [
@@ -20,7 +27,9 @@ export default function Desktop() {
       id: "1",
       title: "My CV",
       icon: "empty",
-      component: <AppWindow open={true} title={"First title!"} />,
+      component: (
+        <AppWindow title={"This is an App Title!"} passZIndex={passZIndex} zIndex={zIndex} />
+      ),
       style: { backgroundColor: "transparent" },
     },
     {
@@ -40,25 +49,25 @@ export default function Desktop() {
       id: "3",
       title: "Music",
       icon: "empty",
-      component: <AppWindow open={true} />,
+      component: <AppWindow open={true} passZIndex={passZIndex} />,
       style: { backgroundColor: "transparent" },
     },
     {
       id: "4",
       title: "Trivia",
       icon: "empty",
-      component: <AppWindow open={true} title={"friend"} style={{zIndex:100}} />,
+      component: (
+        <AppWindow open={true} title={"friend"} passZIndex={passZIndex} />
+      ),
       style: { backgroundColor: "transparent" },
     },
   ];
 
-
   const [applications, setApplications] = useState(initialAppStates);
 
   const launchApp = (app) => {
-    render(app);
+    render(app)
   };
-
 
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, key, app) => {
@@ -67,6 +76,7 @@ export default function Desktop() {
     if (event.detail === 2) {
       if (openApps.length <= 4) {
         setOpenApps((current) => [...current, app[key]]);
+        console.log(app[key]);
         launchApp(app[key].component);
       } else
         alert(`You can't have more than five apps open at once
@@ -83,7 +93,7 @@ export default function Desktop() {
   const updateObjectInArray = (selectedApp) => {
     setApplications((current) =>
       current.map((app) => {
-        if (app.id == selectedApp.id) {
+        if (app.id === selectedApp.id) {
           return { ...app, style: { backgroundColor: "lightblue" } };
         } else return { ...app, style: { backgroundColor: "transparent" } };
       })
@@ -107,7 +117,6 @@ export default function Desktop() {
 
   return (
     <div className="desktop-background">
-      <button onClick={() => console.log(openApps)}>CONSOLE LOG</button>
       <div className="parent" onClick={() => deselectApps}>
         {applications.map((app, key, appComp) => (
           <div
@@ -122,7 +131,6 @@ export default function Desktop() {
         ))}
       </div>
       <div className="desktop-frontlayer">
-        {/* <AppWindow /> */}
         <Taskbar className="taskbar" openApps={openApps} />
       </div>
     </div>
