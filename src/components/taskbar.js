@@ -7,6 +7,7 @@ import TaskbarApps from "./taskbar-apps";
 import * as React from "react";
 import { useState } from "react";
 import "./taskbar.css";
+import StartMenu from "./startMenu";
 
 export default function Taskbar(props) {
   const [time, setTime] = useState();
@@ -27,14 +28,15 @@ export default function Taskbar(props) {
 
   return (
     <div className="taskbar noselect">
-      
+    
       <img className="start-bar" src={taskBar}></img>
+      <StartMenu/>
       <img
         className="start-button"
         src={startButton}
         onMouseEnter={(e) => (e.currentTarget.src = startButtonHover)}
         onMouseLeave={(e) => (e.currentTarget.src = startButton)}
-        onMouseDown={(e) => (e.currentTarget.src = startButtonPressed)}
+        onMouseDownCapture={(e) => (e.currentTarget.src = startButtonPressed)}
       ></img>
       
       <div className="taskbar-right">

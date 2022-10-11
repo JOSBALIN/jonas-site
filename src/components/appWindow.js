@@ -43,8 +43,8 @@ export function AppWindow(props) {
     setWindowDimensions({ display: "none" });
   };
 
-  // Function to change topbar button images on interact, set draggable
-  const handleTopbarButtons = (e) => {
+  // switches dragging, disables it when mouse is by the topbar buttons 
+  const switchDragging = (e) => {
     setDraggable(!draggable);
   };
 
@@ -74,6 +74,8 @@ export function AppWindow(props) {
             />
             <div
               className="topbar-buttons"
+              onMouseEnter={switchDragging}
+              onMouseLeave={switchDragging}
               style={
                 maximized ? { marginRight: "20px" } : { marginRight: "0px" }
               }
