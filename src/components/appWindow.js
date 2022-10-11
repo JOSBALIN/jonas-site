@@ -54,26 +54,44 @@ export function AppWindow(props) {
     <div ref={noteRef} id={"absoluteTest"}>
       <DraggableElement
         dragElement={
-          <div className="topbar" style={maximized ? {borderRadius:"0"} : {borderRadius:"16px 16px 0 0"}}>
+          <div
+            className="topbar"
+            style={
+              maximized
+                ? { borderRadius: "0" }
+                : { borderRadius: "16px 16px 0 0" }
+            }
+          >
             <img
-            style={maximized ? {display:"none"} : {display:""}}
+              style={maximized ? { display: "none" } : { display: "" }}
               className={"topbar-left"}
               src={require("../images/application-topbar/desktop-app-topbar-left.png")}
             />
             <div className="topbar-title">{title}</div>
             <img
               className={"topbar-right"}
-              style={maximized ? {display:"none"} : {display:""}}
+              style={maximized ? { display: "none" } : { display: "" }}
               src={require("../images/application-topbar/desktop-app-topbar-right.png")}
             />
-            <div className="topbar-buttons">
+            <div
+              className="topbar-buttons"
+              style={
+                maximized ? { marginRight: "20px" } : { marginRight: "0px" }
+              }
+            >
               <button onClick={() => minimizeWindow()}>
                 <img
                   id="minimize"
                   alt="minimize button"
                   src="../images/application-topbar/desktop-app-topbar-minimize.png"
-                  onMouseEnter={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-minimize-highlighted.png")}
-                  onMouseLeave={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-minimize.png")}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.src =
+                      "../images/application-topbar/desktop-app-topbar-minimize-highlighted.png")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.src =
+                      "../images/application-topbar/desktop-app-topbar-minimize.png")
+                  }
                   onMouseDownCapture={(e) =>
                     (e.currentTarget.src =
                       "../images/application-topbar/desktop-app-topbar-minimize-pressed.png")
@@ -85,8 +103,14 @@ export function AppWindow(props) {
                   id="maximize"
                   src="../images/application-topbar/desktop-app-topbar-expand.png"
                   alt="maximize button"
-                  onMouseEnter={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-expand-highlighted.png")}
-                  onMouseLeave={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-expand.png")}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.src =
+                      "../images/application-topbar/desktop-app-topbar-expand-highlighted.png")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.src =
+                      "../images/application-topbar/desktop-app-topbar-expand.png")
+                  }
                   onMouseDownCapture={(e) =>
                     (e.currentTarget.src =
                       "../images/application-topbar/desktop-app-topbar-expand-pressed.png")
@@ -98,8 +122,14 @@ export function AppWindow(props) {
                   id="close"
                   src="../images/application-topbar/desktop-app-topbar-close.png"
                   alt="close button"
-                  onMouseEnter={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-close-highlighted.png")}
-                  onMouseLeave={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-close.png")}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.src =
+                      "../images/application-topbar/desktop-app-topbar-close-highlighted.png")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.src =
+                      "../images/application-topbar/desktop-app-topbar-close.png")
+                  }
                   onMouseDownCapture={(e) =>
                     (e.currentTarget.src =
                       "../images/application-topbar/desktop-app-topbar-close-pressed.png")
