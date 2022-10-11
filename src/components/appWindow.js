@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { DraggableElement } from "./hooks/Draggable";
 
-
 export function AppWindow(props) {
   // app information
   const [title, setTitle] = useState(props.title);
@@ -19,8 +18,8 @@ export function AppWindow(props) {
   });
 
   const [backgroundColor2, setBackgroundColor] = useState({
-    backgroundColor:"red"
-  })
+    backgroundColor: "red",
+  });
 
   // maximizes application window; disables dragging
   const MaximizeWindow = () => {
@@ -37,61 +36,88 @@ export function AppWindow(props) {
 
   const zIndexHandler = () => {
     props.passZIndex(noteRef);
-    console.log(noteRef)
+    console.log(noteRef);
     console.log(props.zIndex);
-  }
+  };
 
-    // "minimizes" window - really just hides it
-    const minimizeWindow = () => {
-      setWindowDimensions({display:"none"})
-    };
+  // "minimizes" window - really just hides it
+  const minimizeWindow = () => {
+    setWindowDimensions({ display: "none" });
+  };
 
-
+  // Function to change topbar button images on interact, set draggable
+  const handleTopbarButtons = (e) => {
+    setDraggable(!draggable);
+  };
 
   return (
     <div ref={noteRef} id={"absoluteTest"}>
-    <DraggableElement
-      dragElement={ 
-        <div className="topbar">
-          <img className={"topbar-left"} src={require("../images/application-topbar/desktop-app-topbar-left.png")}/>
-          <div className="topbar-title">{title}</div>
-          <img className={"topbar-right"} src={require("../images/application-topbar/desktop-app-topbar-right.png")}/>
-          <div className="topbar-buttons">
-          <button id="minimize-button" onClick={() => minimizeWindow()}>
-            
+      <DraggableElement
+        dragElement={
+          <div className="topbar" style={maximized ? {borderRadius:"0"} : {borderRadius:"16px 16px 0 0"}}>
             <img
-                alt="minimize button"
-                src="../images/application-topbar/desktop-app-topbar-minimize.png"
-                onMouseEnter={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-minimize-highlighted.png")}
-                onMouseLeave={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-minimize.png")}
-                onMouseDown={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-minimize-pressed.png")}
-              />
-            </button>
-            <button id="maximize-button" onClick={() => MaximizeWindow()}>
+            style={maximized ? {display:"none"} : {display:""}}
+              className={"topbar-left"}
+              src={require("../images/application-topbar/desktop-app-topbar-left.png")}
+            />
+            <div className="topbar-title">{title}</div>
             <img
-                src="../images/application-topbar/desktop-app-topbar-expand.png"
-                alt="maximize button"
-                
-              />
-            </button>
-            <button id="close-button" onClick={zIndexHandler}>
-              <img
-                src="../images/application-topbar/desktop-app-topbar-close.png"
-                alt="close button"
-              />
-            </button>
+              className={"topbar-right"}
+              style={maximized ? {display:"none"} : {display:""}}
+              src={require("../images/application-topbar/desktop-app-topbar-right.png")}
+            />
+            <div className="topbar-buttons">
+              <button onClick={() => minimizeWindow()}>
+                <img
+                  id="minimize"
+                  alt="minimize button"
+                  src="../images/application-topbar/desktop-app-topbar-minimize.png"
+                  onMouseEnter={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-minimize-highlighted.png")}
+                  onMouseLeave={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-minimize.png")}
+                  onMouseDownCapture={(e) =>
+                    (e.currentTarget.src =
+                      "../images/application-topbar/desktop-app-topbar-minimize-pressed.png")
+                  }
+                />
+              </button>
+              <button onClick={() => MaximizeWindow()}>
+                <img
+                  id="maximize"
+                  src="../images/application-topbar/desktop-app-topbar-expand.png"
+                  alt="maximize button"
+                  onMouseEnter={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-expand-highlighted.png")}
+                  onMouseLeave={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-expand.png")}
+                  onMouseDownCapture={(e) =>
+                    (e.currentTarget.src =
+                      "../images/application-topbar/desktop-app-topbar-expand-pressed.png")
+                  }
+                />
+              </button>
+              <button onClick={zIndexHandler}>
+                <img
+                  id="close"
+                  src="../images/application-topbar/desktop-app-topbar-close.png"
+                  alt="close button"
+                  onMouseEnter={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-close-highlighted.png")}
+                  onMouseLeave={(e) => (e.currentTarget.src = "../images/application-topbar/desktop-app-topbar-close.png")}
+                  onMouseDownCapture={(e) =>
+                    (e.currentTarget.src =
+                      "../images/application-topbar/desktop-app-topbar-close-pressed.png")
+                  }
+                />
+              </button>
+            </div>
           </div>
-        </div>
-      }
-      parentElement={
-        <div>
-          <div className="contents">{contents}</div>
-        </div>
-      }
-      style={windowDimensions}
-      style2={backgroundColor2}
-      dragEnabled={draggable}
-    ></DraggableElement>
+        }
+        parentElement={
+          <div>
+            <div className="contents">{contents}</div>
+          </div>
+        }
+        style={windowDimensions}
+        style2={backgroundColor2}
+        dragEnabled={draggable}
+      ></DraggableElement>
     </div>
   );
 }
