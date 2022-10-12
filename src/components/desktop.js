@@ -114,7 +114,7 @@ export default function Desktop() {
 
   const launchApplication = (app, index) => {
     return (
-      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} index={index}/>
+      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} index={index} contents={<h1>Contents!</h1>}/>
     );
   };
 

@@ -31,3 +31,8 @@
         filter: sepia(100%) hue-rotate(190deg) saturate(500%);
     }
 
+    .icon-img-overlay{
+        fill: #316ac5;
+        z-index: 200;
+    }
+
