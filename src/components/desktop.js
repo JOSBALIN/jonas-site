@@ -16,6 +16,7 @@ export default function Desktop() {
 
   // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
   const passZIndex = (ref) => {
+    console.log(ref)
     setZIndex((zIndex) => zIndex + 1);
     ref.current.style.zIndex = zIndex;
   };
@@ -63,7 +64,6 @@ export default function Desktop() {
   ];
 
   const [applications, setApplications] = useState(initialAppStates);
-  const [appInstances, setAppInstances] = useState([])
 
 
   // single-click, color app-icon. Double-click, launch app
@@ -79,18 +79,19 @@ export default function Desktop() {
     }
   };
 
-  const updateTaskbar = (appId) => {
+  const updateTaskbar = (index) => {
     setZIndex((zIndex) => zIndex +1)
-    console.log(zIndex)
-    console.log(appId);
     openApps.map(app => {
       console.log(app)
     })
+
+    console.log(index)
+    console.log(openApps[index])
   }
 
-  const launchApplication = (app) => {
+  const launchApplication = (app, index) => {
     return (
-      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} appId={2}/>
+      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} index={index}/>
     );
   };
 
@@ -138,7 +139,7 @@ export default function Desktop() {
           </div>
         ))}
         {openApps.map((appComp, key) => (
-          <div key={key}>{launchApplication(appComp)}</div>
+          <div key={key}>{launchApplication(appComp, key)}</div>
         ))}
       </div>
       <div className="desktop-frontlayer">

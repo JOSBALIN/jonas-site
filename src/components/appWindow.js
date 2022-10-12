@@ -36,7 +36,7 @@ export function AppWindow(props) {
   const zIndexHandler = () => {
     props.passZIndex(noteRef);
     setZIndex({zIndex: props.zIndex});
-    console.log(noteRef)
+    console.log(props.index)
   };
 
   // "minimizes" window - really just hides it
@@ -45,7 +45,7 @@ export function AppWindow(props) {
   };
 
   // switches dragging, disables it when mouse is by the topbar buttons 
-  const switchDragging = (e) => {
+  const switchDragging = () => {
     setDraggable(!draggable);
   };
 

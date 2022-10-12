@@ -25,8 +25,8 @@ export default function Taskbar(props) {
     };
   }, []);
 
-  const setAppListHandler = (appid) => {
-    props.setAppList(appid)
+  const setAppListHandler = (index) => {
+    props.setAppList(index)
   }
 
 
@@ -52,7 +52,7 @@ export default function Taskbar(props) {
       <div className="taskbar-middle">
         {props.openApps.reverse().map((app, index) => (
           <div className={"taskbar-app-div"+(index+1)} key={index}
-          onClick={(e) => {setAppListHandler(app.id)}}>
+          onClick={(e) => {setAppListHandler(index)}}>
             {/* {console.log(index + " " + app.title)} */}
             <TaskbarApps title={app.title}/>
           </div>
