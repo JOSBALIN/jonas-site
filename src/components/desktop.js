@@ -8,11 +8,22 @@ import { render } from "@testing-library/react";
 import Resizeable from "./resizeable";
 import { useState } from "react";
 import AppIcon from "./appIcon";
+import { useEffect } from "react";
 
 export default function Desktop() {
   // List of open apps to control taskbar icons
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
+  const [appGridClasses, setAppGridClasses] = useState([])
+
+
+  // Get all instances of classes titled app-grid
+  useEffect(() => {
+    setAppGridClasses(Array.from(
+      document.getElementsByClassName('app-grid')
+    ));
+    console.log(appGridClasses);
+  }, []);
 
   // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
   const passZIndex = (ref) => {
@@ -30,7 +41,7 @@ export default function Desktop() {
       component: (
         <AppWindow title={"This is an App Title!"} passZIndex={passZIndex} />
       ),
-      style: { backgroundColor: "transparent" },
+      style: { backgroundColor: "" },
     },
     {
       id: "2",
@@ -43,14 +54,14 @@ export default function Desktop() {
           contents={<Resizeable />}
         />
       ),
-      style: { backgroundColor: "transparent" },
+      style: { backgroundColor: "" },
     },
     {
       id: "3",
       title: "Music",
       icon: "empty",
       component: <AppWindow open={true} passZIndex={passZIndex} />,
-      style: { backgroundColor: "transparent" },
+      style: { backgroundColor: "" },
     },
     {
       id: "4",
@@ -59,7 +70,7 @@ export default function Desktop() {
       component: (
         <AppWindow open={true} title={"friend"} passZIndex={passZIndex} />
       ),
-      style: { backgroundColor: "transparent" },
+      style: { backgroundColor: "" },
     },
   ];
 
@@ -68,7 +79,17 @@ export default function Desktop() {
 
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, key, app) => {
-    updateObjectInArray(app[key]);
+    // updateObjectInArray(app[key]);
+
+    appGridClasses.map((appGrid) => {
+      if(appGrid.className.length > 12){
+        appGrid.className = "app-grid " + (key)
+      }
+
+     if(parseInt(appGrid.className.slice(-1)) == key+1){
+      appGrid.className += " selected"
+     }
+    })
 
     if (event.detail === 2) {
       if (openApps.length <= 4) {
@@ -100,16 +121,16 @@ export default function Desktop() {
     setApplications((current) => [...current, obj]);
   };
 
-  // set selected/deselected desktop app icon styles
-  const updateObjectInArray = (selectedApp) => {
-    setApplications((current) =>
-      current.map((app) => {
-        if (app.id === selectedApp.id) {
-          return { ...app, style: { backgroundColor: "lightblue" } };
-        } else return { ...app, style: { backgroundColor: "transparent" } };
-      })
-    );
-  };
+  // // set selected/deselected desktop app icon styles
+  // const updateObjectInArray = (selectedApp) => {
+  //   setApplications((current) =>
+  //     current.map((app) => {
+  //       if (app.id === selectedApp.id) {
+  //         return { ...app, style: { backgroundColor: "#316ac5" } };
+  //       } else return { ...app, style: { backgroundColor: "transparent" } };
+  //     })
+  //   );
+  // };
 
   // Sets all app-icons to have transparent background
   // Not functional for the moment due to click-through
@@ -129,7 +150,7 @@ export default function Desktop() {
       <div className="parent">
         {applications.map((app, key, appComp) => (
           <div
-            className={"app-grid" + app.id}
+            className={"app-grid " + app.id}
             onClick={(event) => handleClick(event, key, appComp)}
             key={key}
             app={app.component}
