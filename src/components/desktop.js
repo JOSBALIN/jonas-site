@@ -77,23 +77,28 @@ export default function Desktop() {
   const [applications, setApplications] = useState(initialAppStates);
 
 
-  // single-click, color app-icon. Double-click, launch app
-  const handleClick = (event, key, app) => {
-    // updateObjectInArray(app[key]);
-
+  // Handles class delegation of selected icons
+  const appIconSelection = (key) => {
     appGridClasses.map((appGrid) => {
       if(appGrid.className.length > 12){
-        appGrid.className = "app-grid " + (key)
+        appGrid.className = appGrid.className.slice(0, 10)
       }
 
      if(parseInt(appGrid.className.slice(-1)) == key+1){
       appGrid.className += " selected"
      }
     })
+  }
+
+
+  // single-click, color app-icon. Double-click, launch app
+  const handleClick = (event, key, app) => {
+    appIconSelection(key);
 
     if (event.detail === 2) {
       if (openApps.length <= 4) {
         setOpenApps((current) => [...current, app[key]]);
+      appIconSelection(-1) // resets icon selection
       } else
         alert(`You can't have more than five apps open at once
         Are you trying to crash this poor old PC?!`);
@@ -105,9 +110,6 @@ export default function Desktop() {
     openApps.map(app => {
       console.log(app)
     })
-
-    console.log(index)
-    console.log(openApps[index])
   }
 
   const launchApplication = (app, index) => {

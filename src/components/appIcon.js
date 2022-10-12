@@ -1,5 +1,5 @@
 import { useState } from "react";
-import iconTest from "../images/application-topbar/desktop-app-topbar-minimize.png";
+import iconTest from "../images/app-icons/app-icon-wordpad.png";
 
 export default function AppIcon(props) {
   const [title, setTitle] = useState(props.title);

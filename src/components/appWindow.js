@@ -44,12 +44,6 @@ export function AppWindow(props) {
     setWindowDimensions({ display: "none" });
   };
 
-  // switches dragging, disables it when mouse is by the topbar buttons 
-  const switchDragging = () => {
-    setDraggable(!draggable);
-  };
-
-
   return (
       <DraggableElement
         dragElement={
@@ -76,8 +70,8 @@ export function AppWindow(props) {
             />
             <div
               className="topbar-buttons"
-              onMouseEnter={switchDragging}
-              onMouseLeave={switchDragging}
+              onMouseEnter={() => setDraggable(false)}
+              onMouseLeave={() => {if(!maximized)setDraggable(true)}}
               style={
                 maximized ? { marginRight: "20px" } : { marginRight: "0px" }
               }

@@ -5,11 +5,6 @@
     grid-column-gap: 8px;
     grid-row-gap: 8px;
     }
-
-.icon-selected > p {
-    display:none;
-
-}
     
     .div1 { grid-area: 1 / 1 / 2 / 2; }
     .div2 { grid-area: 1 / 2 / 2 / 3; }
@@ -26,8 +21,13 @@
         text-shadow: 2px 1px 2px black
     }
 
-    .selected{
-        background-color: lightblue;
-        transform:none
+    .selected p{
+        background-color: #316ac5;
+        border:dotted;
+        padding: 0px 2px 2px 2px;
+    }
+
+    .selected img{
+        filter: sepia(100%) hue-rotate(190deg) saturate(500%);
     }
 
