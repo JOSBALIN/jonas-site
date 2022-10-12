@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DraggableElement } from "./hooks/Draggable";
 
 export function AppWindow(props) {
@@ -36,6 +36,7 @@ export function AppWindow(props) {
   const zIndexHandler = () => {
     props.passZIndex(noteRef);
     setZIndex({zIndex: props.zIndex});
+    console.log(noteRef)
   };
 
   // "minimizes" window - really just hides it
@@ -47,6 +48,7 @@ export function AppWindow(props) {
   const switchDragging = (e) => {
     setDraggable(!draggable);
   };
+
 
   return (
       <DraggableElement

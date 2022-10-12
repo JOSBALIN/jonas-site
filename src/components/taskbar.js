@@ -12,7 +12,7 @@ import { AppWindow } from "./appWindow";
 
 export default function Taskbar(props) {
   const [time, setTime] = useState();
-  const [openApps, setOpenApps] = useState([]);
+  const [openApps, setOpenApps] = useState(props.openApps);
 
   // Updating time in taskbar
   React.useEffect(() => {
@@ -25,12 +25,16 @@ export default function Taskbar(props) {
     };
   }, []);
 
+  const setAppListHandler = (appid) => {
+    props.setAppList(appid)
+  }
+
 
 
   return (
     <div className="taskbar noselect">
-    
-    <StartMenu/>
+      <button onClick={() => console.log(props.openApps)}>CONSOLE</button>
+    {/* <StartMenu/> */}
       <img className="start-bar" src={taskBar}></img>
       <img
         className="start-button"
@@ -47,10 +51,10 @@ export default function Taskbar(props) {
       </div>
       <div className="taskbar-middle">
         {props.openApps.reverse().map((app, index) => (
-          <div className={"taskbar-app-div"+(index+1)} key={index}>
+          <div className={"taskbar-app-div"+(index+1)} key={index}
+          onClick={(e) => {setAppListHandler(app.id)}}>
             {/* {console.log(index + " " + app.title)} */}
-            <TaskbarApps title={app.title}
-            onClick={props.unHide}/>
+            <TaskbarApps title={app.title}/>
           </div>
         ))}
       </div>

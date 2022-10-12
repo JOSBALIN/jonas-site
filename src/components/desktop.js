@@ -63,6 +63,7 @@ export default function Desktop() {
   ];
 
   const [applications, setApplications] = useState(initialAppStates);
+  const [appInstances, setAppInstances] = useState([])
 
 
   // single-click, color app-icon. Double-click, launch app
@@ -78,9 +79,18 @@ export default function Desktop() {
     }
   };
 
+  const updateTaskbar = (appId) => {
+    setZIndex((zIndex) => zIndex +1)
+    console.log(zIndex)
+    console.log(appId);
+    openApps.map(app => {
+      console.log(app)
+    })
+  }
+
   const launchApplication = (app) => {
     return (
-      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} />
+      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} appId={2}/>
     );
   };
 
@@ -132,7 +142,7 @@ export default function Desktop() {
         ))}
       </div>
       <div className="desktop-frontlayer">
-        <Taskbar className="taskbar" openApps={openApps} />
+        <Taskbar className="taskbar" openApps={openApps} setAppList={updateTaskbar} />
       </div>
     </div>
   );
