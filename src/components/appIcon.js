@@ -1,5 +1,5 @@
 import { useState } from "react";
-import iconTest from "../images/app-icons/app-icon-wordpad.png";
+import wordPad from "../images/app-icons/app-icon-wordpad.png";
 
 export default function AppIcon(props) {
   const [title, setTitle] = useState(props.title);
@@ -9,7 +9,7 @@ export default function AppIcon(props) {
   return (
     <div className="app-icon">
       <div className="icon-img-overlay">
-      <img className="icon-img" src={iconTest}></img>
+      <img className="icon-img" src={icon}></img>
       </div>
       <div className="app-tile-title">
         <p>{title} </p>

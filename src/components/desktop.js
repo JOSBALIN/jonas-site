@@ -10,6 +10,8 @@ import { useState } from "react";
 import AppIcon from "./appIcon";
 import { useEffect } from "react";
 import MyCV from "./applications/myCV";
+import wordPadIcon from "../images/app-icons/app-icon-wordpad.png";
+import photosIcon from "../images/app-icons/app-icon-photos.png";
 
 export default function Desktop() {
   // List of open apps to control taskbar icons
@@ -65,7 +67,7 @@ export default function Desktop() {
     {
       id: "1",
       title: "My CV",
-      icon: "empty",
+      icon: wordPadIcon,
       component: (
         <AppWindow title={"This is an App Title!"} passZIndex={passZIndex} />
       ),
@@ -74,7 +76,7 @@ export default function Desktop() {
     {
       id: "2",
       title: "Photos",
-      icon: "empty",
+      icon: photosIcon,
       component: (
         <AppWindow
           open={true}
@@ -87,14 +89,14 @@ export default function Desktop() {
     {
       id: "3",
       title: "Music",
-      icon: "empty",
+      icon: wordPadIcon,
       component: <AppWindow open={true} passZIndex={passZIndex} />,
       style: { backgroundColor: "" },
     },
     {
       id: "4",
       title: "Trivia",
-      icon: "empty",
+      icon: wordPadIcon,
       component: (
         <AppWindow open={true} title={"friend"} passZIndex={passZIndex} />
       ),
@@ -201,7 +203,7 @@ export default function Desktop() {
             app={app.component}
             style={app.style}
           >
-            <AppIcon title={app.title}></AppIcon>
+            <AppIcon title={app.title} icon={app.icon}></AppIcon>
           </div>
         ))}
         {openApps.map((appComp, key) => (
