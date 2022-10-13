@@ -63,7 +63,7 @@
     max-width: 100%;
     max-height:100%;
     background-color: white;
-    overflow:auto;
+    overflow:hidden;
     height:100%
 }
 

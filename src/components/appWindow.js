@@ -117,7 +117,7 @@ export function AppWindow(props) {
                     (e.currentTarget.src =
                       "../images/application-topbar/desktop-app-topbar-expand-pressed.png")
                   }
-                  // onClick={() => MaximizeWindow()}
+                  onClick={() => MaximizeWindow()}
                 />
               </button>
               <button onClick={minimizeWindow}>

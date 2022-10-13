@@ -1,7 +1,37 @@
+.top-menu{
+    overflow:hidden;
+    background-image: url("../../images/application-images/myCV-top-menu-background.png");
+    height:126.05px;
+    background-size: 126.05px 100%
+}
+
+.top-menu-img{
+    width:860px;
+    height:auto;
+    margin:0;
+}
+
+.top-menu-img-bg{
+    height:126.05px;
+    width:5%;
+}
+
+.text-contents{
+    max-width: 800px;
+    left:0;
+    margin:auto;
+    border:ridge;
+    overflow:auto;
+    max-height:80%;
+    background-color: white;
+    padding-left:16px;
+    padding-right:16px;
+    margin-top:26px;
+}
+
 #cv-background{
-    padding-left:20px;
-    padding-right:20px;
-    margin-bottom:40px;
+    background-color: lightgray;
+    height:100%;
 }
 
 h1, h2{

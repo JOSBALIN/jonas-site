@@ -1,8 +1,11 @@
 import "./myCV.css";
+import topBarImage from "../../images/application-images/myCV-top-menu.png";
 
 export default function MyCV() {
   return (
     <div id={"cv-background"}>
+      <div className={"top-menu"}>      <img className="top-menu-img" src={topBarImage}></img></div>
+      <div className={"text-contents"}>
       <h1 className="cv-title">Jonas Balin - CV</h1>
       <h2 className="cv-headline">Summary</h2>
       <p>
@@ -64,6 +67,7 @@ export default function MyCV() {
       </ul>
       <h2 className="cv-headline">Skills</h2>
       <h2 className="cv-headline">References</h2>
+      </div>
     </div>
   );
 }
