@@ -22,7 +22,7 @@
     margin:auto;
     border:ridge;
     overflow:auto;
-    max-height:80%;
+    height: calc(80% - 100px);
     background-color: white;
     padding-left:16px;
     padding-right:16px;
