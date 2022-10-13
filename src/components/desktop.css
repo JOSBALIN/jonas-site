@@ -2,9 +2,11 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    grid-column-gap: 8px;
+    grid-column-gap: 30%;
     grid-row-gap: 8px;
-    }
+    float:left;    
+    margin-left:40px;
+}
     
     .div1 { grid-area: 1 / 1 / 2 / 2; }
     .div2 { grid-area: 1 / 2 / 2 / 3; }
@@ -13,6 +15,7 @@
     
     div[class^="app-grid"]{
         margin: auto;
+        margin-top:20px;
         text-align: center;
         font-family: "Segoe UI", sans-serif;
         font-smooth:never;
@@ -21,11 +24,15 @@
         text-shadow: 2px 1px 2px black
     }
 
+    .app-tile-title p{
+        margin:0;
+    }
+
     .selected p{
         background-color: #316ac5;
-        border:dotted;
         padding: 0px 2px 2px 2px;
     }
+
 
     .selected img{
         filter: sepia(100%) hue-rotate(190deg) saturate(500%);
