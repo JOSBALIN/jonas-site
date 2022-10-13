@@ -144,7 +144,7 @@ export default function Desktop() {
         title={app.title}
         zIndex={zIndex}
         appId={app.id}
-        contents={MyCV}
+        contents={photoViewer}
       />
     );
   };
