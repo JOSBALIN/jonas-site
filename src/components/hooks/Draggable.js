@@ -54,6 +54,7 @@ export function DraggableElement({
   dragElement,
   parentElement,
   style,
+  display,
   zIndex,
   dragEnabled,
   appId
@@ -69,7 +70,7 @@ export function DraggableElement({
     <div
       ref={dragRefParent}
       className={"draggable-parent app-container applicationId: " + appId}
-      style={{...style, ...zIndex}}
+      style={{...style, ...zIndex, ...{display:display}}}
     >
       <div ref={dragRef} className="draggable-child app-contents">
         {dragElement}

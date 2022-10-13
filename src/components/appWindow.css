@@ -5,8 +5,10 @@
     left:0;
     border-radius: 16px 16px 0px 0px;
     min-width: 350px;
+    min-height:120px;
     border: solid;
-    overflow:hidden
+    resize:both;
+    overflow:hidden;
 }
 
 .topbar {
@@ -62,7 +64,7 @@
     max-height:100%;
     background-color: white;
     overflow:auto;
-    height:90%
+    height:100%
 }
 
 /* Left side of app gradient

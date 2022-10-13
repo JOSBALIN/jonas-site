@@ -15,29 +15,16 @@ export default function Desktop() {
   // List of open apps to control taskbar icons
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
-  const [appGridClasses, setAppGridClasses] = useState([])
-  const [openApplicationClassnames, setOpenApplicationClassnames] = useState([])
-
+  const [appGridClasses, setAppGridClasses] = useState([]);
 
   // Get all instances of classes titled app-grid
   useEffect(() => {
-    setAppGridClasses(Array.from(
-      document.getElementsByClassName('app-grid')
-    ));
+    setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
     console.log(appGridClasses);
   }, []);
 
-    // Get all instances of classes titled app-grid
-    useEffect(() => {
-      setOpenApplicationClassnames(Array.from(
-        document.getElementsByClassName('draggable-parent')
-      ));
-      console.log(openApplicationClassnames);
-    }, []);
-
   // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
   const passZIndex = (ref) => {
-    console.log(ref)
     setZIndex((zIndex) => zIndex + 1);
     ref.current.style.zIndex = zIndex;
   };
@@ -86,45 +73,47 @@ export default function Desktop() {
 
   const [applications, setApplications] = useState(initialAppStates);
 
-
   // Handles class delegation of selected icons
   const appIconSelection = (key) => {
     appGridClasses.map((appGrid) => {
-      if(appGrid.className.length > 12){
-        appGrid.className = appGrid.className.slice(0, 10)
+      if (appGrid.className.length > 12) {
+        appGrid.className = appGrid.className.slice(0, 10);
       }
 
-     if(parseInt(appGrid.className.slice(-1)) == key+1){
-      appGrid.className += " selected"
-     }
-    })
-  }
-
+      if (parseInt(appGrid.className.slice(-1)) == key + 1) {
+        appGrid.className += " selected";
+      }
+    });
+  };
 
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, key, app) => {
     appIconSelection(key);
 
     if (event.detail === 2) {
+      console.log(openApps);
+
+      if (openApps.includes(app[key]))
+        return alert("This app is already open!");
+
       if (openApps.length <= 4) {
         setOpenApps((current) => [...current, app[key]]);
-      appIconSelection(-1) // resets icon selection
+        appIconSelection(-1); // resets icon selection
       } else
         alert(`You can't have more than five apps open at once
         Are you trying to crash this poor old PC?!`);
     }
   };
 
-  const updateTaskbar = (index) => {
-    setZIndex((zIndex) => zIndex +1)
-    openApps.map(app => {
-      console.log(app)
-    })
-  }
-
   const launchApplication = (app, index) => {
     return (
-      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} appId={app.id} contents={MyCV}/>
+      <AppWindow
+        passZIndex={passZIndex}
+        title={app.title}
+        zIndex={zIndex}
+        appId={app.id}
+        contents={MyCV}
+      />
     );
   };
 
@@ -133,19 +122,6 @@ export default function Desktop() {
     setApplications((current) => [...current, obj]);
   };
 
-  // // set selected/deselected desktop app icon styles
-  // const updateObjectInArray = (selectedApp) => {
-  //   setApplications((current) =>
-  //     current.map((app) => {
-  //       if (app.id === selectedApp.id) {
-  //         return { ...app, style: { backgroundColor: "#316ac5" } };
-  //       } else return { ...app, style: { backgroundColor: "transparent" } };
-  //     })
-  //   );
-  // };
-
-  // Sets all app-icons to have transparent background
-  // Not functional for the moment due to click-through
   const deselectApps = () => {
     setApplications((current) =>
       current.map((app) => {
@@ -157,8 +133,27 @@ export default function Desktop() {
     );
   };
 
+  const summonApplication = (divId) => {
+    const divStyle = document.getElementsByClassName(
+      "draggable-parent app-container applicationId: " + divId
+    )[0].style;
+    setZIndex((zIndex) => zIndex + 1);
+    divStyle.zIndex = zIndex;
+    if (divStyle.display != "") {
+      divStyle.display = "";
+      divStyle.transform3d = 0;
+      divStyle.left = 0;
+    } else {
+      divStyle.display = "none";
+    }
+  };
+
   return (
     <div className="desktop-background noselect">
+      <button onClick={() => summonApplication(2)}>
+        {" "}
+        Click me to test Z-Index
+      </button>
       <div className="parent">
         {applications.map((app, key, appComp) => (
           <div
@@ -176,7 +171,11 @@ export default function Desktop() {
         ))}
       </div>
       <div className="desktop-frontlayer">
-        <Taskbar className="taskbar" openApps={openApps} setAppList={updateTaskbar} />
+        <Taskbar
+          className="taskbar"
+          openApps={openApps}
+          summonApplication={summonApplication}
+        />
       </div>
     </div>
   );

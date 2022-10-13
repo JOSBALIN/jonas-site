@@ -26,15 +26,14 @@ export default function Taskbar(props) {
   }, []);
 
   const setAppListHandler = (index) => {
-    props.setAppList(index)
+    props.summonApplication(index)
   }
 
 
 
   return (
     <div className="taskbar noselect">
-      {/* <button onClick={() => console.log(props.openApps)}>CONSOLE</button> */}
-    <StartMenu/>
+    {/* <StartMenu/> */}
       <img className="start-bar" src={taskBar}></img>
       <img
         className="start-button"
@@ -52,8 +51,7 @@ export default function Taskbar(props) {
       <div className="taskbar-middle">
         {props.openApps.reverse().map((app, index) => (
           <div className={"taskbar-app-div"+(index+1)} key={index}
-          onClick={(e) => {setAppListHandler(index)}}>
-            {/* {console.log(index + " " + app.title)} */}
+          onClick={(e) => {setAppListHandler(app.id)}}>
             <TaskbarApps title={app.title}/>
           </div>
         ))}
