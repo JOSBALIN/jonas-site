@@ -40,9 +40,13 @@ export function AppWindow(props) {
   };
 
   // "minimizes" window - really just hides it
+  // Has to be clicked twice - get a fix in future
   const minimizeWindow = () => {
-    console.log(display)
-    setDisplay("none")
+    if(display == "none"){
+      setDisplay("")
+    } else {
+      setDisplay("none")
+    }
   };
 
   return (
