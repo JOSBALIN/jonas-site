@@ -16,6 +16,7 @@ export default function Desktop() {
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
   const [appGridClasses, setAppGridClasses] = useState([]);
+  const [selectedApp, setSelectedApp] = useState([]);
 
   // Get all instances of classes titled app-grid
   useEffect(() => {
@@ -23,10 +24,40 @@ export default function Desktop() {
     console.log(appGridClasses);
   }, []);
 
+    // Get all instances of classes titled app-grid
+    useEffect(() => {
+      setSelectedApp(Array.from(document.getElementsByClassName(" selected-app")));
+      console.log(selectedApp);
+    }, []);
+
+    
+
+    const styleTheApp = () => {
+      selectedApp.map((app) => {
+          console.log(app.className)
+          console.log(app)
+          app.className = app.className.slice(0, 7)
+          console.log(app.className)
+      })
+      console.log(selectedApp)
+    }
+
+  const incrementZIndex = () => {
+    setZIndex((zIndex) => zIndex + 1);
+  }
+
+  const resetTopbarSelection = () => {
+    if(Array.from(document.getElementsByClassName(" selected-app"))[0] !== undefined){
+      document.getElementsByClassName(" selected-app")[0].className = "topbar"
+    }
+  }
+
   // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
   const passZIndex = (ref) => {
-    setZIndex((zIndex) => zIndex + 1);
+    incrementZIndex()
     ref.current.style.zIndex = zIndex;
+    resetTopbarSelection();
+    ref.current.className = "topbar selected-app"
   };
 
   // all applications to be displayed on the desktop, initial states
@@ -93,19 +124,17 @@ export default function Desktop() {
     if (event.detail === 2) {
       console.log(openApps);
 
-      if (openApps.includes(app[key]))
-        return alert("This app is already open!");
-
+      if (openApps.includes(app[key])){
+        return summonApplication(app[key].id, true)
+      }
       if (openApps.length <= 4) {
         setOpenApps((current) => [...current, app[key]]);
         appIconSelection(-1); // resets icon selection
-      } else
-        alert(`You can't have more than five apps open at once
-        Are you trying to crash this poor old PC?!`);
+      }
     }
   };
 
-  const launchApplication = (app, index) => {
+  const launchApplication = (app) => {
     return (
       <AppWindow
         passZIndex={passZIndex}
@@ -133,27 +162,36 @@ export default function Desktop() {
     );
   };
 
-  const summonApplication = (divId) => {
+
+  // Function for controlling app visibility from taskbar
+  // Spaghetti-code for now. Optimize if-statements
+  const summonApplication = (appId, isOpen) => {
+    resetTopbarSelection()
+    // Get selected div's style
     const divStyle = document.getElementsByClassName(
-      "draggable-parent app-container applicationId: " + divId
+      "draggable-parent app-container applicationId: " + appId
     )[0].style;
-    setZIndex((zIndex) => zIndex + 1);
-    divStyle.zIndex = zIndex;
-    if (divStyle.display != "") {
+
+
+    if(divStyle.display == "" && divStyle.zIndex == zIndex-1){
+      if(divStyle.zIndex == zIndex-1 && !isOpen)
+        divStyle.display = "none";
+      if(divStyle.zIndex != zIndex){
+        incrementZIndex();
+        divStyle.zIndex = zIndex;
+      }
+    } else {
+      incrementZIndex();
+      divStyle.zIndex = zIndex;
       divStyle.display = "";
       divStyle.transform3d = 0;
       divStyle.left = 0;
-    } else {
-      divStyle.display = "none";
     }
+
   };
 
   return (
     <div className="desktop-background noselect">
-      <button onClick={() => summonApplication(2)}>
-        {" "}
-        Click me to test Z-Index
-      </button>
       <div className="parent">
         {applications.map((app, key, appComp) => (
           <div

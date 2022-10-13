@@ -1,4 +1,4 @@
-import taskbarAppImage from ".././images/desktop-taskbar-app.png";
+import taskbarAppImage from ".././images/desktop-taskbar-app-background.png";
 import './taskbar.css';
 
 

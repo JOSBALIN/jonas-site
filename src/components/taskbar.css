@@ -59,11 +59,14 @@ but this works for the draggable-apps*/
 .taskbar-application-img{
   position:absolute;
   bottom:4px;
-  z-index:0
+  z-index:0;
+  width:100%;
+  height:auto;
 }
 
 .taskbar-application{
   color:white;
+  width:30%;
   height:30px;
   bottom:0px;
   position:absolute;

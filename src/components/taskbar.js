@@ -25,8 +25,9 @@ export default function Taskbar(props) {
     };
   }, []);
 
-  const setAppListHandler = (index) => {
-    props.summonApplication(index)
+  const taskbarAppClick = (index) => {
+    // False to ensure method handles application as if it's not open
+    props.summonApplication(index, false)
   }
 
 
@@ -51,7 +52,7 @@ export default function Taskbar(props) {
       <div className="taskbar-middle">
         {props.openApps.reverse().map((app, index) => (
           <div className={"taskbar-app-div"+(index+1)} key={index}
-          onClick={(e) => {setAppListHandler(app.id)}}>
+          onClick={(e) => {taskbarAppClick(app.id)}}>
             <TaskbarApps title={app.title}/>
           </div>
         ))}
