@@ -10,6 +10,7 @@ import { useState } from "react";
 import AppIcon from "./appIcon";
 import { useEffect } from "react";
 import MyCV from "./applications/myCV";
+import photoViewer from "./applications/photoViewer";
 import wordPadIcon from "../images/app-icons/app-icon-wordpad.png";
 import photosIcon from "../images/app-icons/app-icon-photos.png";
 
