@@ -42,6 +42,7 @@ export function AppWindow(props) {
   // "minimizes" window - really just hides it
   const minimizeWindow = () => {
     setWindowDimensions({ display: "none" });
+    console.log(noteRef);
   };
 
   return (
@@ -142,6 +143,7 @@ export function AppWindow(props) {
         style={windowDimensions}
         zIndex={zIndex}
         dragEnabled={draggable}
+        appId={props.appId}
       ></DraggableElement>
   );
 }

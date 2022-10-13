@@ -9,12 +9,14 @@ import Resizeable from "./resizeable";
 import { useState } from "react";
 import AppIcon from "./appIcon";
 import { useEffect } from "react";
+import MyCV from "./applications/myCV";
 
 export default function Desktop() {
   // List of open apps to control taskbar icons
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
   const [appGridClasses, setAppGridClasses] = useState([])
+  const [openApplicationClassnames, setOpenApplicationClassnames] = useState([])
 
 
   // Get all instances of classes titled app-grid
@@ -24,6 +26,14 @@ export default function Desktop() {
     ));
     console.log(appGridClasses);
   }, []);
+
+    // Get all instances of classes titled app-grid
+    useEffect(() => {
+      setOpenApplicationClassnames(Array.from(
+        document.getElementsByClassName('draggable-parent')
+      ));
+      console.log(openApplicationClassnames);
+    }, []);
 
   // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
   const passZIndex = (ref) => {
@@ -114,7 +124,7 @@ export default function Desktop() {
 
   const launchApplication = (app, index) => {
     return (
-      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} index={index} contents={<h1>Contents!</h1>}/>
+      <AppWindow passZIndex={passZIndex} title={app.title} zIndex={zIndex} appId={app.id} contents={MyCV}/>
     );
   };
 

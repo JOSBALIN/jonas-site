@@ -33,8 +33,8 @@ export default function Taskbar(props) {
 
   return (
     <div className="taskbar noselect">
-      <button onClick={() => console.log(props.openApps)}>CONSOLE</button>
-    {/* <StartMenu/> */}
+      {/* <button onClick={() => console.log(props.openApps)}>CONSOLE</button> */}
+    <StartMenu/>
       <img className="start-bar" src={taskBar}></img>
       <img
         className="start-button"

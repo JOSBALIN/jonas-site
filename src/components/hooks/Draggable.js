@@ -56,6 +56,7 @@ export function DraggableElement({
   style,
   zIndex,
   dragEnabled,
+  appId
 }) {
 
   const dragRef = useRef(null);
@@ -67,7 +68,7 @@ export function DraggableElement({
   return (
     <div
       ref={dragRefParent}
-      className={"draggable-parent app-container"}
+      className={"draggable-parent app-container applicationId: " + appId}
       style={{...style, ...zIndex}}
     >
       <div ref={dragRef} className="draggable-child app-contents">
