@@ -44,12 +44,12 @@ export default function PhotoViewer(props) {
     }
     
     const handleClick = (e) => {
-        if(Array.from(document.getElementsByClassName(" selected-photo"))[0] !== undefined){        document.getElementsByClassName(" selected-photo")[0].className = ""}
-        console.log(e.target.src)
-
+        // delete existing selected photo, assign class to new
+        let selectedPhoto = Array.from(document.getElementsByClassName(" selected-photo"))[0]
+        if(selectedPhoto !== undefined) selectedPhoto.className = ""
         e.currentTarget.className = "selected-photo"
-        console.log(Array.from(document.getElementsByClassName("focused-photo-img"))[0].src)
-        // console.log(Array.from(document.getElementsByClassName(" selected-photo")))
+
+        // Set focused-photo-img element's image to be currentTarget
         Array.from(document.getElementsByClassName("focused-photo-img"))[0].src = e.target.src
     }
     

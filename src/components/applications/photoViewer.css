@@ -8,11 +8,6 @@
     text-align: center;
 }
 
-.selected-photo{
-    background-color: red;
-    width:100px;
-    height:200px;
-}
 
 .focused-photo{
     margin: auto;
@@ -49,6 +44,10 @@
     border-color: #ece9d8;
     width:60%;
     height:auto;
+}
+
+.selected-photo{
+    border:solid 4px #316ac5 !important;
 }
 
 .photos-background{
