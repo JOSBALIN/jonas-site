@@ -1,0 +1,53 @@
+.photos-row{
+    padding-top:10px;
+    display:flex;
+    margin: auto;
+    max-width: 80%;
+    height:200px;
+    left:0;
+    text-align: center;
+}
+
+.focused-photo{
+    margin: auto;
+    padding-top:20px;
+    padding-bottom:20px;
+    width: 100%;
+    min-height:200px;
+    height:40%;
+    background-color: #eef2fb;
+    text-align: center;
+}
+
+.focused-photo > img {
+    height:100%;
+    width:auto;
+    border: solid 2px
+}
+
+.photos-row > img{
+    padding:20px;
+    border: solid 2px;
+    border-color: #ece9d8;
+    display:none;
+}
+
+.photos-preview {
+    margin:auto;
+    width:300px;
+}
+
+.photos-preview > img{
+    margin:auto;
+    border: solid 4px;
+    border-color: #ece9d8;
+    width:60%;
+    height:auto;
+}
+
+.photos-background{
+    background-image: url("../../images/application-images/photos-background.png");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    height:100%;
+}

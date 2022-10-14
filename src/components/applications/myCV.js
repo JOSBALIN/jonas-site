@@ -2,6 +2,8 @@ import "./myCV.css";
 import topBarImage from "../../images/application-images/myCV-top-menu.png";
 
 export default function MyCV() {
+
+
   return (
     <div id={"cv-background"}>
       <div className={"top-menu"}>      <img className="top-menu-img" src={topBarImage}></img></div>
