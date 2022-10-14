@@ -3,6 +3,7 @@ import ellieJonas from "../../images/photos/EllieJonas.jpg";
 import { useState } from "react";
 import { render } from "@testing-library/react";
 import { useEffect } from "react";
+import topBarImage from "../../images/application-images/photoViewer-top-menu.png";
 
 export default function PhotoViewer(props) {
     const photosMetadata = [
@@ -47,8 +48,8 @@ export default function PhotoViewer(props) {
         // delete existing selected photo, assign class to new
         let selectedPhoto = Array.from(document.getElementsByClassName(" selected-photo"))[0]
         if(selectedPhoto !== undefined) selectedPhoto.className = ""
-        e.currentTarget.className = "selected-photo"
 
+        e.currentTarget.className = "selected-photo"
         // Set focused-photo-img element's image to be currentTarget
         Array.from(document.getElementsByClassName("focused-photo-img"))[0].src = e.target.src
     }
@@ -58,8 +59,9 @@ export default function PhotoViewer(props) {
 
     return(
         <div className="photos-background">
+            <div className={"top-menu-photos"}>      <img className="top-menu-img-photos" src={topBarImage}></img></div>
             <div className="focused-photo">
-                <img className="focused-photo-img">
+                <img className="focused-photo-img" src={images[`${"EllieJonas.jpg"}`]}>
 
                 </img>
             </div>

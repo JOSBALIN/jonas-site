@@ -8,10 +8,11 @@
 
 #current-time{
     position: relative;
+    text-align: center;
+    right:150%;
     font-size:12px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     z-index:1;
-    right:70%;
     bottom:8px;
     
 }

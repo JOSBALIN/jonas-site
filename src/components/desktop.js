@@ -24,43 +24,26 @@ export default function Desktop() {
   // Get all instances of classes titled app-grid
   useEffect(() => {
     setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
-    console.log(appGridClasses);
   }, []);
 
-    // Get all instances of classes titled app-grid
-    useEffect(() => {
-      setSelectedApp(Array.from(document.getElementsByClassName(" selected-app")));
-      console.log(selectedApp);
-    }, []);
+  // Get all instances of classes titled app-grid
+  useEffect(() => {
+    setSelectedApp(
+      Array.from(document.getElementsByClassName(" selected-app"))
+    );
+  }, []);
 
-    
-
-    const styleTheApp = () => {
-      selectedApp.map((app) => {
-          console.log(app.className)
-          console.log(app)
-          app.className = app.className.slice(0, 7)
-          console.log(app.className)
-      })
-      console.log(selectedApp)
-    }
 
   const incrementZIndex = () => {
     setZIndex((zIndex) => zIndex + 1);
-  }
-
-  const resetTopbarSelection = () => {
-    if(Array.from(document.getElementsByClassName(" selected-app"))[0] !== undefined){
-      document.getElementsByClassName(" selected-app")[0].className = "topbar"
-    }
-  }
+  };
 
   // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
   const passZIndex = (ref) => {
-    incrementZIndex()
+    incrementZIndex();
     ref.current.style.zIndex = zIndex;
     resetTopbarSelection();
-    ref.current.className = "topbar selected-app"
+    ref.current.className = "topbar selected-app";
   };
 
   // all applications to be displayed on the desktop, initial states
@@ -69,25 +52,21 @@ export default function Desktop() {
       id: "1",
       title: "My CV",
       icon: wordPadIcon,
-      component: (
-        MyCV
-      ),
+      component: MyCV,
       style: { backgroundColor: "" },
     },
     {
       id: "2",
       title: "Photos",
       icon: photosIcon,
-      component: (
-        photoViewer
-      ),
+      component: photoViewer,
       style: { backgroundColor: "" },
     },
     {
       id: "3",
       title: "Music",
       icon: wordPadIcon,
-      component: <AppWindow open={true} passZIndex={passZIndex} />,
+      component: <AppWindow passZIndex={passZIndex} />,
       style: { backgroundColor: "" },
     },
     {
@@ -103,13 +82,18 @@ export default function Desktop() {
 
   const [applications, setApplications] = useState(initialAppStates);
 
+  // reset currently selected element if exists
+  const resetTopbarSelection = () => {
+    if (Array.from(document.getElementsByClassName(" selected-app"))[0] !== undefined)
+      document.getElementsByClassName(" selected-app")[0].className = "topbar";
+  };
+
   // Handles class delegation of selected icons
   const appIconSelection = (key) => {
     appGridClasses.map((appGrid) => {
       if (appGrid.className.length > 12) {
         appGrid.className = appGrid.className.slice(0, 10);
       }
-
       if (parseInt(appGrid.className.slice(-1)) == key + 1) {
         appGrid.className += " selected";
       }
@@ -121,10 +105,8 @@ export default function Desktop() {
     appIconSelection(key);
 
     if (event.detail === 2) {
-      console.log(openApps);
-
-      if (openApps.includes(app[key])){
-        return summonApplication(app[key].id, true)
+      if (openApps.includes(app[key])) {
+        return summonApplication(app[key].id, true);
       }
       if (openApps.length <= 4) {
         setOpenApps((current) => [...current, app[key]]);
@@ -133,6 +115,7 @@ export default function Desktop() {
     }
   };
 
+  // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
     return (
       <AppWindow
@@ -150,32 +133,19 @@ export default function Desktop() {
     setApplications((current) => [...current, obj]);
   };
 
-  const deselectApps = () => {
-    setApplications((current) =>
-      current.map((app) => {
-        if (app.style.backgroundColor == "lightblue") {
-          console.log(app);
-        }
-        return { ...app, style: { backgroundColor: "transparent" } };
-      })
-    );
-  };
-
 
   // Function for controlling app visibility from taskbar
   // Spaghetti-code for now. Optimize if-statements
   const summonApplication = (appId, isOpen) => {
-    resetTopbarSelection()
+    resetTopbarSelection();
     // Get selected div's style
     const divStyle = document.getElementsByClassName(
       "draggable-parent app-container applicationId: " + appId
     )[0].style;
 
-
-    if(divStyle.display == "" && divStyle.zIndex == zIndex-1){
-      if(divStyle.zIndex == zIndex-1 && !isOpen)
-        divStyle.display = "none";
-      if(divStyle.zIndex != zIndex){
+    if (divStyle.display == "" && divStyle.zIndex == zIndex - 1) {
+      if (divStyle.zIndex == zIndex - 1 && !isOpen) divStyle.display = "none";
+      if (divStyle.zIndex != zIndex) {
         incrementZIndex();
         divStyle.zIndex = zIndex;
       }
@@ -186,7 +156,6 @@ export default function Desktop() {
       divStyle.transform3d = 0;
       divStyle.left = 0;
     }
-
   };
 
   return (

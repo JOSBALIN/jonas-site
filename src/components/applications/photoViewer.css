@@ -8,6 +8,19 @@
     text-align: center;
 }
 
+.top-menu-photos{
+    overflow:hidden;
+    background-image: url("../../images/application-images/photoViewer-top-menu-background.png");
+    height:103.567px;
+    background-size: 126.05px 100%
+}
+
+
+.top-menu-img-photos{
+    width:600px;
+    height:auto;
+    margin:0;
+}
 
 .focused-photo{
     margin: auto;
@@ -36,6 +49,7 @@
 .photos-preview {
     margin:auto;
     width:300px;
+    height:300px;
 }
 
 .photos-preview > img{
@@ -44,6 +58,9 @@
     border-color: #ece9d8;
     width:60%;
     height:auto;
+}
+
+.photos-preview > p {
 }
 
 .selected-photo{
