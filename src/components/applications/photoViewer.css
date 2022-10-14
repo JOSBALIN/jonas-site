@@ -8,6 +8,12 @@
     text-align: center;
 }
 
+.selected-photo{
+    background-color: red;
+    width:100px;
+    height:200px;
+}
+
 .focused-photo{
     margin: auto;
     padding-top:20px;
@@ -19,7 +25,7 @@
     text-align: center;
 }
 
-.focused-photo > img {
+.focused-photo-img {
     height:100%;
     width:auto;
     border: solid 2px
