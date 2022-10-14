@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { DraggableElement } from "./hooks/Draggable";
+import { unmountComponentAtNode, render } from "react-dom";
 
 export function AppWindow(props) {
   // app information
@@ -120,7 +121,7 @@ export function AppWindow(props) {
                   onClick={() => MaximizeWindow()}
                 />
               </button>
-              <button onClick={minimizeWindow}>
+              <button onClick={(e) => props.closeApp(e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode)}>
                 <img
                   id="close"
                   src="../images/application-topbar/desktop-app-topbar-close.png"

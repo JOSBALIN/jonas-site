@@ -30,11 +30,14 @@ export default function Taskbar(props) {
     props.summonApplication(index, false)
   }
 
+  const showStartMenu = () => {
+    
+  }
 
 
   return (
     <div className="taskbar noselect">
-    {/* <StartMenu/> */}
+    <StartMenu/>
       <img className="start-bar" src={taskBar}></img>
       <img
         className="start-button"

@@ -15,6 +15,7 @@ import wordPadIcon from "../images/app-icons/app-icon-wordpad.png";
 import photosIcon from "../images/app-icons/app-icon-photos.png";
 import githubIcon from "../images/app-icons/app-icon-github.png";
 import MusicPlayer from "./applications/musicPlayer";
+import { unmountComponentAtNode } from "react-dom";
 
 
 export default function Desktop() {
@@ -29,7 +30,7 @@ export default function Desktop() {
     setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
   }, []);
 
-  // Get all instances of classes titled app-grid
+  // Get all instances of classes titled selected-app
   useEffect(() => {
     setSelectedApp(
       Array.from(document.getElementsByClassName(" selected-app"))
@@ -48,6 +49,8 @@ export default function Desktop() {
     resetTopbarSelection();
     ref.current.className = "topbar selected-app";
   };
+
+
 
   // all applications to be displayed on the desktop, initial states
   const initialAppStates = [
