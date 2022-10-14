@@ -70,7 +70,7 @@ export default function Desktop() {
       title: "My CV",
       icon: wordPadIcon,
       component: (
-        <AppWindow title={"This is an App Title!"} passZIndex={passZIndex} />
+        MyCV
       ),
       style: { backgroundColor: "" },
     },
@@ -79,11 +79,7 @@ export default function Desktop() {
       title: "Photos",
       icon: photosIcon,
       component: (
-        <AppWindow
-          open={true}
-          title={"second title!"}
-          contents={<Resizeable />}
-        />
+        photoViewer
       ),
       style: { backgroundColor: "" },
     },
@@ -144,7 +140,7 @@ export default function Desktop() {
         title={app.title}
         zIndex={zIndex}
         appId={app.id}
-        contents={photoViewer}
+        contents={app.component}
       />
     );
   };
