@@ -10,9 +10,12 @@ import { useState } from "react";
 import AppIcon from "./appIcon";
 import { useEffect } from "react";
 import MyCV from "./applications/myCV";
-import photoViewer from "./applications/photoViewer";
+import PhotoViewer from "./applications/photoViewer";
 import wordPadIcon from "../images/app-icons/app-icon-wordpad.png";
 import photosIcon from "../images/app-icons/app-icon-photos.png";
+import githubIcon from "../images/app-icons/app-icon-github.png";
+import MusicPlayer from "./applications/musicPlayer";
+
 
 export default function Desktop() {
   // List of open apps to control taskbar icons
@@ -59,23 +62,21 @@ export default function Desktop() {
       id: "2",
       title: "Photos",
       icon: photosIcon,
-      component: photoViewer,
+      component: <PhotoViewer/>,
       style: { backgroundColor: "" },
     },
     {
       id: "3",
       title: "Music",
       icon: wordPadIcon,
-      component: <AppWindow passZIndex={passZIndex} />,
+      component: <MusicPlayer/>,
       style: { backgroundColor: "" },
     },
     {
       id: "4",
-      title: "Trivia",
-      icon: wordPadIcon,
-      component: (
-        <AppWindow open={true} title={"friend"} passZIndex={passZIndex} />
-      ),
+      title: "GitHub",
+      icon: githubIcon,
+      component: "",
       style: { backgroundColor: "" },
     },
   ];

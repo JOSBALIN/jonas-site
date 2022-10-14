@@ -11,13 +11,13 @@
 .top-menu-photos{
     overflow:hidden;
     background-image: url("../../images/application-images/photoViewer-top-menu-background.png");
-    height:103.567px;
+    height:69.033px;
     background-size: 126.05px 100%
 }
 
 
 .top-menu-img-photos{
-    width:600px;
+    width:400px;
     height:auto;
     margin:0;
 }
