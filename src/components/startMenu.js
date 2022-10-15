@@ -5,6 +5,10 @@ import { useState } from "react";
 export default function StartMenu(props) {
   const [enabled, setEnabled] = useState(props.outsideClick);
 
+  const  closeSite = () => {
+    if(window.confirm("Are you sure you want to turn this PC off?"))   window.close();
+  }
+
   return (
     <OutsideAlerter
       enabled={props.outsideClick}
@@ -22,7 +26,7 @@ export default function StartMenu(props) {
           <div className="start-menu-button start-menu-app a04"></div>
 
           <div className="start-menu-button log-off"></div>
-          <div className="start-menu-button turn-off-computer"></div>
+          <div className="start-menu-button turn-off-computer" onClick={() => closeSite()}></div>
         </div>
       }
     ></OutsideAlerter>

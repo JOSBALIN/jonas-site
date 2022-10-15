@@ -54,6 +54,11 @@ export default function PhotoViewer(props) {
         setSelectedPhoto(images[`${photo}`])
     }
     
+    const setBackground = () => {
+        const backgroundElement = document.getElementById("desktop-background");
+        document.getElementById("desktop-background").style.backgroundImage = "url("+selectedPhoto+")"
+        console.log(document.getElementById("desktop-background").style.backgroundImage)
+    }
 
 
 
@@ -64,6 +69,7 @@ export default function PhotoViewer(props) {
                 <img className="focused-photo-img" src={selectedPhoto}>
 
                 </img>
+                {/* <button onClick={() => setBackground()}>Set as background picture</button> */}
             </div>
             <div className="photos-row">
             {photosMetadata.map((data, index) => 

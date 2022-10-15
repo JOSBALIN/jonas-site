@@ -165,7 +165,7 @@ export default function Desktop() {
   };
 
   return (
-    <div className="desktop-background noselect">
+    <div className="desktop-background noselect" id="desktop-background">
       <div className="parent">
         {applications.map((app, key, appComp) => (
           <div
