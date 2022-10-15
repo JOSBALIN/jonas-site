@@ -54,10 +54,11 @@ h1, h2{
     margin:8px;
 }
 
-ul{
+.cv-list{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left:40px;
 }
+
 
 p {
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

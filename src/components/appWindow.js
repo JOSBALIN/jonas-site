@@ -19,7 +19,7 @@ export function AppWindow(props) {
   // window dimensions
   const [maximized, setMaximized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState({
-    height: "50%",
+    height: "70%",
     width: "50%"
   });
 

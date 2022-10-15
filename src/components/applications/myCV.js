@@ -21,7 +21,7 @@ export default function MyCV() {
       <h2 className="cv-headline">Education</h2>
       <h3 className="cv-subheadline">IT University of Copenhagen</h3>
       <h4 className="cv-position-title">M.S in Software Design</h4>
-        <ul>
+        <ul className="cv-list">
           <li>
             Comprehensive programmatic education with focus on software
             development, algorithm design, data structures, and UX design
@@ -33,18 +33,18 @@ export default function MyCV() {
         </ul>
       <h3 className="cv-subheadline">University of Copenhagen</h3>
       <h4 className="cv-position-title">B.S in Communication and IT</h4>
-        <ul>
+      <ul className="cv-list">
           <li>
             Contextualization and application of communication and design theory
             with emphasis on IT
           </li>
           <li>Light programming, web-development</li>
           <li>Interaction design, designing software with HCI in mind</li>
-        </ul>
+          </ul>
       <h2 className="cv-headline">Experience</h2>
       <h3 className="cv-subheadline">Semler IT</h3>
       <h4 className="cv-position-title">IT Consultant</h4>
-      <ul>
+      <ul className="cv-list">
         <li>
           Process optimization and automation in Power platform with development
           of several internal applications and RPA flows.
@@ -52,7 +52,7 @@ export default function MyCV() {
       </ul>
       <h3 className="cv-subheadline">Implement Consulting Group</h3>
       <h4 className="cv-position-title">IT Assistant</h4>
-      <ul>
+      <ul className="cv-list">
         <li>IT Support with focus on O365, hardware, software issues</li>
         <li>
           Internal development of several PowerApps applications, Power Automate
@@ -61,7 +61,7 @@ export default function MyCV() {
       </ul>
       <h3 className="cv-subheadline">Avenue Trading</h3>
       <h4 className="cv-position-title">Online Manager</h4>
-      <ul>
+      <ul className="cv-list">
         <li>
           Development and maintenance of numerous websites across different
           CMS'es in an agile workflow
