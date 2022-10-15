@@ -1,6 +1,6 @@
-import "./musicPlayer.css"
+import "./references.css"
 
-export default function MusicPlayer(props) {
+export default function References(props) {
    
     return(
         <div className="photos-background">

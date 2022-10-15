@@ -6,29 +6,31 @@ import { useEffect } from "react";
 import topBarImage from "../../images/application-images/photoViewer-top-menu.png";
 
 export default function PhotoViewer(props) {
-    const [selectedPhoto, setSelectedPhoto] = useState("")
+
+    // Future refactoring, place all photos and lists of these in external file
     const [photosMetadata, setPhotosMetadata] = useState([
         {
             photo: "EllieJonas.jpg",
-            shortText: "My dog and me!"
+            shortText: "My dog and me!",
         },
         {
             photo: "EllieJonas2.jpg",
-            shortText: "My dog and me (again)!"
+            shortText: "My dog and me (again)!",
         },
         {
             photo: "Jonas.jpg",
-            shortText: "Master's graduation"
+            shortText: "Master's graduation",
         },
         {
             photo: "JonasGuitar.jpg",
-            shortText: "Guitar w/ fam"
+            shortText: "Guitar w/ fam",
         },
         {
             photo: "SilasJonas.jpg",
-            shortText: "W/ colleague at work party"
+            shortText: "W/ colleague at work party",
         },
     ])
+
 
     
     // Import photo code borrowed from https://gist.github.com/shaquille-galimba/64f462f0b119945630427f9bedeceba7
@@ -39,6 +41,9 @@ export default function PhotoViewer(props) {
     }
     
     const images = importAll(require.context('../../images/photos', false, /\.(png|jpe?g|svg)$/));
+
+    
+    const [selectedPhoto, setSelectedPhoto] = useState(images[photosMetadata[0].photo])
     
     const photoDisplay = (photo, shortText) => {
         return (<img src={images[`${photo}`]} alt={shortText} key={shortText} onClick={() => handleClick(photo, shortText)} className={"preview-images"}/>

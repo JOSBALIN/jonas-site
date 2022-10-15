@@ -6,6 +6,7 @@ export function AppWindow(props) {
   // app information
   const [title, setTitle] = useState(props.title);
   const [contents, setContents] = useState(props.contents);
+  const [icon, setIcon] = useState(props.icon)
   const noteRef = useRef();
   const [display, setDisplay] = useState(false);
   const [zIndex, setZIndex] = useState({
@@ -68,6 +69,7 @@ export function AppWindow(props) {
               className={"topbar-left"}
               src={require("../images/application-topbar/desktop-app-topbar-left.png")}
             />
+            <img src={icon} className="topbar-icon"></img>
             <div className="topbar-title">{title}</div>
             <img
               className={"topbar-right"}

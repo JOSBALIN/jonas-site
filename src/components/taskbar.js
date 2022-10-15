@@ -52,6 +52,7 @@ export default function Taskbar(props) {
         id="start-menu-button"
         className="start-button"
         src={startButton}
+        // Refactor these icon changes. Spaghetti right now.
         onMouseEnter={(e) => (e.currentTarget.src = startButtonHover)}
         onMouseLeave={(e) => (e.currentTarget.src = startButton)}
         onMouseDown={(e) => (e.currentTarget.src = startButtonPressed)}

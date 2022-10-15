@@ -4,8 +4,6 @@ import Taskbar from "./taskbar";
 import { AppWindow } from "./appWindow";
 import "./appWindow.css";
 import "./desktop.css";
-import { render } from "@testing-library/react";
-import Resizeable from "./resizeable";
 import { useState } from "react";
 import AppIcon from "./appIcon";
 import { useEffect } from "react";
@@ -15,7 +13,7 @@ import wordPadIcon from "../images/app-icons/app-icon-wordpad.png";
 import photosIcon from "../images/app-icons/app-icon-photos.png";
 import githubIcon from "../images/app-icons/app-icon-github.png";
 import MusicPlayer from "./applications/musicPlayer";
-import { unmountComponentAtNode } from "react-dom";
+import References from "./applications/references";
 
 
 export default function Desktop() {
@@ -53,34 +51,37 @@ export default function Desktop() {
 
 
   // all applications to be displayed on the desktop, initial states
+  // future refactor - place these in external file
   const initialAppStates = [
     {
       id: "1",
       title: "My CV",
       icon: wordPadIcon,
-      component: MyCV,
-      style: { backgroundColor: "" },
+      component: <MyCV/>,
     },
     {
       id: "2",
       title: "Photos",
       icon: photosIcon,
       component: <PhotoViewer/>,
-      style: { backgroundColor: "" },
     },
     {
       id: "3",
       title: "Music",
       icon: wordPadIcon,
       component: <MusicPlayer/>,
-      style: { backgroundColor: "" },
     },
     {
       id: "4",
+      title: "Contacts",
+      icon: wordPadIcon,
+      component: <References/>,
+    },
+    {
+      id: "5",
       title: "GitHub",
       icon: githubIcon,
       component: "",
-      style: { backgroundColor: "" },
     },
   ];
 
@@ -127,6 +128,7 @@ export default function Desktop() {
         title={app.title}
         zIndex={zIndex}
         appId={app.id}
+        icon={app.icon}
         contents={app.component}
       />
     );
@@ -171,7 +173,6 @@ export default function Desktop() {
             onClick={(event) => handleClick(event, key, appComp)}
             key={key}
             app={app.component}
-            style={app.style}
           >
             <AppIcon title={app.title} icon={app.icon}></AppIcon>
           </div>
