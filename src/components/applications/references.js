@@ -63,13 +63,14 @@ export default function References(props) {
       </div>
       <div className="references-container">
         <div className="references-selected">
-          <h1>{selectedContact.name}</h1>
-          <h4>{selectedContact.title}</h4>
-          <h4>{selectedContact.company}</h4>
-          <img
+        <img
             src={selectedContact.photo}
             className="references-selected-photo"
           ></img>
+          <h1 className="reference-name">{selectedContact.name}</h1>
+          <h3 className="reference-work">{selectedContact.title} | {selectedContact.company}</h3>
+          <h4 className="contact-info">{selectedContact.mail} |{selectedContact.phone}</h4>
+
         </div>
 
         <div className="left-panel">

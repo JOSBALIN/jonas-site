@@ -23,11 +23,29 @@
     }
 
     .references-selected{
-        background-color: lightblue;
         height:110%;
         border-left: solid;
     }
 
+    .contact{
+        clear: both;
+        display: inline-block;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .references-selected-photo{
+        width:150px;
+        margin:8px;
+        float:left;
+        border: solid 2px;
+        border-color: #ece9d8;
+        box-shadow: 1px 1px 6px 1px;
+    }
+
+    .reference-name{
+        margin-top:8px;
+    }
 
     .left-side-ref{
         margin-top:4px;
