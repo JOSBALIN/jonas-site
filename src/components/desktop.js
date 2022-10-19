@@ -14,6 +14,7 @@ import photosIcon from "../images/app-icons/app-icon-photos.png";
 import githubIcon from "../images/app-icons/app-icon-github.png";
 import MusicPlayer from "./applications/musicPlayer";
 import References from "./applications/references";
+import Contact from "./applications/contact";
 
 
 export default function Desktop() {
@@ -73,9 +74,15 @@ export default function Desktop() {
     },
     {
       id: "4",
-      title: "Contacts",
+      title: "References",
       icon: wordPadIcon,
       component: <References/>,
+    },
+    {
+      id: "5",
+      title: "Contact Jonas",
+      icon: wordPadIcon,
+      component: <Contact/>,
     },
     {
       id: "5",

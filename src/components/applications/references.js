@@ -7,11 +7,12 @@ export default function References(props) {
   const [contacts, setContacts] = useState([
     {
       name: "Christian Borup",
-      title: "IT Student",
+      title: "Junior Consultant",
       company: "Implement Consulting Group",
       mail: "test@gmail.com",
       phone: "+45 3010 4050",
       photo: christianProfil,
+      expandedText: "I met Christian at Ørestad Gymnasie where we completed high school together over three years. We have regularly stayed in touch since then and I consider Christian to be one of the finest workers I've known and one of my best friends."
     },
     {
       name: "Marchen Jersild",
@@ -70,6 +71,9 @@ export default function References(props) {
           <h1 className="reference-name">{selectedContact.name}</h1>
           <h3 className="reference-work">{selectedContact.title} | {selectedContact.company}</h3>
           <h4 className="contact-info">{selectedContact.mail} |{selectedContact.phone}</h4>
+          <div className="contact-expanded-text">
+          <p>{selectedContact.expandedText}</p>
+          </div>
 
         </div>
 

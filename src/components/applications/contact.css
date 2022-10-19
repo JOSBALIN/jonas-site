@@ -1,0 +1,15 @@
+.top-inputs{
+    background-color: #efeee3;
+    padding-bottom:24px;
+}
+
+label{
+    display:inline-block;
+    margin:8px;
+    width: 100px;
+    height:10px;
+}
+
+input {
+    width: 80%;
+}

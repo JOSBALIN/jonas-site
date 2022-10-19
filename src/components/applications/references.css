@@ -34,6 +34,11 @@
         white-space: nowrap;
     }
 
+    .contact-expanded-text{
+        margin:20px;
+        border:solid
+    }
+
     .references-selected-photo{
         width:150px;
         margin:8px;
