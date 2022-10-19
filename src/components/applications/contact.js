@@ -24,7 +24,7 @@ export default function Contact() {
         <input type="text" id="subject" />
       </div>
 
-      <textarea name="mail-body" id="mail-body" cols="80" rows="5"></textarea>
+      <textarea name="mail-body" id="mail-body"></textarea>
 
       <br />
       <label for="fname">Sincerely,</label>

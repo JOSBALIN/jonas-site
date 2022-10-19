@@ -1,6 +1,19 @@
 .top-inputs{
-    background-color: #efeee3;
     padding-bottom:24px;
+}
+
+.contact-background{
+    background-color: #efeee3;
+}
+
+#mail-body {
+    width:95%;
+    height:500px;
+    resize: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border:inset #efeee3;
 }
 
 label{
@@ -13,3 +26,5 @@ label{
 input {
     width: 80%;
 }
+
+input:focus, select:focus, textarea:focus, button:focus { outline: none; }
