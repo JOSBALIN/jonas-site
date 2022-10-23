@@ -59,37 +59,54 @@ export default function Desktop() {
       title: "My CV",
       icon: wordPadIcon,
       component: <MyCV/>,
+      windowDimensions:{
+        height: "90%",
+        width: "50%",
+      },
     },
     {
       id: "2",
       title: "Photos",
       icon: photosIcon,
       component: <PhotoViewer/>,
+      windowDimensions:{
+        height: "60%",
+        width: "40%",
+      },
     },
-    {
-      id: "3",
-      title: "Music",
-      icon: wordPadIcon,
-      component: <MusicPlayer/>,
-    },
+    // {
+    //   id: "3",
+    //   title: "Music",
+    //   icon: wordPadIcon,
+    //   component: <MusicPlayer/>,
+    // },
     {
       id: "4",
       title: "References",
       icon: wordPadIcon,
       component: <References/>,
+      windowDimensions:{
+        height: "450px",
+        width: "1000px",
+        resize:"horizontal"
+      },
     },
     {
       id: "5",
       title: "Contact Jonas",
       icon: wordPadIcon,
       component: <Contact/>,
+      windowDimensions:{
+        height: "70%",
+        width: "50%",
+      },
     },
-    {
-      id: "5",
-      title: "GitHub",
-      icon: githubIcon,
-      component: "",
-    },
+    // {
+    //   id: "5",
+    //   title: "GitHub",
+    //   icon: githubIcon,
+    //   component: "",
+    // },
   ];
 
   const [applications, setApplications] = useState(initialAppStates);
@@ -137,6 +154,7 @@ export default function Desktop() {
         appId={app.id}
         icon={app.icon}
         contents={app.component}
+        windowDimensions={app.windowDimensions}
       />
     );
   };

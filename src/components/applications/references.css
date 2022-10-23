@@ -36,11 +36,12 @@
 
     .contact-expanded-text{
         margin:20px;
-        border:solid
+        border:solid;
+        padding:4px;
     }
 
     .references-selected-photo{
-        width:150px;
+        width:100px;
         margin:8px;
         float:left;
         border: solid 2px;
@@ -66,7 +67,6 @@
 
     .left-panel{
         min-height:500px;
-        max-width:300px;
         height:100%;
         overflow:auto;
 
