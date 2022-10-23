@@ -93,7 +93,7 @@ export default function Desktop() {
     },
     {
       id: "4",
-      title: "Contact Jonas",
+      title: "Mail",
       icon: wordPadIcon,
       component: <Contact/>,
       windowDimensions:{
