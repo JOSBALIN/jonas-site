@@ -3,7 +3,6 @@ import christianProfil from "../../images/application-images/references/Christia
 import { useState } from "react";
 
 export default function References(props) {
-  const [selectedContact, setSelectedContact] = useState("");
   const [contacts, setContacts] = useState([
     {
       name: "Christian Borup",
@@ -56,6 +55,8 @@ export default function References(props) {
   const handleClick = (selected) => {
     setSelectedContact(selected);
   };
+
+  const [selectedContact, setSelectedContact] = useState(contacts[0]);
 
   return (
     <div className="references-background">

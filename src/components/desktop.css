@@ -16,6 +16,7 @@
     div[class^="app-grid"]{
         margin: auto;
         margin-top:20px;
+        width:80px;
         text-align: center;
         font-family: "Segoe UI", sans-serif;
         font-smooth:never;

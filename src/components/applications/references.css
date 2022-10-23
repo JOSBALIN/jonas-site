@@ -41,8 +41,8 @@
     }
 
     .references-selected-photo{
-        width:100px;
-        margin:8px;
+        width:116px;
+        margin:16px 16px 8px 20px;
         float:left;
         border: solid 2px;
         border-color: #ece9d8;

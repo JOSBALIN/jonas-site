@@ -81,18 +81,18 @@ export default function Desktop() {
     //   component: <MusicPlayer/>,
     // },
     {
-      id: "4",
+      id: "3",
       title: "References",
       icon: wordPadIcon,
       component: <References/>,
       windowDimensions:{
         height: "450px",
         width: "1000px",
-        resize:"horizontal"
+        resize:"horizontal",
       },
     },
     {
-      id: "5",
+      id: "4",
       title: "Contact Jonas",
       icon: wordPadIcon,
       component: <Contact/>,

@@ -18,6 +18,7 @@ export default function Contact() {
           id="recipient-mail"
           value="jonasbalin@gmail.com"
           readonly
+          disabled
         />
         <br />
         <label for="subject">Subject:</label>
