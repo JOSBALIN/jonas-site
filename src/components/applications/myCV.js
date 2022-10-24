@@ -6,7 +6,7 @@ export default function MyCV() {
 
   return (
     <div id={"cv-background"}>
-      <div className={"top-menu"}>      <img className="top-menu-img" src={topBarImage}></img></div>
+      <div className={"top-menu"} id="taskbar">      <img className="top-menu-img" src={topBarImage}></img></div>
       <div className={"text-contents"}>
       <h1 className="cv-title">Jonas Balin - CV</h1>
       <h2 className="cv-headline">Summary</h2>

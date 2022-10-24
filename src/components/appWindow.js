@@ -8,6 +8,7 @@ export function AppWindow(props) {
   const [contents, setContents] = useState(props.contents);
   const [icon, setIcon] = useState(props.icon)
 
+
   const noteRef = useRef(); // dragging functionality
   
   // tracks order of apps
@@ -61,9 +62,9 @@ export function AppWindow(props) {
   return (
       <DraggableElement
         dragElement={
-          <div
+          <div 
           onMouseDownCapture={zIndexHandler}
-            className="topbar"
+            className="topbar-selected-app"
             ref={noteRef}
             style={
               maximized
@@ -153,7 +154,7 @@ export function AppWindow(props) {
           </div>
         }
         parentElement={
-            <div className="contents" onMouseDownCapture={zIndexHandler}>{contents}</div>
+            <div className="contents" onMouseDownCapture={zIndexHandler}>{contents}</div >
         }
         style={windowDimensions}
         display={display}

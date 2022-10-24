@@ -71,6 +71,15 @@ export function DraggableElement({
   // create instance of draggable
   Draggable(dragRef, dragRefParent, dragEnabled, communicator);
 
+  const [element, setElement] = useState()
+
+
+  const removeElement = () => {
+    setElement(document.getElementById("dragmen"))
+    console.log(element)
+    element.remove()
+  }
+
   return (
     <div
       ref={dragRefParent}

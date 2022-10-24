@@ -25,6 +25,7 @@ export default function Desktop() {
   const [appGridClasses, setAppGridClasses] = useState([]);
   const [selectedApp, setSelectedApp] = useState([]);
 
+
   // Get all instances of classes titled app-grid
   useEffect(() => {
     setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
@@ -47,7 +48,7 @@ export default function Desktop() {
     incrementZIndex();
     ref.current.style.zIndex = zIndex;
     resetTopbarSelection();
-    ref.current.className = "topbar selected-app";
+    ref.current.className = "topbar-selected-app";
   };
 
 
@@ -114,8 +115,8 @@ export default function Desktop() {
 
   // reset currently selected element if exists
   const resetTopbarSelection = () => {
-    if (Array.from(document.getElementsByClassName(" selected-app"))[0] !== undefined)
-      document.getElementsByClassName(" selected-app")[0].className = "topbar";
+    if (Array.from(document.getElementsByClassName("topbar-selected-app"))[0] !== undefined)
+      document.getElementsByClassName("topbar-selected-app")[0].className = "topbar";
   };
 
   // Handles class delegation of selected icons
@@ -144,6 +145,10 @@ export default function Desktop() {
       }
     }
   };
+
+  const closeApplication = (app) => {
+    
+  }
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
