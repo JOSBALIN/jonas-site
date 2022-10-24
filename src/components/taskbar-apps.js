@@ -17,7 +17,7 @@ export default function TaskbarApps(props) {
             onMouseLeave={(e) => setTaskbarImage(taskbarAppImage)}
             onMouseUp={(e) => setTaskbarImage(taskbarAppImageHover)}
             onMouseDownCapture={(e) => setTaskbarImage(taskbarAppImageFocus)}
-      ><img className="app-icon" src={appIcon}></img>{appTitle}</div>
+      ><img className="taskbar-app-icon" src={appIcon}></img>{appTitle}</div>
       <img 
       src={taskbarImage}
       onMouseEnter={(e) =>setTaskbarImage(taskbarAppImageHover)}

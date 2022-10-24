@@ -2,6 +2,28 @@
     padding-bottom:24px;
 }
 
+.top-menu-contact{
+    overflow:hidden;
+    background-image: url("../../images/application-images/contact-top-menu-background.png");
+    height:87.9px;
+    background-size: 126.05px 100%
+}
+
+.top-menu-img-contact{
+    width:400px;
+    height:auto;
+    margin:0;
+}
+
+/* Div overlay for the send button, used to change its appearance. Not ideal but not bad either */
+#send-button{
+    position: absolute;
+    top:91px;
+    left:18px;
+    width:50px;
+    height:52px;
+}
+
 .contact-background{
     background-color: #efeee3;
     height:100%

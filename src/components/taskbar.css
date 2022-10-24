@@ -61,7 +61,7 @@ but this works for the draggable-apps*/
   display: flex;
 }
 
-.app-icon{
+.taskbar-app-icon{
   display:block;
   margin-top: auto;
   margin-bottom:auto;
