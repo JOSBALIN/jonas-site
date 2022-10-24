@@ -7,16 +7,19 @@ export function AppWindow(props) {
   const [title, setTitle] = useState(props.title);
   const [contents, setContents] = useState(props.contents);
   const [icon, setIcon] = useState(props.icon)
-  const noteRef = useRef();
-  const [display, setDisplay] = useState(false);
+
+  const noteRef = useRef(); // dragging functionality
+  
+  // tracks order of apps
   const [zIndex, setZIndex] = useState({
     zIndex: props.zIndex,
   });
-
-  // toggle for dragging window
-  const [draggable, setDraggable] = useState(true);
-
+  
+  const [draggable, setDraggable] = useState(true);   // draggable toggle
+  
   // window dimensions
+  const [display, setDisplay] = useState(""); // application minization
+  const [coordinates, setCoordinates] = useState() // application positioning
   const [maximized, setMaximized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(props.windowDimensions);
 
@@ -27,19 +30,20 @@ export function AppWindow(props) {
       setMaximized(true);
       setDraggable(false);
     } else {
-      setWindowDimensions({ height: "50%", width: "50%" });
+      setWindowDimensions({ height: "50%", width: "50%", transform: coordinates });
       setMaximized(false);
       setDraggable(true);
     }
   };
 
+  // parent function, updates z-index
   const zIndexHandler = () => {
     props.passZIndex(noteRef);
     setZIndex({zIndex: props.zIndex});
   };
 
-  // "minimizes" window - really just hides it
-  // Has to be clicked twice - get a fix in future
+  // "minimizes" window - hides it
+  // Sometimes has to be clicked twice - get a fix in future
   const minimizeWindow = () => {
     if(display == "none"){
       setDisplay("")
@@ -47,6 +51,12 @@ export function AppWindow(props) {
       setDisplay("none")
     }
   };
+
+  // Communicate transform properties between parent and draggable
+  // used to "remember" position after maximization
+  const transformCommunicator = (coords) => {
+    setCoordinates(coords)
+  }
 
   return (
       <DraggableElement
@@ -150,6 +160,7 @@ export function AppWindow(props) {
         zIndex={zIndex}
         dragEnabled={draggable}
         appId={props.appId}
+        communicator={transformCommunicator}
       ></DraggableElement>
   );
 }

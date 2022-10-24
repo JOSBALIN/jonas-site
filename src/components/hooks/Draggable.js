@@ -5,8 +5,9 @@ import Resizeable from "../resizeable";
 // Changes include adding an el2, which is the element to be moved, whereas el is the element that is held to drag.
 // Also preventing selection of text during drag
 
-export default function Draggable(el, el2, dragEnabled) {
+export default function Draggable(el, el2, dragEnabled, communicator) {
   const [{ dx, dy }, setOffset] = useState({ dx: 0, dy: 0 });
+  const [currentTransform, setCurrentTransform] = useState();
 
 
   useEffect(() => {
@@ -45,6 +46,8 @@ export default function Draggable(el, el2, dragEnabled) {
     // code that executes dragging - can be toggled
     if (dragEnabled) {
       el2.current.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+      setCurrentTransform(el2.current.style.transform)
+      communicator(currentTransform)
     }
   }, [dx, dy]);
 }
@@ -57,7 +60,8 @@ export function DraggableElement({
   display,
   zIndex,
   dragEnabled,
-  appId
+  appId,
+  communicator
 }) {
 
 
@@ -65,7 +69,7 @@ export function DraggableElement({
   const dragRefParent = useRef(null);
 
   // create instance of draggable
-  Draggable(dragRef, dragRefParent, dragEnabled);
+  Draggable(dragRef, dragRefParent, dragEnabled, communicator);
 
   return (
     <div
