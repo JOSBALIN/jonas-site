@@ -73,10 +73,9 @@ but this works for the draggable-apps*/
 
 .taskbar-application-img{
   position:absolute;
-  bottom:4px;
+  bottom:1px;
   z-index:0;
-  width:100%;
-  height:auto;
+  height:90%;
 }
 
 .taskbar-application{
@@ -96,7 +95,7 @@ but this works for the draggable-apps*/
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
-    grid-column-gap: 160px;
+    grid-column-gap: 173px;
     grid-row-gap: 0px;
     z-index: 0;
     } 

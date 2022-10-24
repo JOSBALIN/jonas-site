@@ -19,7 +19,8 @@ export default function Taskbar(props) {
   // Updating time in taskbar
   React.useEffect(() => {
     const timer = setInterval(() => {
-      setTime(new Date().getHours() + ":" + new Date().getMinutes());
+      // toString and slice functions necessary to display 0s
+      setTime(new Date().getHours().toString() + ":" + '0'+ new Date().getMinutes().toString().slice(-2));
     }, 1000);
 
     return () => {

@@ -1,12 +1,12 @@
 .top-inputs{
-    padding-bottom:24px;
+    margin: 8px 0px 4px 0px;
 }
 
 .top-menu-contact{
     overflow:hidden;
     background-image: url("../../images/application-images/contact-top-menu-background.png");
     height:87.9px;
-    background-size: 126.05px 100%
+    background-size: 126.05px 100%;
 }
 
 .top-menu-img-contact{
@@ -15,33 +15,43 @@
     margin:0;
 }
 
-/* Div overlay for the send button, used to change its appearance. Not ideal but not bad either */
+/* button overlay for the send button in top-bar image, used to change its appearance. Not ideal but not bad either */
 #send-button{
     position: absolute;
+    background: transparent;
+    border: none !important;
+    font-size:0;
     top:91px;
     left:18px;
     width:50px;
     height:52px;
 }
 
-.contact-background{
+.small-mail-icon{
+    height:14px;
+    width:auto;
+    margin-right:5px;
+}
+
+form{
     background-color: #efeee3;
     height:100%
 }
 
 #body {
     width:95%;
-    height:300px;
+    height:50%;
     resize: none;
     display: block;
     margin-left: auto;
     margin-right: auto;
     border:ridge #efeee3 4px;
+    min-height:260px;
 }
 
-label{
+.labels-icons{
     display:inline-block;
-    margin:8px;
+    margin:4px 0px 0px 24px;
     width: 100px;
     height:10px;
 }

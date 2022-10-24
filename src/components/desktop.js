@@ -15,6 +15,7 @@ import githubIcon from "../images/app-icons/app-icon-github.png";
 import MusicPlayer from "./applications/musicPlayer";
 import References from "./applications/references";
 import Contact from "./applications/contact";
+import contactIcon from "../images/app-icons/app-icon-contact.png";
 
 
 export default function Desktop() {
@@ -94,7 +95,7 @@ export default function Desktop() {
     {
       id: "4",
       title: "Mail",
-      icon: wordPadIcon,
+      icon: contactIcon,
       component: <Contact/>,
       windowDimensions:{
         height: "70%",
