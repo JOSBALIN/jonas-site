@@ -43,9 +43,7 @@ export default function Contact() {
 
       <textarea name="body" id="body"></textarea>
 
-      <br />
-      <label htmlFor="fromName">Sincerely,</label>
-      <input type="text" id="from-name" name="fromName" placeholder="your name" />
+      <br/>
 
       <button type="submit">Send mail!</button>
       </form>

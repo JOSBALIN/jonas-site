@@ -73,8 +73,9 @@ export default function PhotoViewer(props) {
             </div>
             <div className="photos-row">
             {photosMetadata.map((data, index) => 
-            <div className="photos-preview" key={index}>{photoDisplay(data.photo, data.shortText)}
-            <p>{data.shortText}</p>
+            <div className="photos-preview" key={index}>
+                <div className="photos-preview-upper">{photoDisplay(data.photo, data.shortText)}</div>
+                <div className="photos-preview-lower"><p>{data.shortText}</p></div>
             </div>
             )}
             </div>

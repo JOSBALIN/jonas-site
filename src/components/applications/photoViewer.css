@@ -50,16 +50,24 @@
 
 .photos-preview {
     margin:auto;
-    width:300px;
-    height:300px;
 }
 
-.photos-preview > img{
+.photos-preview-upper{
+    height:160px;
+    width:160px;
+}
+
+.photos-preview-lower{
+    width:160px;
+    height:160px;
+}
+
+.photos-preview-upper > img{
     margin:auto;
     border: solid 4px;
     border-color: #ece9d8;
-    width:60%;
-    height:auto;
+    width:100%;
+    height:100%;
 }
 
 .photos-preview > p {

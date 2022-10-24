@@ -7,14 +7,14 @@
     height:100%
 }
 
-#mail-body {
+#body {
     width:95%;
-    height:500px;
+    height:300px;
     resize: none;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    border:inset #efeee3;
+    border:ridge #efeee3 4px;
 }
 
 label{

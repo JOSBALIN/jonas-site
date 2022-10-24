@@ -18,13 +18,12 @@
     .references-div8 { grid-area: 7 / 1 / 8 / 2; }
 
 
-    .references-background{
-        height:70%;
-    }
+ 
 
     .references-selected{
-        height:110%;
+        height:100%;
         border-left: solid;
+        overflow:auto;
     }
 
     .contact{
@@ -36,8 +35,9 @@
 
     .contact-expanded-text{
         margin:20px;
-        border:solid;
-        padding:4px;
+        border:solid 1px;
+        text-align: justify;
+        padding: 0px 12px 0px 12px;
     }
 
     .references-selected-photo{
@@ -62,7 +62,7 @@
     }
 
     .left-side-ref:hover{
-        background-color: rgba(228, 248, 255, 0.211);
+        background-color: #0056ea2a;
     }
 
     .left-panel{

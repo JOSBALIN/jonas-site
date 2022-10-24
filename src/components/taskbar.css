@@ -11,6 +11,7 @@
     text-align: center;
     right:150%;
     font-size:12px;
+    color:white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     z-index:1;
     bottom:8px;
@@ -52,9 +53,22 @@ but this works for the draggable-apps*/
 .app-title{
   position:relative;
   top:2px;
+  width: 120px;
   bottom:0px;
-  left: 32px;
+  left: 12px;
   z-index: 1;
+  justify-content: left;
+  display: flex;
+}
+
+.app-icon{
+  display:block;
+  margin-top: auto;
+  margin-bottom:auto;
+  width:16px;
+  height:16px;
+  padding-right:10px;
+  float:left;
 }
 
 .taskbar-application-img{
