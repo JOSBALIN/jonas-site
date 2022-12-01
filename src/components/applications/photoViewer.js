@@ -69,7 +69,7 @@ export default function PhotoViewer(props) {
                 <img className="focused-photo-img" src={selectedPhoto}>
 
                 </img>
-                {/* <button onClick={() => setBackground()}>Set as background picture</button> */}
+                <button onClick={() => setBackground()}>Set as background picture</button>
             </div>
             <div className="photos-row">
             {photosMetadata.map((data, index) => 
