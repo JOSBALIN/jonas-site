@@ -14,7 +14,8 @@ export default function Taskbar(props) {
   const [time, setTime] = useState();
   const [openApps, setOpenApps] = useState(props.openApps);
   const [startMenuVisibility, setstartMenuVisibility] = useState({display:"none"})
-  const [startMenuClick, setStartMenuClick] = useState(false)
+  const [startMenuClicked, setStartMenuClicked] = useState(false)
+  const [startButtonState, setStartButtonState] = useState(startButton)
 
   // Updating time in taskbar
   React.useEffect(() => {
@@ -27,6 +28,7 @@ export default function Taskbar(props) {
       clearInterval(timer);
     };
   }, []);
+
 
   const taskbarAppClick = (index) => {
     // False to ensure method handles application as if it's not open
@@ -41,13 +43,23 @@ export default function Taskbar(props) {
 
   const showStartMenu = () => {
     setstartMenuVisibility();
-    setStartMenuClick(true)
+    setStartMenuClicked(true)
   }
+
+  const pressedStartButton = () => {
+    console.log(startMenuClicked)
+    if(startMenuClicked){
+      return startButtonPressed
+    } else {
+      return startButtonHover
+    }
+  }
+
 
 
   return (
     <div className="taskbar noselect">
-    <StartMenu style={startMenuVisibility} outsideClick={startMenuClick} hideMenu={hideStartMenu}/>
+    <StartMenu style={startMenuVisibility} outsideClick={startMenuClicked} hideMenu={hideStartMenu}/>
       <img className="start-bar" src={taskBar}></img>
       <img
         id="start-menu-button"
@@ -55,8 +67,8 @@ export default function Taskbar(props) {
         src={startButton}
         // Refactor these icon changes. Spaghetti right now.
         onMouseEnter={(e) => (e.currentTarget.src = startButtonHover)}
-        onMouseLeave={(e) => (e.currentTarget.src = startButton)}
-        onMouseDown={(e) => (e.currentTarget.src = startButtonPressed)}
+        onMouseLeave={(e) => (e.currentTarget.src = pressedStartButton())}
+        onMouseDown={(e) => (e.currentTarget.src = pressedStartButton())}
         onMouseDownCapture={(e) => showStartMenu()}
       ></img>
       

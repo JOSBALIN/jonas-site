@@ -31,19 +31,12 @@ export default function Desktop() {
     setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
   }, []);
 
-  // Get all instances of classes titled selected-app
-  useEffect(() => {
-    setSelectedApp(
-      Array.from(document.getElementsByClassName(" selected-app"))
-    );
-  }, []);
 
 
   // Testing in progress here - try to set topbar style based on current zIndex values
   const incrementZIndex = () => {
-    console.log(Array.from(document.getElementsByClassName("app-container")));
-    console.log(zIndex)
     setZIndex((zIndex) => zIndex + 1);
+    console.log(selectedApp)
   };
 
   // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
@@ -155,7 +148,6 @@ export default function Desktop() {
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
-    console.log("LAUNCH")
     return (
       <AppWindow
         passZIndex={passZIndex}
@@ -179,23 +171,24 @@ export default function Desktop() {
   // Spaghetti-code for now. Optimize if-statements
   const summonApplication = (appId, isOpen) => {
     resetTopbarSelection();
-    // Get selected div's style
-    const divStyle = document.getElementsByClassName(
+    
+    // Get selected apps's style
+    const appHTMLStyle = document.getElementsByClassName(
       "draggable-parent app-container applicationId: " + appId
     )[0].style;
 
-    if (divStyle.display == "" && divStyle.zIndex == zIndex - 1) {
-      if (divStyle.zIndex == zIndex - 1 && !isOpen) divStyle.display = "none";
-      if (divStyle.zIndex != zIndex) {
+    if (appHTMLStyle.display == "" && appHTMLStyle.zIndex == zIndex - 1) {
+      if (appHTMLStyle.zIndex == zIndex - 1 && !isOpen) appHTMLStyle.display = "none";
+      if (appHTMLStyle.zIndex != zIndex) {
         incrementZIndex();
-        divStyle.zIndex = zIndex;
+        appHTMLStyle.zIndex = zIndex;
       }
     } else {
       incrementZIndex();
-      divStyle.zIndex = zIndex;
-      divStyle.display = "";
-      divStyle.transform3d = 0;
-      divStyle.left = 0;
+      appHTMLStyle.zIndex = zIndex;
+      appHTMLStyle.display = "";
+      appHTMLStyle.transform3d = 0;
+      appHTMLStyle.left = 0;
     }
   };
 
