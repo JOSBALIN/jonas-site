@@ -7,11 +7,18 @@
     float:left;    
     margin-left:40px;
 }
+
+@media only screen and (max-width: 800px) {
+    .parent {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-column-gap: 50px;
+        grid-row-gap: 8px;
+        margin-left:20px;
+    }
+  }
     
-    .div1 { grid-area: 1 / 1 / 2 / 2; }
-    .div2 { grid-area: 1 / 2 / 2 / 3; }
-    .div3 { grid-area: 1 / 3 / 2 / 4; }
-    .div4 { grid-area: 1 / 4 / 2 / 5; }
+   
     
     div[class^="app-grid"]{
         margin: auto;
@@ -31,7 +38,6 @@
 
     .selected p{
         background-color: #316ac5;
-        padding: 0px 2px 2px 2px;
     }
 
 
@@ -43,7 +49,3 @@
         fill: #316ac5;
         z-index: 200;
     }
-
-    /* .selected-app{
-       filter:grayscale(50%); 
-    } */
