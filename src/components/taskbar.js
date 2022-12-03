@@ -13,14 +13,14 @@ import { AppWindow } from "./appWindow";
 export default function Taskbar(props) {
   const [time, setTime] = useState();
   const [openApps, setOpenApps] = useState(props.openApps);
-  const [startMenuVis, setStartMenuVis] = useState({display:"none"})
+  const [startMenuVisibility, setstartMenuVisibility] = useState({display:"none"})
   const [startMenuClick, setStartMenuClick] = useState(false)
 
   // Updating time in taskbar
   React.useEffect(() => {
     const timer = setInterval(() => {
-      // toString and slice functions necessary to display 0s
-      setTime(new Date().getHours().toString() + ":" + '0'+ new Date().getMinutes().toString().slice(-2));
+      // padStart on minutes to add leading 0
+      setTime(new Date().getHours().toString() + ":" + new Date().getMinutes().toString().padStart(2, '0'));
     }, 1000);
 
     return () => {
@@ -36,18 +36,18 @@ export default function Taskbar(props) {
   // Hides menu if clicked outside of start button & menu
   const hideStartMenu = (e) => {
     if(e.target.id != "start-menu-button")
-      setStartMenuVis({ display: "none" });
+      setstartMenuVisibility({ display: "none" });
   };
 
   const showStartMenu = () => {
-    setStartMenuVis();
+    setstartMenuVisibility();
     setStartMenuClick(true)
   }
 
 
   return (
     <div className="taskbar noselect">
-    <StartMenu style={startMenuVis} outsideClick={startMenuClick} hideMenu={hideStartMenu}/>
+    <StartMenu style={startMenuVisibility} outsideClick={startMenuClick} hideMenu={hideStartMenu}/>
       <img className="start-bar" src={taskBar}></img>
       <img
         id="start-menu-button"

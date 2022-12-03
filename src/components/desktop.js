@@ -39,7 +39,10 @@ export default function Desktop() {
   }, []);
 
 
+  // Testing in progress here - try to set topbar style based on current zIndex values
   const incrementZIndex = () => {
+    console.log(Array.from(document.getElementsByClassName("app-container")));
+    console.log(zIndex)
     setZIndex((zIndex) => zIndex + 1);
   };
 
@@ -152,6 +155,7 @@ export default function Desktop() {
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
+    console.log("LAUNCH")
     return (
       <AppWindow
         passZIndex={passZIndex}
