@@ -29,7 +29,30 @@ export default function PhotoViewer(props) {
             photo: "SilasJonas.jpg",
             shortText: "W/ colleague at work party",
         },
+        {
+            photo: "EllieJonas.jpg",
+            shortText: "My dog 123123123 me!",
+        },
+        {
+            photo: "EllieJonas2.jpg",
+            shortText: "My dog and me (123123)!",
+        },
+        {
+            photo: "EllieJonas2.jpg",
+            shortText: "Master's 43434",
+        },
+        {
+            photo: "JonasGuitar.jpg",
+            shortText: "Guitar1232 w/ fam",
+        },
+        {
+            photo: "SilasJonas.jpg",
+            shortText: "W/ colleagu2323e at work party",
+        },
     ])
+
+    const [displayPage, setDisplayPage] = useState(1);
+
 
 
     
@@ -45,6 +68,7 @@ export default function PhotoViewer(props) {
     
     const [selectedPhoto, setSelectedPhoto] = useState(images[photosMetadata[0].photo])
     
+    
     const photoDisplay = (photo, shortText) => {
         return (<img src={images[`${photo}`]} alt={shortText} key={shortText} onClick={() => handleClick(photo, shortText)} className={"preview-images"}/>
         )
@@ -55,9 +79,7 @@ export default function PhotoViewer(props) {
     }
     
     const setBackground = () => {
-        const backgroundElement = document.getElementById("desktop-background");
         document.getElementById("desktop-background").style.backgroundImage = "url("+selectedPhoto+")"
-        console.log(document.getElementById("desktop-background").style.backgroundImage)
     }
 
 
@@ -72,12 +94,14 @@ export default function PhotoViewer(props) {
                 <button onClick={() => setBackground()}>Set as background picture</button>
             </div>
             <div className="photos-row">
-            {photosMetadata.map((data, index) => 
+            <button onClick={() => setDisplayPage((displayPage) => displayPage - 1)      }>Previous page</button>
+            {photosMetadata.slice((displayPage*5-5), (displayPage*5)).map((data, index) => 
             <div className="photos-preview" key={index}>
                 <div className="photos-preview-upper">{photoDisplay(data.photo, data.shortText)}</div>
                 <div className="photos-preview-lower"><p>{data.shortText}</p></div>
             </div>
             )}
+            <button onClick={() => setDisplayPage((displayPage) => displayPage + 1)      }>Next page</button>
             </div>
         </div>
     )
