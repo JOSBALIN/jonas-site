@@ -113,12 +113,12 @@ export default function Desktop() {
   // reset currently selected element if exists
   const resetTopbarSelection = (appId) => {
     const taskbarElement = document.getElementsByClassName("selected-taskbar-app")[0]
-    console.log(document.getElementsByClassName("taskbar-app-id-"+appId)[0].className)
 
     if (Array.from(document.getElementsByClassName("topbar-selected-app"))[0] !== undefined)
       document.getElementsByClassName("topbar-selected-app")[0].className = "topbar";
     if(taskbarElement !== undefined)
-      document.getElementsByClassName("selected-taskbar-app")[0].className = taskbarElement.className.slice(0, 33)
+      document.getElementsByClassName("selected-taskbar-app")[0].className = taskbarElement.className.slice(0, 40)
+      Array.from(document.getElementsByClassName("taskbar-app-id-"+appId))[0].className += " selected-taskbar-app"
   };
 
   // Handles class delegation of selected icons
@@ -176,9 +176,9 @@ export default function Desktop() {
   // Function for controlling app visibility from taskbar
   // Spaghetti-code for now. Optimize if-statements
   const summonApplication = (appId, isOpen) => {
-    resetTopbarSelection();
+    resetTopbarSelection(appId);
     
-    // Get selected apps's style
+    // Get selected apps' style
     const appHTMLStyle = document.getElementsByClassName(
       "draggable-parent app-container applicationId: " + appId
     )[0].style;

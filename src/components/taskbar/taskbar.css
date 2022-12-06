@@ -111,9 +111,7 @@ but this works for the draggable-apps*/
   }
 
   .selected-taskbar-app{
-    background-color: red;
-    height:100px;
-    width:100px;
+    filter:grayscale(70%);
 }
 
 
