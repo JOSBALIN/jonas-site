@@ -44,6 +44,7 @@ export default function Taskbar(props) {
   const showStartMenu = () => {
     setstartMenuVisibility();
     setStartMenuClicked(true)
+    console.log(props.openApps)
   }
 
   const pressedStartButton = () => {
@@ -77,9 +78,9 @@ export default function Taskbar(props) {
       </div>
       <div className="taskbar-middle">
         {props.openApps.reverse().map((app, index) => (
-          <div className={"taskbar-app-div"+(index+1)} key={index}
+          <div className={"taskbar-app-div-"+(index+1) + " taskbar-app-id-" + app.id} key={index}
           onClick={(e) => {taskbarAppClick(app.id)}}>
-            <TaskbarApps icon={app.icon} title={app.title}/>
+            <TaskbarApps icon={app.icon} title={app.title} id={app.id}/>
           </div>
         ))}
       </div>

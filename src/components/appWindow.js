@@ -39,6 +39,7 @@ export function AppWindow(props) {
 
   // parent function, updates z-index
   const zIndexHandler = () => {
+  
     props.passZIndex(noteRef);
     setZIndex({zIndex: props.zIndex});
   };

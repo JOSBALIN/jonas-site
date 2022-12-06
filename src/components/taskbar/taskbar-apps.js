@@ -18,7 +18,7 @@ export default function TaskbarApps(props) {
   }
 
 return (
-  <div className={"taskbar-application " + "taskbar-app-id-" + props.id}     {...setTaskbarAppBackgroundState()}>
+  <div className={"taskbar-application"}     {...setTaskbarAppBackgroundState()}>
     <div className={"app-title"}
     ><img className="taskbar-app-icon" src={props.icon}></img>{props.title}</div>
     <img 

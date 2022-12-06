@@ -32,8 +32,6 @@ export default function Desktop() {
   }, []);
 
 
-
-  // Testing in progress here - try to set topbar style based on current zIndex values
   const incrementZIndex = () => {
     setZIndex((zIndex) => zIndex + 1);
     console.log(selectedApp)
@@ -41,10 +39,13 @@ export default function Desktop() {
 
   // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
   const passZIndex = (ref) => {
+    const appId = ref.current.parentElement.parentElement.className.charAt(ref.current.parentElement.parentElement.className.length-1)
     incrementZIndex();
     ref.current.style.zIndex = zIndex;
-    resetTopbarSelection();
+    resetTopbarSelection(appId);
     ref.current.className = "topbar-selected-app";
+    console.log(Array.from(document.getElementsByClassName("taskbar-app-id-"+appId)))
+    Array.from(document.getElementsByClassName("taskbar-app-id-"+appId))[0].className += " selected-taskbar-app"
   };
 
 
@@ -110,9 +111,14 @@ export default function Desktop() {
   const [applications, setApplications] = useState(initialAppStates);
 
   // reset currently selected element if exists
-  const resetTopbarSelection = () => {
+  const resetTopbarSelection = (appId) => {
+    const taskbarElement = document.getElementsByClassName("selected-taskbar-app")[0]
+    console.log(document.getElementsByClassName("taskbar-app-id-"+appId)[0].className)
+
     if (Array.from(document.getElementsByClassName("topbar-selected-app"))[0] !== undefined)
       document.getElementsByClassName("topbar-selected-app")[0].className = "topbar";
+    if(taskbarElement !== undefined)
+      document.getElementsByClassName("selected-taskbar-app")[0].className = taskbarElement.className.slice(0, 33)
   };
 
   // Handles class delegation of selected icons
