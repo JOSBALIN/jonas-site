@@ -45,11 +45,9 @@ export default function Draggable(holdToDrag, elementToMove, dragEnabled, commun
   }, [offsetX, offsetY]);
 
   useEffect(() => {
-    // code that executes dragging - can be toggled
+    // code that executes dragging
     if (dragEnabled) {
       elementToMove.current.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
-      setCurrentTransform(elementToMove.current.style.transform)
-      communicator(currentTransform)
     }
   }, [offsetX, offsetY]);
 }
@@ -63,7 +61,6 @@ export function DraggableElement({
   zIndex,
   dragEnabled,
   appId,
-  communicator
 }) {
   
   // Ref elements, pointers to specific HTML elements
@@ -71,7 +68,7 @@ export function DraggableElement({
   const refElementToMove = useRef(null);
 
   // create instance of draggable
-  Draggable(refHoldToDrag, refElementToMove, dragEnabled, communicator);
+  Draggable(refHoldToDrag, refElementToMove, dragEnabled);
 
 
   return (

@@ -1,11 +1,11 @@
-.start-menu-background{
+.start-menu{
     position:absolute;
     bottom:30px;
     left:0;
     width:260px;
 }
 
-.invisible-image {
+.start-menu-img {
     width: 100%; /* max width */
     float: left;
 }

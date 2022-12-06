@@ -37,8 +37,10 @@ export default function Taskbar(props) {
 
   // Hides menu if clicked outside of start button & menu
   const hideStartMenu = (e) => {
-    if(e.target.id != "start-menu-button")
+    if(e.target.id != "start-menu-button"){
       setstartMenuVisibility({ display: "none" });
+      setStartMenuClicked(false);
+    }
   };
 
   const showStartMenu = () => {
@@ -47,12 +49,12 @@ export default function Taskbar(props) {
   }
 
   const pressedStartButton = () => {
-    console.log(startMenuClicked)
     if(startMenuClicked){
       return startButtonPressed
     } else {
-      return startButtonHover
+      return startButton
     }
+
   }
 
 
@@ -64,11 +66,9 @@ export default function Taskbar(props) {
       <img
         id="start-menu-button"
         className="start-button"
-        src={startButton}
+        src={pressedStartButton()}
         // Refactor these icon changes. Spaghetti right now.
         onMouseEnter={(e) => (e.currentTarget.src = startButtonHover)}
-        onMouseLeave={(e) => (e.currentTarget.src = pressedStartButton())}
-        onMouseDown={(e) => (e.currentTarget.src = pressedStartButton())}
         onMouseDownCapture={(e) => showStartMenu()}
       ></img>
       

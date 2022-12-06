@@ -14,9 +14,9 @@ export default function StartMenu(props) {
       enabled={props.outsideClick}
       hideMenu={props.hideMenu}
       children={
-        <div className={"start-menu-background"} style={props.style}>
+        <div className={"start-menu"} style={props.style}>
           <img
-            className="invisible-image"
+            className="start-menu-img"
             src={require("../images/desktop-start-menu-compact.png")}
           ></img>
 
