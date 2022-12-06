@@ -3,7 +3,6 @@ import OutsideAlerter from "./hooks/OutsideAlerter";
 import { useState } from "react";
 
 export default function StartMenu(props) {
-  const [enabled, setEnabled] = useState(props.outsideClick);
 
   const  closeSite = () => {
     if(window.confirm("Are you sure you want to turn this PC off?"))   window.close();
