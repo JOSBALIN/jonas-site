@@ -1,14 +1,12 @@
-import startButton from ".././images/desktop-startbutton.png";
-import taskBar from ".././images/desktop-startbar.png";
-import taskBarRight from ".././images/desktop-startbar-right.png";
-import startButtonHover from ".././images/desktop-startbutton-hover.png";
-import startButtonPressed from ".././images/desktop-startbutton-pressed.png";
+import startButton from "../../images/desktop-startbutton.png";
+import taskBar from "../../images/desktop-startbar.png";
+import taskBarRight from "../../images/desktop-startbar-right.png";
+import startButtonHover from "../../images/desktop-startbutton-hover.png";
+import startButtonPressed from "../../images/desktop-startbutton-pressed.png";
 import TaskbarApps from "./taskbar-apps";
-import * as React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./taskbar.css";
 import StartMenu from "./startMenu";
-import { AppWindow } from "./appWindow";
 
 export default function Taskbar(props) {
   const [time, setTime] = useState();
@@ -18,7 +16,7 @@ export default function Taskbar(props) {
   const [startButtonState, setStartButtonState] = useState(startButton)
 
   // Updating time in taskbar
-  React.useEffect(() => {
+  useEffect(() => {
     const timer = setInterval(() => {
       // padStart on minutes to add leading 0
       setTime(new Date().getHours().toString() + ":" + new Date().getMinutes().toString().padStart(2, '0'));
@@ -81,7 +79,7 @@ export default function Taskbar(props) {
         {props.openApps.reverse().map((app, index) => (
           <div className={"taskbar-app-div"+(index+1)} key={index}
           onClick={(e) => {taskbarAppClick(app.id)}}>
-            <TaskbarApps icon={app.icon} title={app.title} id={app.id} selected={false}/>
+            <TaskbarApps icon={app.icon} title={app.title}/>
           </div>
         ))}
       </div>

@@ -1,6 +1,6 @@
 import "./startMenu.css";
-import OutsideAlerter from "./hooks/OutsideAlerter";
-import { useState } from "react";
+import OutsideAlerter from "../hooks/OutsideAlerter";
+
 
 export default function StartMenu(props) {
 
@@ -16,7 +16,7 @@ export default function StartMenu(props) {
         <div className={"start-menu"} style={props.style}>
           <img
             className="start-menu-img"
-            src={require("../images/desktop-start-menu-compact.png")}
+            src={require("../../images/desktop-start-menu-compact.png")}
           ></img>
 
           <div className="start-menu-button start-menu-app a01"></div>

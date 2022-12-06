@@ -1,6 +1,6 @@
 import "../App.css";
 import * as React from "react";
-import Taskbar from "./taskbar";
+import Taskbar from "./taskbar/taskbar";
 import { AppWindow } from "./appWindow";
 import "./appWindow.css";
 import "./desktop.css";
