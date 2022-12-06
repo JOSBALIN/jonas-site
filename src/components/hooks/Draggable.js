@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import Resizeable from "../resizeable";
 
 // This code is borrowed from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/useDraggable.js:0-1009
-// Changes include adding an el2, which is the element to be moved, whereas el is the element that is held to drag.
+// Changes include adding an elementToMove, which is the HTML element to be moved, whereas holdToDrag is the element that is held to drag.
+// This change is to facilitate dragging only by holding on the topBar of apps rather than the entire app-window
 // Also preventing selection of text during drag
 
-export default function Draggable(el, el2, dragEnabled, communicator) {
-  const [{ dx, dy }, setOffset] = useState({ dx: 0, dy: 0 });
+export default function Draggable(holdToDrag, elementToMove, dragEnabled, communicator) {
+  const [{ offsetX, offsetY }, setOffset] = useState({ offsetX: 0, offsetY: 0 });
   const [currentTransform, setCurrentTransform] = useState();
 
 
@@ -15,13 +15,15 @@ export default function Draggable(el, el2, dragEnabled, communicator) {
       // prevent text-selection during drag
       event.preventDefault();
       event.stopPropagation();
-      const startX = event.pageX - dx;
-      const startY = event.pageY - dy;
+      const startX = event.pageX - offsetX;
+      const startY = event.pageY - offsetY;
 
       const handleMouseMove = (event) => {
-        const newDx = event.pageX - startX;
+        if(event.pageX < 0 || event.pageX > window.innerWidth){return} // prevents dragging out of on x-axis
+        if(event.pageY < 4 || event.pageY > window.innerHeight - 50 ){return} // prevents dragging out of bounds on y-axis
         const newDy = event.pageY - startY;
-        setOffset({ dx: newDx, dy: newDy });
+        const newDx = event.pageX - startX;
+        setOffset({ offsetX: newDx, offsetY: newDy });
       };
 
       document.addEventListener("mousemove", handleMouseMove);
@@ -35,21 +37,21 @@ export default function Draggable(el, el2, dragEnabled, communicator) {
       );
     };
 
-    el.current.addEventListener("mousedown", handleMouseDown);
+    holdToDrag.current.addEventListener("mousedown", handleMouseDown);
 
     return () => {
-      el.current.removeEventListener("mousedown", handleMouseDown);
+      holdToDrag.current.removeEventListener("mousedown", handleMouseDown);
     };
-  }, [dx, dy]);
+  }, [offsetX, offsetY]);
 
   useEffect(() => {
     // code that executes dragging - can be toggled
     if (dragEnabled) {
-      el2.current.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
-      setCurrentTransform(el2.current.style.transform)
+      elementToMove.current.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
+      setCurrentTransform(elementToMove.current.style.transform)
       communicator(currentTransform)
     }
-  }, [dx, dy]);
+  }, [offsetX, offsetY]);
 }
 
 // DraggableElement function interpreted from https://codesandbox.io/s/priceless-hoover-j4vpn?file=/src/index.js
@@ -63,30 +65,22 @@ export function DraggableElement({
   appId,
   communicator
 }) {
-
-
-  const dragRef = useRef(null);
-  const dragRefParent = useRef(null);
+  
+  // Ref elements, pointers to specific HTML elements
+  const refHoldToDrag = useRef(null);
+  const refElementToMove = useRef(null);
 
   // create instance of draggable
-  Draggable(dragRef, dragRefParent, dragEnabled, communicator);
+  Draggable(refHoldToDrag, refElementToMove, dragEnabled, communicator);
 
-  const [element, setElement] = useState()
-
-
-  const removeElement = () => {
-    setElement(document.getElementById("dragmen"))
-    console.log(element)
-    element.remove()
-  }
 
   return (
     <div
-      ref={dragRefParent}
+      ref={refElementToMove}
       className={"draggable-parent app-container applicationId: " + appId}
-      style={{...style, ...zIndex, ...{display}}}
+      style={{ ...style, ...zIndex, ...{ display } }}
     >
-      <div ref={dragRef} className="draggable-child app-contents">
+      <div ref={refHoldToDrag} className="draggable-child app-contents">
         {dragElement}
       </div>
       {parentElement}
