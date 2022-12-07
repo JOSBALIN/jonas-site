@@ -76,7 +76,8 @@ export function DraggableElement({
   return (
     <div
       ref={refElementToMove}
-      className={"draggable-parent app-container applicationId: " + appId}
+      className={"draggable-parent app-container"}
+      id={"applicationId:"+appId}
       style={{ ...style, ...zIndex, ...{ display } }}
     >
       <div ref={refHoldToDrag} className="draggable-child app-contents">

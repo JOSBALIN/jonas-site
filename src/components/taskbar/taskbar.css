@@ -76,6 +76,7 @@ but this works for the draggable-apps*/
   bottom:1px;
   z-index:0;
   height:90%;
+  filter:grayscale(70%);
 }
 
 .taskbar-application{
@@ -111,7 +112,7 @@ but this works for the draggable-apps*/
   }
 
   .selected-taskbar-app{
-    filter:grayscale(70%);
+    filter:grayscale(0%);
 }
 
 

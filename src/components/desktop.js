@@ -23,7 +23,7 @@ export default function Desktop() {
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
   const [appGridClasses, setAppGridClasses] = useState([]);
-  const [selectedApp, setSelectedApp] = useState([]);
+  const [newApp, setNewApp] = useState(false)
 
 
   // Get all instances of classes titled app-grid
@@ -31,21 +31,29 @@ export default function Desktop() {
     setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
   }, []);
 
+  useEffect(() => {
+    
+  setOpenApps(openApps.map(obj => ({...obj, elementApp:document.getElementById("applicationId:" + obj.id), elementTaskbar:document.getElementById("taskbar-app-id-" + obj.id)})));
+  }, [newApp]);
+  const testApps = (appId) => {
+    console.log("Testing apps")
+    console.log(openApps)
+
+    const appHTMLContainer = document.getElementById("applicationId:" + appId);
+    const appHTMLTaskbar = document.getElementById("taskbar-app-id-" + appId);
+  }
 
   const incrementZIndex = () => {
     setZIndex((zIndex) => zIndex + 1);
-    console.log(selectedApp)
   };
 
   // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
   const passZIndex = (ref) => {
-    const appId = ref.current.parentElement.parentElement.className.charAt(ref.current.parentElement.parentElement.className.length-1)
+    const appId = ref.current.parentElement.parentElement.id.charAt(ref.current.parentElement.parentElement.id.length-1)
     incrementZIndex();
     ref.current.style.zIndex = zIndex;
     resetTopbarSelection(appId);
-    ref.current.className = "topbar-selected-app";
-    console.log(Array.from(document.getElementsByClassName("taskbar-app-id-"+appId)))
-    Array.from(document.getElementsByClassName("taskbar-app-id-"+appId))[0].className += " selected-taskbar-app"
+    //document.getElementsByClassName("taskbar-app-id-"+appId)[0].className += " selected-taskbar-app"
   };
 
 
@@ -111,14 +119,11 @@ export default function Desktop() {
   const [applications, setApplications] = useState(initialAppStates);
 
   // reset currently selected element if exists
+  // terrible code, up for refactor
   const resetTopbarSelection = (appId) => {
-    const taskbarElement = document.getElementsByClassName("selected-taskbar-app")[0]
-
-    if (Array.from(document.getElementsByClassName("topbar-selected-app"))[0] !== undefined)
-      document.getElementsByClassName("topbar-selected-app")[0].className = "topbar";
-    if(taskbarElement !== undefined)
-      document.getElementsByClassName("selected-taskbar-app")[0].className = taskbarElement.className.slice(0, 40)
-      Array.from(document.getElementsByClassName("taskbar-app-id-"+appId))[0].className += " selected-taskbar-app"
+    // document.getElementById("applicationId:" + appId).firstChild.firstChild.id = "topbar-selected-app"
+    // document.getElementById("applicationId:" + appId).firstChild.firstChild.style.filter = "grayscale(90%)"
+    // document.getElementById("applicationId:" + appId).style.borderColor = "grayscale(90%)"
   };
 
   // Handles class delegation of selected icons
@@ -137,13 +142,26 @@ export default function Desktop() {
   const handleClick = (event, key, app) => {
     appIconSelection(key);
 
+    // Execute on double click
     if (event.detail === 2) {
-      if (openApps.includes(app[key])) {
+      // Check if app is open
+      if (openApps.some(current => current.id === app[key].id)) {
         return summonApplication(app[key].id, true);
-      }
-      if (openApps.length <= 4) {
-        setOpenApps((current) => [...current, app[key]]);
+      } else {
+
+        setOpenApps((current) => [
+          ...current,
+          {
+            component: app[key].component,
+            id: app[key].id,
+            title: app[key].title,
+            icon: app[key].icon,
+            windowDimensions: app[key].windowDimensions,
+            selected: true,
+          },
+        ]);
         appIconSelection(-1); // resets icon selection
+        setNewApp(!newApp)
       }
     }
   };
@@ -177,30 +195,32 @@ export default function Desktop() {
   // Spaghetti-code for now. Optimize if-statements
   const summonApplication = (appId, isOpen) => {
     resetTopbarSelection(appId);
+    testApps(appId)
     
-    // Get selected apps' style
-    const appHTMLStyle = document.getElementsByClassName(
-      "draggable-parent app-container applicationId: " + appId
-    )[0].style;
+    // // Get selected apps' style
+    // const appHTMLStyle = document.getElementsByClassName(
+    //   "draggable-parent app-container applicationId: " + appId
+    // )[0].style;
 
-    if (appHTMLStyle.display == "" && appHTMLStyle.zIndex == zIndex - 1) {
-      if (appHTMLStyle.zIndex == zIndex - 1 && !isOpen) appHTMLStyle.display = "none";
-      if (appHTMLStyle.zIndex != zIndex) {
-        incrementZIndex();
-        appHTMLStyle.zIndex = zIndex;
-      }
-    } else {
-      incrementZIndex();
-      appHTMLStyle.zIndex = zIndex;
-      appHTMLStyle.display = "";
-      appHTMLStyle.transform3d = 0;
-      appHTMLStyle.left = 0;
-    }
+    // if (appHTMLStyle.display == "" && appHTMLStyle.zIndex == zIndex - 1) {
+    //   if (appHTMLStyle.zIndex == zIndex - 1 && !isOpen) appHTMLStyle.display = "none";
+    //   if (appHTMLStyle.zIndex != zIndex) {
+    //     incrementZIndex();
+    //     appHTMLStyle.zIndex = zIndex;
+    //   }
+    // } else {
+    //   incrementZIndex();
+    //   appHTMLStyle.zIndex = zIndex;
+    //   appHTMLStyle.display = "";
+    //   appHTMLStyle.transform3d = 0;
+    //   appHTMLStyle.left = 0;
+    // }
   };
 
   return (
     <div className="desktop-background noselect" id="desktop-background">
       <div className="parent">
+        <button onClick={() => testApps(1)}>TEST BUTTON APPS</button>
         {applications.map((app, key, appComp) => (
           <div
             className={"app-grid " + app.id}

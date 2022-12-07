@@ -22,11 +22,8 @@
     filter:grayscale(70%);
 }
 
-.topbar-selected-app {
-    height:60px;
-    font-weight: bold;
-    background-image: url("../images/application-topbar/desktop-app-topbar-background.png");
-    color:white;
+#topbar-selected-app {
+    filter:grayscale(0%)
 }
 
 .topbar-title{

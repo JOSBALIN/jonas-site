@@ -65,7 +65,8 @@ export function AppWindow(props) {
         dragElement={
           <div 
           onMouseDownCapture={zIndexHandler}
-            className="topbar-selected-app"
+            id="topbar-selected-app"
+            className="topbar"
             ref={noteRef}
             style={
               maximized

@@ -24,7 +24,9 @@ return (
     <img 
     src={taskbarImage}
 
-    className={"taskbar-application-img" + " taskbar-app-id-" + props.id}></img>
+    className={"taskbar-application-img"}
+    id={"taskbar-app-id-" + props.id}
+    ></img>
   </div>
 );
 }

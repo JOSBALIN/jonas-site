@@ -10,10 +10,8 @@ import StartMenu from "./startMenu";
 
 export default function Taskbar(props) {
   const [time, setTime] = useState();
-  const [openApps, setOpenApps] = useState(props.openApps);
   const [startMenuVisibility, setstartMenuVisibility] = useState({display:"none"})
   const [startMenuClicked, setStartMenuClicked] = useState(false)
-  const [startButtonState, setStartButtonState] = useState(startButton)
 
   // Updating time in taskbar
   useEffect(() => {
@@ -28,9 +26,10 @@ export default function Taskbar(props) {
   }, []);
 
 
-  const taskbarAppClick = (index) => {
+  const taskbarAppClick = (appId) => {
     // False to ensure method handles application as if it's not open
-    props.summonApplication(index, false)
+    console.log(appId);
+    props.summonApplication(appId, false)
   }
 
   // Hides menu if clicked outside of start button & menu
