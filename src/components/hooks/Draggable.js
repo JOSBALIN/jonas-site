@@ -48,6 +48,8 @@ export default function Draggable(holdToDrag, elementToMove, dragEnabled, commun
     // code that executes dragging
     if (dragEnabled) {
       elementToMove.current.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
+    } else {
+      setOffset({ offsetX: 0, offsetY: 0 }); // resets coordinates for next time dragging
     }
   }, [offsetX, offsetY]);
 }
