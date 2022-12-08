@@ -48,24 +48,23 @@ export default function Desktop() {
   // Handling of z-index and app selection status coloring
   // Functional but could use refinement
   const passZIndex = (appId) => {
-    const appSelectedStyle = "filter:grayscale(0%);"
-    const appDeselectedStyle = "filter:grayscale(70%);"
+    const selectedStyle = "filter:grayscale(0%);"
+    const deselectedStyle = "filter:grayscale(70%);"
 
     setZIndex((zIndex) => zIndex + 1);
 
     // Deselect currently selected app, apply styles
     const deselectedApp = openApps.find(current => current.selected === true)
-    deselectedApp.elementTaskbar.style = appDeselectedStyle
-    deselectedApp.elementTopbar.style = appDeselectedStyle
+    deselectedApp.elementTaskbar.style = deselectedStyle
+    deselectedApp.elementTopbar.style = deselectedStyle
     deselectedApp.selected = false;
-    console.log(appId)
     
     // Create new selected app, apply styles
     //const appId = ref.current.parentElement.parentElement.id.charAt(ref.current.parentElement.parentElement.id.length-1)
     const selectedApp = openApps.find(current => current.id === appId)
 
-    selectedApp.elementTaskbar.style = appSelectedStyle
-    selectedApp.elementTopbar.style = appSelectedStyle
+    selectedApp.elementTaskbar.style = selectedStyle
+    selectedApp.elementTopbar.style = selectedStyle
     selectedApp.elementApp.style.zIndex = zIndex
     selectedApp.selected = true;
   };
@@ -152,7 +151,7 @@ export default function Desktop() {
     if (event.detail === 2) {
       // Check if app is open
       if (openApps.some(current => current.id === app[key].id)) {
-        return summonApplication(app[key].id, true);
+        return summonApplication(app[key].id);
       } else {
 
         setOpenApps((current) => [
@@ -167,7 +166,7 @@ export default function Desktop() {
           },
         ]);
         appIconSelection(-1); // resets icon selection
-        setNewApp(!newApp)
+        setNewApp(!newApp) // needed to update HTML elements in openApps arr
       }
     }
   };
@@ -186,21 +185,24 @@ export default function Desktop() {
         windowDimensions={app.windowDimensions}/>
     );
   };
+  
+
+    const summonApplication = (appId) => {
+      const selectedApp = openApps.find(current => current.id === appId)
+      if(selectedApp.selected && selectedApp.elementApp.style.display == ""){
+        selectedApp.elementApp.style.display = "none"
+        selectedApp.elementTaskbar.style = "filter:grayscale(70%);"
+      } else {
+        selectedApp.elementApp.style.display = ""
+        passZIndex(appId)
+      }
+    };
 
   // add an application to list
   const addApplication = (obj) => {
     setApplications((current) => [...current, obj]);
   };
 
-
-  // Function for controlling app visibility from taskbar
-  // Spaghetti-code for now. Optimize if-statements
-  const summonApplication = (appId, isOpen) => {
-    const selectedAppStyle = openApps.find(current => current.id === appId).elementApp.style
-    selectedAppStyle.display ? selectedAppStyle.display = "" : selectedAppStyle.display = "none"
-    passZIndex()
-
-  };
 
   return (
     <div className="desktop-background noselect" id="desktop-background">
@@ -215,8 +217,8 @@ export default function Desktop() {
             <AppIcon title={app.title} icon={app.icon}></AppIcon>
           </div>
         ))}
-        {openApps.map((appComp, key) => (
-          <div key={key}>{launchApplication(appComp, key)}</div>
+        {openApps.map((app, key) => (
+          <div key={key}>{launchApplication(app)}</div>
         ))}
       </div>
       <div className="desktop-frontlayer">
