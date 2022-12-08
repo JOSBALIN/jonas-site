@@ -22,9 +22,6 @@
     filter:grayscale(70%);
 }
 
-#topbar-selected-app {
-    filter:grayscale(0%)
-}
 
 .topbar-title{
     padding-left: 16px;

@@ -23,7 +23,7 @@ export default function Desktop() {
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
   const [appGridClasses, setAppGridClasses] = useState([]);
-  const [newApp, setNewApp] = useState(false)
+  const [newApp, setNewApp] = useState(false);
 
 
   // Get all instances of classes titled app-grid
@@ -32,28 +32,42 @@ export default function Desktop() {
   }, []);
 
   useEffect(() => {
-    
-  setOpenApps(openApps.map(obj => ({...obj, elementApp:document.getElementById("applicationId:" + obj.id), elementTaskbar:document.getElementById("taskbar-app-id-" + obj.id)})));
+    setOpenApps(
+      openApps.map((obj, index) => ({
+        ...obj,
+        elementApp: document.getElementById("applicationId:" + obj.id),
+        elementTaskbar: document.getElementById("taskbar-app-id-" + obj.id),
+        elementTopbar: document.getElementById("applicationId:" + obj.id).firstChild.firstChild,
+      }))
+    );
   }, [newApp]);
-  const testApps = (appId) => {
-    console.log("Testing apps")
-    console.log(openApps)
 
-    const appHTMLContainer = document.getElementById("applicationId:" + appId);
-    const appHTMLTaskbar = document.getElementById("taskbar-app-id-" + appId);
-  }
 
-  const incrementZIndex = () => {
+
+
+  // Handling of z-index and app selection status coloring
+  // Functional but could use refinement
+  const passZIndex = (appId) => {
+    const appSelectedStyle = "filter:grayscale(0%);"
+    const appDeselectedStyle = "filter:grayscale(70%);"
+
     setZIndex((zIndex) => zIndex + 1);
-  };
 
-  // Code for handling zIndex inspired by answer: https://stackoverflow.com/questions/65251195/how-to-change-z-index-of-components-in-react
-  const passZIndex = (ref) => {
-    const appId = ref.current.parentElement.parentElement.id.charAt(ref.current.parentElement.parentElement.id.length-1)
-    incrementZIndex();
-    ref.current.style.zIndex = zIndex;
-    resetTopbarSelection(appId);
-    //document.getElementsByClassName("taskbar-app-id-"+appId)[0].className += " selected-taskbar-app"
+    // Deselect currently selected app, apply styles
+    const deselectedApp = openApps.find(current => current.selected === true)
+    deselectedApp.elementTaskbar.style = appDeselectedStyle
+    deselectedApp.elementTopbar.style = appDeselectedStyle
+    deselectedApp.selected = false;
+    console.log(appId)
+    
+    // Create new selected app, apply styles
+    //const appId = ref.current.parentElement.parentElement.id.charAt(ref.current.parentElement.parentElement.id.length-1)
+    const selectedApp = openApps.find(current => current.id === appId)
+
+    selectedApp.elementTaskbar.style = appSelectedStyle
+    selectedApp.elementTopbar.style = appSelectedStyle
+    selectedApp.elementApp.style.zIndex = zIndex
+    selectedApp.selected = true;
   };
 
 
@@ -118,14 +132,6 @@ export default function Desktop() {
 
   const [applications, setApplications] = useState(initialAppStates);
 
-  // reset currently selected element if exists
-  // terrible code, up for refactor
-  const resetTopbarSelection = (appId) => {
-    // document.getElementById("applicationId:" + appId).firstChild.firstChild.id = "topbar-selected-app"
-    // document.getElementById("applicationId:" + appId).firstChild.firstChild.style.filter = "grayscale(90%)"
-    // document.getElementById("applicationId:" + appId).style.borderColor = "grayscale(90%)"
-  };
-
   // Handles class delegation of selected icons
   const appIconSelection = (key) => {
     appGridClasses.map((appGrid) => {
@@ -157,7 +163,7 @@ export default function Desktop() {
             title: app[key].title,
             icon: app[key].icon,
             windowDimensions: app[key].windowDimensions,
-            selected: true,
+            selected:true,
           },
         ]);
         appIconSelection(-1); // resets icon selection
@@ -166,9 +172,6 @@ export default function Desktop() {
     }
   };
 
-  const closeApplication = (app) => {
-    
-  }
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
@@ -180,8 +183,7 @@ export default function Desktop() {
         appId={app.id}
         icon={app.icon}
         contents={app.component}
-        windowDimensions={app.windowDimensions}
-      />
+        windowDimensions={app.windowDimensions}/>
     );
   };
 
@@ -194,33 +196,15 @@ export default function Desktop() {
   // Function for controlling app visibility from taskbar
   // Spaghetti-code for now. Optimize if-statements
   const summonApplication = (appId, isOpen) => {
-    resetTopbarSelection(appId);
-    testApps(appId)
-    
-    // // Get selected apps' style
-    // const appHTMLStyle = document.getElementsByClassName(
-    //   "draggable-parent app-container applicationId: " + appId
-    // )[0].style;
+    const selectedAppStyle = openApps.find(current => current.id === appId).elementApp.style
+    selectedAppStyle.display ? selectedAppStyle.display = "" : selectedAppStyle.display = "none"
+    passZIndex()
 
-    // if (appHTMLStyle.display == "" && appHTMLStyle.zIndex == zIndex - 1) {
-    //   if (appHTMLStyle.zIndex == zIndex - 1 && !isOpen) appHTMLStyle.display = "none";
-    //   if (appHTMLStyle.zIndex != zIndex) {
-    //     incrementZIndex();
-    //     appHTMLStyle.zIndex = zIndex;
-    //   }
-    // } else {
-    //   incrementZIndex();
-    //   appHTMLStyle.zIndex = zIndex;
-    //   appHTMLStyle.display = "";
-    //   appHTMLStyle.transform3d = 0;
-    //   appHTMLStyle.left = 0;
-    // }
   };
 
   return (
     <div className="desktop-background noselect" id="desktop-background">
       <div className="parent">
-        <button onClick={() => testApps(1)}>TEST BUTTON APPS</button>
         {applications.map((app, key, appComp) => (
           <div
             className={"app-grid " + app.id}
