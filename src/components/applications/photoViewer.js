@@ -4,6 +4,8 @@ import { useState } from "react";
 import { render } from "@testing-library/react";
 import { useEffect } from "react";
 import topBarImage from "../../images/application-images/photoViewer-top-menu.png";
+import previousPhoto from "../../images/application-images/photos-arrow-back.png";
+import nextPhoto from "../../images/application-images/photos-arrow-next.png";
 
 export default function PhotoViewer(props) {
 
@@ -66,20 +68,48 @@ export default function PhotoViewer(props) {
     const images = importAll(require.context('../../images/photos', false, /\.(png|jpe?g|svg)$/));
 
     
-    const [selectedPhoto, setSelectedPhoto] = useState(images[photosMetadata[0].photo])
+    const [selectedPhoto, setSelectedPhoto] = useState({
+        photo: images[photosMetadata[0].photo],
+        index: 0
+    })
     
     
-    const photoDisplay = (photo, shortText) => {
-        return (<img src={images[`${photo}`]} alt={shortText} key={shortText} onClick={() => handleClick(photo, shortText)} className={"preview-images"}/>
+    const photoDisplay = (photo, shortText, index) => {
+        return (<img src={images[`${photo}`]} alt={shortText} key={shortText} onClick={() => handleClick(photo, shortText, index)} className={"preview-images"}/>
         )
     }
     
-    const handleClick = (photo, text) => {
-        setSelectedPhoto(images[`${photo}`])
+    const handleClick = (photo, text, index) => {
+        console.log(index)
+        setSelectedPhoto(
+            {
+                photo: images[`${photo}`],
+                index: index
+            }
+        );
+        console.log(selectedPhoto)
     }
     
     const setBackground = () => {
-        document.getElementById("desktop-background").style.backgroundImage = "url("+selectedPhoto+")"
+        document.getElementById("desktop-background").style.backgroundImage = "url("+selectedPhoto.photo+")"
+    }
+
+    const iteratePhoto = (e) => {
+        if(e.target.id === "next-photo"){
+            const nextPhoto = photosMetadata[selectedPhoto.index+1].photo
+            setSelectedPhoto(
+                {
+                    photo: images[`${nextPhoto}`],
+                    index: selectedPhoto.index+1
+                })
+        } else {
+            const nextPhoto = photosMetadata[selectedPhoto.index-1].photo
+            setSelectedPhoto(
+                {
+                    photo: images[`${nextPhoto}`],
+                    index: selectedPhoto.index-1
+                })
+        }
     }
 
 
@@ -88,20 +118,23 @@ export default function PhotoViewer(props) {
         <div className="photos-background">
             <div className={"top-menu-photos"}>      <img className="top-menu-img-photos" src={topBarImage}></img></div>
             <div className="focused-photo">
-                <img className="focused-photo-img" src={selectedPhoto}>
+                <img className="focused-photo-img" src={selectedPhoto.photo}>
 
                 </img>
-                <button onClick={() => setBackground()}>Set as background picture</button>
+                <div className="sub-menu">
+                <img className="change-focused-photo" id="previous-photo" src={previousPhoto} onClick={(e) => iteratePhoto(e)}/>
+                <img className="change-focused-photo" id="next-photo" src={nextPhoto} onClick={(e) => iteratePhoto(e)}/>
+                <br/>
+                <button onClick={() => setBackground() } className="winXP-button">Set as background picture</button>
+                </div>
             </div>
             <div className="photos-row">
-            <button onClick={() => setDisplayPage((displayPage) => displayPage - 1)      }>Previous page</button>
-            {photosMetadata.slice((displayPage*5-5), (displayPage*5)).map((data, index) => 
+            {photosMetadata.map((data, index) => 
             <div className="photos-preview" key={index}>
-                <div className="photos-preview-upper">{photoDisplay(data.photo, data.shortText)}</div>
+                <div className="photos-preview-upper">{photoDisplay(data.photo, data.shortText, index)}</div>
                 <div className="photos-preview-lower"><p>{data.shortText}</p></div>
             </div>
             )}
-            <button onClick={() => setDisplayPage((displayPage) => displayPage + 1)      }>Next page</button>
             </div>
         </div>
     )
