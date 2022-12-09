@@ -5,9 +5,8 @@ import { useState, useEffect, useRef } from "react";
 // This change is to facilitate dragging only by holding on the topBar of apps rather than the entire app-window
 // Also preventing selection of text during drag
 
-export default function Draggable(holdToDrag, elementToMove, dragEnabled, communicator) {
+export default function Draggable(holdToDrag, elementToMove, dragEnabled) {
   const [{ offsetX, offsetY }, setOffset] = useState({ offsetX: 0, offsetY: 0 });
-  const [currentTransform, setCurrentTransform] = useState();
 
 
   useEffect(() => {

@@ -19,8 +19,7 @@ export function AppWindow(props) {
   const [draggable, setDraggable] = useState(true);   // draggable toggle
   
   // window dimensions
-  const [display, setDisplay] = useState(""); // application minization
-  const [coordinates, setCoordinates] = useState() // application positioning
+  const [display, setDisplay] = useState(""); // application minimization
   const [maximized, setMaximized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(props.windowDimensions);
 
@@ -31,7 +30,7 @@ export function AppWindow(props) {
       setMaximized(true);
       setDraggable(false);
     } else {
-      setWindowDimensions({ height: "50%", width: "50%", transform: coordinates });
+      setWindowDimensions({ height: "50%", width: "50%"});
       setMaximized(false);
       setDraggable(true);
     }
@@ -52,12 +51,6 @@ export function AppWindow(props) {
     }
   };
 
-  // Communicate transform properties between parent and draggable
-  // used to "remember" position after maximization
-  const transformCommunicator = (coords) => {
-    setCoordinates(coords)
-  }
-
   return (
       <DraggableElement
         dragElement={
@@ -66,11 +59,6 @@ export function AppWindow(props) {
             id="topbar-selected-app"
             className="topbar"
             ref={noteRef}
-            style={
-              maximized
-                ? { borderRadius: "0" }
-                : { borderRadius: "16px 16px 0 0" }
-            }
           >
             <img
               style={maximized ? { display: "none" } : { display: "" }}
@@ -161,7 +149,6 @@ export function AppWindow(props) {
         zIndex={zIndex}
         dragEnabled={draggable}
         appId={props.appId}
-        communicator={transformCommunicator}
       ></DraggableElement>
   );
 }

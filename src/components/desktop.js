@@ -16,6 +16,12 @@ import MusicPlayer from "./applications/musicPlayer";
 import References from "./applications/references";
 import Contact from "./applications/contact";
 import contactIcon from "../images/app-icons/app-icon-contact.png";
+import Portfolio from "./applications/portfolio/portfolio";
+import PdfReader from "./applications/pdfReader";
+
+import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
+
+import matrixMultiplicationPDF from './applications/portfolio/MatrixMultiplication.pdf';
 
 
 export default function Desktop() {
@@ -121,12 +127,26 @@ export default function Desktop() {
         width: "50%",
       },
     },
-    // {
-    //   id: "5",
-    //   title: "GitHub",
-    //   icon: githubIcon,
-    //   component: "",
-    // },
+    {
+      id: "5",
+      title: "Portfolio",
+      icon: photosIcon,
+      component: <Portfolio/>,
+      windowDimensions:{
+        height: "30%",
+        width: "50%",
+      },
+    },
+    {
+      id: "6",
+      title: "PDFTest",
+      icon: photosIcon,
+      component: <PdfReader/>,
+      windowDimensions:{
+        height: "30%",
+        width: "50%",
+      },
+    },
   ];
 
   const [applications, setApplications] = useState(initialAppStates);
@@ -228,6 +248,7 @@ export default function Desktop() {
           summonApplication={summonApplication}
         />
       </div>
+      <button onClick={ ()=>console.log(matrixMultiplicationPDF)}>CLICKTOTEST</button>
     </div>
   );
 }
