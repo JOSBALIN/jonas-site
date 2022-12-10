@@ -1,0 +1,35 @@
+.pdf-reader-background{
+    text-align: center;
+    align-items: center;
+    margin:auto;
+    margin-bottom: 200px;
+    height:100%;
+    width:100%;
+}
+
+.react-pdf__Document{
+    height:100%
+}
+
+.react-pdf__Page__canvas{
+    margin:auto;
+    height:20px;
+    width:20px;
+    display:block;
+}
+
+.pdf-container{
+    text-align: center;
+    height:80%;
+    width:100%;
+    overflow:auto;
+    margin:auto;
+    border: solid black 1px;
+    background-color: #333333;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.annotationLayer{
+    display:none;
+}

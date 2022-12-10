@@ -1,4 +1,5 @@
 import "./portfolio.css"
+import PDFReader from "../pdfReader";
 import infoSecPDF from './MatrixMultiplication.pdf';
 
 export default function Portfolio(props) {
