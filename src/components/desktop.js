@@ -141,7 +141,7 @@ export default function Desktop() {
       id: "6",
       title: "PDFTest",
       icon: photosIcon,
-      component: <PdfReader document={matrixMultiplicationPDF}/>,
+      component: <PdfReader document={matrixMultiplicationPDF} title={"Matrix Multiplication"}/>,
       windowDimensions:{
         height: "80%",
         width: "50%",

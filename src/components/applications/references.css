@@ -53,6 +53,18 @@
         margin-top:8px;
     }
 
+    .references-list{
+        font-family: "MS Sans Serif",Arial;
+    }
+
+    .element-references:hover{
+        cursor:pointer
+    }
+
+    .active-contact{
+        display:none;
+    }
+
     .left-side-ref{
         margin-top:4px;
         border: solid;

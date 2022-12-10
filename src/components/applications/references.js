@@ -80,21 +80,11 @@ export default function References(props) {
         </div>
 
         <div className="left-panel">
+          <ul className="list-references">
           {contacts.map((contact, index) => (
-            <div
-              className={"left-side-ref"}
-              onClick={() => setSelectedContact(contact)}
-              key={index}
-            >
-              <ul className="reference-short">
-                <li className="reference-short-name">
-                  <b>{contact.name}</b>
-                </li>
-                <li className="reference-short-position">{contact.title}</li>
-                <li className="reference-short-company">{contact.company}</li>
-              </ul>
-            </div>
+            <li className="element-references" onClick={() => setSelectedContact(contact)}>{contact.name}</li>
           ))}
+          </ul>
         </div>
       </div>
     </div>
