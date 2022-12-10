@@ -17,7 +17,7 @@ export default function Taskbar(props) {
   useEffect(() => {
     const timer = setInterval(() => {
       // padStart on minutes to add leading 0
-      setTime(new Date().getHours().toString() + ":" + new Date().getMinutes().toString().padStart(2, '0'));
+      setTime(new Date().getHours().toString().padStart(2, '0') + ":" + new Date().getMinutes().toString().padStart(2, '0'));
     }, 1000);
 
     return () => {
