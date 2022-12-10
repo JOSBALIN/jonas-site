@@ -1,7 +1,6 @@
 import "./pdfReader.css";
 import { Document, Page, Outline } from "react-pdf/dist/esm/entry.webpack5";
 
-import infoSecPDF from "./portfolio/video";
 import { useState } from "react";
 
 export default function PDFReader(props) {
