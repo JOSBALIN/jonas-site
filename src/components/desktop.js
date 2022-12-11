@@ -10,12 +10,13 @@ import { useEffect } from "react";
 import MyCV from "./applications/myCV";
 import PhotoViewer from "./applications/photoViewer";
 import wordPadIcon from "../images/app-icons/app-icon-wordpad.png";
-import photosIcon from "../images/app-icons/app-icon-photos.png";
+import photosIcon from "../images/app-icons/app-icon-photos.ico";
 import githubIcon from "../images/app-icons/app-icon-github.png";
 import MusicPlayer from "./applications/musicPlayer";
 import References from "./applications/references";
 import Contact from "./applications/contact";
 import contactIcon from "../images/app-icons/app-icon-contact.png";
+import referencesIcon from "../images/app-icons/app-icon-references.ico";
 import Portfolio from "./applications/portfolio/portfolio";
 import PdfReader from "./applications/pdfReader";
 
@@ -121,7 +122,7 @@ export default function Desktop() {
     {
       id: "3",
       title: "References",
-      icon: wordPadIcon,
+      icon: referencesIcon,
       component: <References/>,
       windowDimensions:{
         height: "450px",
