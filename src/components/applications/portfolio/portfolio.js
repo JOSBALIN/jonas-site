@@ -36,12 +36,13 @@ export default function Portfolio(props) {
    
     return (
       <div className="portfolio-background">
+        <div className="portfolio-left-div">
         <div className="portfolio-choice">
-
         <div class="tab">
   <button class="tablinks active" onClick={(e) => openCity(e, `Masters`)}>Master's</button>
   <button class="tablinks" onClick={(e) => openCity(e, `Bachelors`)}>Bachelor's</button>
 </div>
+
 
 <div id="Masters" class="tabcontent">
   <button onClick={() => changePDFReader()}>TEST ME</button>
@@ -54,7 +55,6 @@ export default function Portfolio(props) {
   <li>2021: Research Project: Improvements to the usability of the Web-Based implementation of PhotoCube</li>
 </ul> 
 </div>
-{displayedDocument}
 
 <div id="Bachelors" class="tabcontent">
   <h3>Bachelor's</h3>
@@ -62,6 +62,10 @@ export default function Portfolio(props) {
 </div>
 
 
+        </div>
+        </div>
+        <div className="portfolio-right-div">
+        {displayedDocument}
         </div>
       </div>
 
