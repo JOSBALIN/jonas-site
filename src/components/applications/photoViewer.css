@@ -15,12 +15,12 @@
     background-size: 126.05px 100%
 }
 
-.change-focused-photo{
+.photo-controls{
     width:20px;
     padding: 4px;
 }
 
-.change-focused-photo:hover{
+.photo-controls:hover{
     box-shadow: 0 0 2px black
 }
 

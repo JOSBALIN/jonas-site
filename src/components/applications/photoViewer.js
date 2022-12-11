@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import topBarImage from "../../images/application-images/photoViewer-top-menu.png";
 import previousPhoto from "../../images/application-images/photos-arrow-back.png";
 import nextPhoto from "../../images/application-images/photos-arrow-next.png";
+import setBackgroundIcon from "../../images/application-images/photoViewer-set-background.ico"
 
 export default function PhotoViewer(props) {
 
@@ -26,6 +27,10 @@ export default function PhotoViewer(props) {
         {
             photo: "JonasGuitar.jpg",
             shortText: "Guitar w/ fam",
+        },
+        {
+            photo: "Bliss.jpg",
+            shortText: "Bliss, Bucolic Green Hills",
         },
         {
             photo: "SilasJonas.jpg",
@@ -122,10 +127,10 @@ export default function PhotoViewer(props) {
 
                 </img>
                 <div className="sub-menu">
-                <img className="change-focused-photo" id="previous-photo" src={previousPhoto} onClick={(e) => iteratePhoto(e)}/>
-                <img className="change-focused-photo" id="next-photo" src={nextPhoto} onClick={(e) => iteratePhoto(e)}/>
+                <img className="photo-controls" id="previous-photo" src={previousPhoto} onClick={(e) => iteratePhoto(e)}/>
+                <img className="photo-controls" id="next-photo" src={nextPhoto} onClick={(e) => iteratePhoto(e)}/>
+                <img className="photo-controls" onClick={() => setBackground() } id="set-background"  src={setBackgroundIcon}></img>
                 <br/>
-                <button onClick={() => setBackground() } className="winXP-button">Set as background picture</button>
                 </div>
             </div>
             <div className="photos-row">
