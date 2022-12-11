@@ -56,21 +56,12 @@ export default function PDFReader(props) {
     )
   }
 
-  const documentTabs = () => {
-    return (
-      <div class="tab">
-        <button class="tablinks active">{props.title}</button>
-      </div>
-    );
-  };
-
   function addPDF(document) {
     setOpenPDFs(openPDFs => [...openPDFs, document]);
   }
 
   return (
     <div className="pdf-reader-background">
-      {documentTabs()}
       <p>
         Page {pageNumber} of {numPages}
       </p>

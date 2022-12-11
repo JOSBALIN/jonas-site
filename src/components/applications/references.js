@@ -52,8 +52,16 @@ export default function References(props) {
     },
   ]);
 
-  const handleClick = (selected) => {
-    setSelectedContact(selected);
+  const handleClick = (e, contact) => {
+    setSelectedContact(contact);
+    var i, activeContacts
+
+    activeContacts = document.getElementsByClassName("active-contact");
+    for (i = 0; i < activeContacts.length; i++) {
+      activeContacts[i].className = activeContacts[i].className.replace(" active-contact", "");
+    }
+
+    e.currentTarget.className += " active-contact";
   };
 
   const [selectedContact, setSelectedContact] = useState(contacts[0]);
@@ -82,7 +90,7 @@ export default function References(props) {
         <div className="left-panel">
           <ul className="list-references">
           {contacts.map((contact, index) => (
-            <li className="element-references" onClick={() => setSelectedContact(contact)}>{contact.name}</li>
+            <li className="element-reference" onClick={(e) => handleClick(e, contact)}>{contact.name}</li>
           ))}
           </ul>
         </div>

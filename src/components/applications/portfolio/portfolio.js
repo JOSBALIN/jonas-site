@@ -1,13 +1,16 @@
 import "./portfolio.css"
 import PDFReader from "../pdfReader";
 import infoSecPDF from './MatrixMultiplication.pdf';
+import photosIcon from "../../../images/app-icons/app-icon-photos.png";
+import { useState } from "react";
+import { AppWindow } from "../../appWindow";
 
 export default function Portfolio(props) {
+  const [displayedDocument, setDisplayedDocument] = useState()
 
     function openCity(evt, cityName) {
       // Declare all variables
       var i, tabcontent, tablinks;
-      console.log(evt);
 
       // Get all elements with class="tabcontent" and hide them
       tabcontent = document.getElementsByClassName("tabcontent");
@@ -25,6 +28,11 @@ export default function Portfolio(props) {
       evt.currentTarget.className += " active";
     } 
 
+    const changePDFReader = () => {
+      setDisplayedDocument(<PDFReader document={infoSecPDF} title={"aaaa"}/>)
+
+    }
+
    
     return (
       <div className="portfolio-background">
@@ -36,6 +44,7 @@ export default function Portfolio(props) {
 </div>
 
 <div id="Masters" class="tabcontent">
+  <button onClick={() => changePDFReader()}>TEST ME</button>
   <h3>Master of IT, Software Design, IT University of Copenhagen</h3>
   <ul className="portfolio-list">
   <li>2022: Master's Thesis - VR Multimedia Analytics Software Usability: Implementing and Assessing Novel Application Features in ViRMA</li>
@@ -45,6 +54,7 @@ export default function Portfolio(props) {
   <li>2021: Research Project: Improvements to the usability of the Web-Based implementation of PhotoCube</li>
 </ul> 
 </div>
+{displayedDocument}
 
 <div id="Bachelors" class="tabcontent">
   <h3>Bachelor's</h3>

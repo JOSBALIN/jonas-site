@@ -75,7 +75,19 @@ export default function Desktop() {
     selectedApp.selected = true;
   };
 
-
+  // Function to launch given application within AppWindow component
+  const launchApplication = (app) => {
+    return (
+      <AppWindow
+        passZIndex={passZIndex}
+        title={app.title}
+        zIndex={zIndex}
+        appId={app.id}
+        icon={app.icon}
+        contents={app.component}
+        windowDimensions={app.windowDimensions}/>
+    );
+  };
 
   // all applications to be displayed on the desktop, initial states
   // future refactor - place these in external file
@@ -193,19 +205,6 @@ export default function Desktop() {
   };
 
 
-  // Function to launch given application within AppWindow component
-  const launchApplication = (app) => {
-    return (
-      <AppWindow
-        passZIndex={passZIndex}
-        title={app.title}
-        zIndex={zIndex}
-        appId={app.id}
-        icon={app.icon}
-        contents={app.component}
-        windowDimensions={app.windowDimensions}/>
-    );
-  };
   
 
     const summonApplication = (appId) => {
