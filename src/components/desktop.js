@@ -9,7 +9,7 @@ import AppIcon from "./appIcon";
 import { useEffect } from "react";
 import MyCV from "./applications/myCV";
 import PhotoViewer from "./applications/photoViewer";
-import wordPadIcon from "../images/app-icons/app-icon-wordpad.png";
+import wordPadIcon from "../images/app-icons/app-icon-wordpad.ico";
 import photosIcon from "../images/app-icons/app-icon-photos.ico";
 import githubIcon from "../images/app-icons/app-icon-github.png";
 import MusicPlayer from "./applications/musicPlayer";
