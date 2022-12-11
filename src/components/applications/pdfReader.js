@@ -45,7 +45,7 @@ export default function PDFReader(props) {
 
   const download = (file) => {
     return(
-        <a href={file} target = "_blank">DOWNLOAD FILE</a>
+        <button><a href={file} target = "_blank">DOWNLOAD FILE</a></button>
     )
   }
 
@@ -58,11 +58,7 @@ export default function PDFReader(props) {
       <p>
         Page {pageNumber} of {numPages}
       </p>
-      <div className="pdf-container">
-      <Document file={props.document} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} renderTextLayer={false} scale={scale} rotate={rotation}/>
-      </Document>
-      </div>
+      <div className="pdf-controls">
       <button onClick={() => changePage("previous")}>
         {" "}
         PREVIOUS PAGE
@@ -88,6 +84,12 @@ export default function PDFReader(props) {
         {" "}
         ROTATE COUNTERCLOCKWISE
       </button>
+      </div>
+      <div className="pdf-container">
+      <Document file={props.document} onLoadSuccess={onDocumentLoadSuccess}>
+        <Page pageNumber={pageNumber} renderTextLayer={false} scale={scale} rotate={rotation}/>
+      </Document>
+      </div>
     </div>
   );
 }

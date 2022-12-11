@@ -1,35 +1,64 @@
-.pdf-reader-background{
+.pdf-reader-background {
     text-align: center;
     align-items: center;
-    margin:auto;
+    margin: auto;
     margin-bottom: 200px;
-    height:100%;
-    width:100%;
+    height: 100%;
+    width: 100%;
 }
 
-.react-pdf__Document{
-    height:100%
+.react-pdf__Document {
+    height: 100%
 }
 
-.react-pdf__Page__canvas{
-    margin:auto;
-    height:20px;
-    width:20px;
-    display:block;
+.react-pdf__Page__canvas {
+    margin: auto;
+    height: 20px;
+    width: 20px;
+    display: block;
 }
 
-.pdf-container{
+.pdf-container {
     text-align: center;
-    height:80%;
-    width:100%;
-    overflow:auto;
-    margin:auto;
+    height: 80%;
+    width: 100%;
+    overflow: auto;
+    margin: auto;
     border: solid black 1px;
     background-color: #333333;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-.annotationLayer{
-    display:none;
+.annotationLayer {
+    display: none;
+}
+
+.pdf-controls {
+    background-color: #666666;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.pdf-controls>button {
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    border: 1px solid #003c74;
+    background: linear-gradient(180deg, #fff, #ecebe5 86%, #d8d0c4);
+    box-shadow: none;
+    border-radius: 3px;
+    min-width: 75px;
+    min-height: 23px;
+    padding: 0 12px;
+}
+
+
+.pdf-controls>button:hover {
+    box-shadow: inset -1px 1px #fff0cf, inset 1px 2px #fdd889, inset -2px 2px #fbc761, inset 2px -2px #e5a01a;
+}
+
+
+.pdf-controls>button:active {
+    box-shadow: none;
+background: linear-gradient(180deg,#cdcac3,#e3e3db 8%,#e5e5de 94%,#f2f2f1);
 }
