@@ -14,39 +14,32 @@ export default function PDFReader(props) {
     setNumPages(numPages);
   }
 
-  function nextPage(){
-    if(pageNumber < numPages)
-        setPageNumber((pageNumber) => pageNumber + 1)
+
+  function changePage(direction){
+    if(direction === "next" && pageNumber < numPages)  setPageNumber((pageNumber) => pageNumber + 1)
+    if(direction === "previous" && pageNumber > 1)     setPageNumber((pageNumber) => pageNumber - 1)
   }
 
-  function previousPage(){
-    if(pageNumber > 1)
-    setPageNumber((pageNumber) => pageNumber - 1)
+  function zoom(direction) {
+    if (direction === "in" && scale < 4) setScale((scale) => scale + 0.2);
+    if (direction === "out" && scale > 0.2) setScale((scale) => scale - 0.2);
   }
 
-  function zoomIn(){
-    if(scale < 4)
-    setScale((scale) => scale + 0.2)
-  }
 
-  function zoomOut(){
-    if(scale > 0.2)
-    setScale((scale) => scale - 0.2)
-  }
-
-  function rotateClockwise() {
-    if (rotation === 270) {
-      setRotation(0);
+  // Edge cases used to avoid console.logging errors for going below 0* or exceeding 360*
+  function rotate(direction) {
+    if (direction === "clockwise") {
+      if (rotation === 270) {
+        setRotation(0);
+      } else {
+        setRotation((rotation) => rotation + 90);
+      }
     } else {
-      setRotation((rotation) => rotation + 90);
-    }
-  }
-
-  function rotateCounterClockwise() {
-    if (rotation === 0) {
-      setRotation(270);
-    } else {
-      setRotation((rotation) => rotation - 90);
+      if (rotation === 0) {
+        setRotation(270);
+      } else {
+        setRotation((rotation) => rotation - 90);
+      }
     }
   }
 
@@ -70,28 +63,28 @@ export default function PDFReader(props) {
         <Page pageNumber={pageNumber} renderTextLayer={false} scale={scale} rotate={rotation}/>
       </Document>
       </div>
-      <button onClick={() => previousPage()}>
+      <button onClick={() => changePage("previous")}>
         {" "}
         PREVIOUS PAGE
       </button>
-      <button onClick={() => nextPage()}>
+      <button onClick={() => changePage("next")}>
         {" "}
         NEXT PAGE
       </button>
-      <button onClick={() => zoomIn()}>
+      <button onClick={() => zoom("in")}>
         {" "}
         ZOOM IN
       </button>
-      <button onClick={() => zoomOut()}>
+      <button onClick={() => zoom("out")}>
         {" "}
         ZOOM OUT
       </button>
       {download(props.document)}
-      <button onClick={() => rotateClockwise()}>
+      <button onClick={() => rotate("clockwise")}>
         {" "}
         ROTATE CLOCKWISE
       </button>
-      <button onClick={() => rotateClockwise()}>
+      <button onClick={() => rotate()}>
         {" "}
         ROTATE COUNTERCLOCKWISE
       </button>
