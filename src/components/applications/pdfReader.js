@@ -1,12 +1,13 @@
 import "./pdfReader.css";
 import { Document, Page, Outline } from "react-pdf/dist/esm/entry.webpack5";
-import zoomIn from "../../images/application-images/pdf-reader/zoom-in.png";
-import zoomOut from "../../images/application-images/pdf-reader/zoom-out.png";
-import rotateClockwise from "../../images/application-images/pdf-reader/rotate-clockwise.png";
-import rotateCounterClockwise from "../../images/application-images/pdf-reader/rotate-counterclockwise.png";
+import zoomInIcon from "../../images/application-images/pdf-reader/zoom-in.png";
+import zoomOutIcon from "../../images/application-images/pdf-reader/zoom-out.png";
+import rotateClockwiseIcon from "../../images/application-images/pdf-reader/rotate-clockwise.png";
+import rotateCounterClockwiseIcon from "../../images/application-images/pdf-reader/rotate-counterclockwise.png";
 import rightArrowIcon from "../../images/application-images/pdf-reader/right-arrow.ico";
 import leftArrowIcon from "../../images/application-images/pdf-reader/left-arrow.ico";
-
+import downloadIcon from "../../images/application-images/pdf-reader/download.ico";
+ 
 import { useState } from "react";
 
 export default function PDFReader(props) {
@@ -55,16 +56,16 @@ export default function PDFReader(props) {
     }
   }
 
-  const download = (file) => {
+  const downloadButton = () => {
     return(
-        <button><a href={file} target = "_blank">DOWNLOAD FILE</a></button>
+        <a href={props.document} target = "_blank"><img src={downloadIcon}/></a>
     )
   }
 
   
   const zoomButton = () => {
     return (
-      <img src={zoomIn} onClick={() => zoom("in")}></img>
+      <img src={zoomInIcon} onClick={() => zoom("in")}></img>
     )
   }
 
@@ -82,9 +83,8 @@ export default function PDFReader(props) {
         value={scalePercent + "%"}
         onChange={(e) => zoomChange(e)}
       /> */}
-        <img className="pdf-zoom" src={zoomOut} onClick={() => zoom("out")}></img>
-        <img className="pdf-zoom" src={zoomIn} onClick={() => zoom("in")}></img>
-        <div className="page-index">
+        <img className="pdf-zoom" src={zoomOutIcon} onClick={() => zoom("out")}></img>
+        <img className="pdf-zoom" src={zoomInIcon} onClick={() => zoom("in")}></img>
           <img
             src={leftArrowIcon}
             className="page-arrow"
@@ -102,10 +102,9 @@ export default function PDFReader(props) {
             className="page-arrow"
             onClick={() => changePage("next")}
           ></img>
-        </div>
-        {download(props.document)}
-        <img className="pdf-rotate" src={rotateClockwise} onClick={() => rotate("clockwise")}></img>
-        <img className="pdf-rotate" src={rotateCounterClockwise} onClick={() => rotate("counterclockwise")}></img>
+        {downloadButton()}
+        <img className="pdf-rotate" src={rotateClockwiseIcon} onClick={() => rotate("clockwise")}></img>
+        <img className="pdf-rotate" src={rotateCounterClockwiseIcon} onClick={() => rotate("counterclockwise")}></img>
       </div>
       <div className="pdf-container">
         <Document file={props.document} onLoadSuccess={onDocumentLoadSuccess}>
