@@ -82,6 +82,7 @@ export default function Desktop() {
     return (
       <AppWindow
         passZIndex={passZIndex}
+        closeApp={closeApp}
         title={app.title}
         zIndex={zIndex}
         appId={app.id}
@@ -178,21 +179,22 @@ export default function Desktop() {
     });
   };
 
-  function closeApp (appId) {
-    console.log(openApps);
-    const applicationElement = document.getElementById("applicationId:"+appId)
-    const taskbarElement = document.getElementById("taskbar-app-id-"+appId).parentElement
-    applicationElement.style.display = "none"
-    taskbarElement.style.display = "none"
-    taskbarElement.id = "hidden-taskbar-app-id:"+appId
+  const closeApp = (appId) =>  {
+    // Remove app-container
 
-    for (let i = 1; i < openApps.length; i++) {
-          document.getElementById("taskbar-app-div-"+2).id="taskbar-app-div-"+1
-          console.log("truu")
+    document.getElementById("applicationId:"+appId).style.display = "none"
+    const taskbarToRemove = document.getElementById("taskbar-app-id-"+appId).parentElement.parentElement
+
+    taskbarToRemove.style.display = "none"
+    console.log(taskbarToRemove)
+    console.log(appId)
+
+    // Re-arrange taskbar
+    for (let i = Number(taskbarToRemove.id.slice(-1))+1; i <= openApps.length; i++) {
+      if(document.getElementById("taskbar-app-div-"+i)) document.getElementById("taskbar-app-div-"+i).id = "taskbar-app-div-"+(i-1)
       } 
 
-      setClosedAppsTaskbars((current) => [...current, taskbarElement]);
-      console.log(closedAppsTaskbars)
+      taskbarToRemove.id = "hidden-taskbar-app-div"+appId
   }
 
   // single-click, color app-icon. Double-click, launch app
@@ -214,8 +216,7 @@ export default function Desktop() {
             title: app[key].title,
             icon: app[key].icon,
             windowDimensions: app[key].windowDimensions,
-            selected:true,
-            closed:true
+            selected:true
           },
         ]);
         appIconSelection(-1); // resets icon selection
@@ -229,12 +230,27 @@ export default function Desktop() {
 
     const summonApplication = (appId) => {
       const selectedApp = openApps.find(current => current.id === appId)
+      
+      // Hide selected app
       if(selectedApp.selected && selectedApp.elementApp.style.display == ""){
         selectedApp.elementApp.style.display = "none"
         selectedApp.elementTaskbar.style = "filter:grayscale(70%);"
-      } else {
+      }
+      else // Summon selected app 
+       {
         selectedApp.elementApp.style.display = ""
         passZIndex(appId)
+        console.log(selectedApp.elementTaskbar.parentElement.parentElement.style.display == "none")
+        if(selectedApp.elementTaskbar.parentElement.parentElement.style.display == "none"){
+          for (let i = openApps.length; i > 0; i--) {
+            console.log(i);
+            if(document.getElementById("taskbar-app-div-"+i)) {
+              selectedApp.elementTaskbar.parentElement.parentElement.style.display = ""
+              selectedApp.elementTaskbar.parentElement.parentElement.id = "taskbar-app-div-"+(i+1)
+              break;
+            }
+          }
+        }
       }
     };
 

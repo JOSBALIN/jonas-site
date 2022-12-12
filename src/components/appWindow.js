@@ -36,6 +36,10 @@ export function AppWindow(props) {
     }
   };
 
+  const closeAppHandler = (id) => {
+    props.closeApp(id);
+  }
+
   // parent function, updates z-index
   const zIndexHandler = () => {
     props.passZIndex(props.appId)
@@ -59,7 +63,7 @@ export function AppWindow(props) {
             id="topbar-selected-app"
             className="topbar"
             ref={noteRef}
-          >
+          > <button onClick={() => closeAppHandler(props.appId)}> TEST ME</button>
             <img
               style={maximized ? { display: "none" } : { display: "" }}
               className={"topbar-left"}
@@ -119,7 +123,7 @@ export function AppWindow(props) {
                   onClick={() => MaximizeWindow()}
                 />
               </button>
-              <button onClick={(e) => props.closeApp(e.currentTarget.parentNode.parentNode.parentNode.parentNode.parentNode)}>
+              <button onClick={(e) => closeAppHandler(props.appId)}>
                 <img
                   id="close"
                   src="../images/application-topbar/desktop-app-topbar-close.png"
