@@ -31,6 +31,7 @@ export default function Desktop() {
   const [zIndex, setZIndex] = useState(1);
   const [appGridClasses, setAppGridClasses] = useState([]);
   const [newApp, setNewApp] = useState(false);
+  const [closedAppsTaskbars, setClosedAppsTaskbars] = useState([])
 
 
   // Get all instances of classes titled app-grid
@@ -94,7 +95,7 @@ export default function Desktop() {
   // future refactor - place these in external file
   const initialAppStates = [
     {
-      id: "1",
+      id: 1,
       title: "My CV",
       icon: wordPadIcon,
       component: <MyCV/>,
@@ -104,7 +105,7 @@ export default function Desktop() {
       },
     },
     {
-      id: "2",
+      id: 2,
       title: "Photos",
       icon: photosIcon,
       component: <PhotoViewer/>,
@@ -120,7 +121,7 @@ export default function Desktop() {
     //   component: <MusicPlayer/>,
     // },
     {
-      id: "3",
+      id: 3,
       title: "References",
       icon: referencesIcon,
       component: <References/>,
@@ -131,7 +132,7 @@ export default function Desktop() {
       },
     },
     {
-      id: "4",
+      id: 4,
       title: "Mail",
       icon: contactIcon,
       component: <Contact/>,
@@ -141,7 +142,7 @@ export default function Desktop() {
       },
     },
     {
-      id: "5",
+      id: 5,
       title: "Portfolio",
       icon: photosIcon,
       component: <Portfolio/>,
@@ -151,7 +152,7 @@ export default function Desktop() {
       },
     },
     {
-      id: "6",
+      id: 6,
       title: "PDFTest",
       icon: photosIcon,
       component: <PdfReader document={matrixMultiplicationPDF} title={"Matrix Multiplication"}/>,
@@ -177,6 +178,23 @@ export default function Desktop() {
     });
   };
 
+  function closeApp (appId) {
+    console.log(openApps);
+    const applicationElement = document.getElementById("applicationId:"+appId)
+    const taskbarElement = document.getElementById("taskbar-app-id-"+appId).parentElement
+    applicationElement.style.display = "none"
+    taskbarElement.style.display = "none"
+    taskbarElement.id = "hidden-taskbar-app-id:"+appId
+
+    for (let i = 1; i < openApps.length; i++) {
+          document.getElementById("taskbar-app-div-"+2).id="taskbar-app-div-"+1
+          console.log("truu")
+      } 
+
+      setClosedAppsTaskbars((current) => [...current, taskbarElement]);
+      console.log(closedAppsTaskbars)
+  }
+
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, key, app) => {
     appIconSelection(key);
@@ -197,6 +215,7 @@ export default function Desktop() {
             icon: app[key].icon,
             windowDimensions: app[key].windowDimensions,
             selected:true,
+            closed:true
           },
         ]);
         appIconSelection(-1); // resets icon selection
@@ -249,7 +268,7 @@ export default function Desktop() {
           summonApplication={summonApplication}
         />
       </div>
-      <button onClick={ ()=>console.log(matrixMultiplicationPDF)}>CLICKTOTEST</button>
+      <button onClick={ ()=> closeApp(1)}>CLICKTOTEST</button>
     </div>
   );
 }

@@ -116,8 +116,8 @@ but this works for the draggable-apps*/
 }
 
 
-.taskbar-app-div-1 { grid-area: 1 / 1 / 2 / 2; }
-.taskbar-app-div-2 { grid-area: 1 / 2 / 2 / 3; }
-.taskbar-app-div-3 { grid-area: 1 / 3 / 2 / 4; }
-.taskbar-app-div-4 { grid-area: 1 / 4 / 2 / 5; }
-.taskbar-app-div-5 { grid-area: 1 / 5 / 2 / 6; } 
+#taskbar-app-div-1 { grid-area: 1 / 1 / 2 / 2; }
+#taskbar-app-div-2 { grid-area: 1 / 2 / 2 / 3; }
+#taskbar-app-div-3 { grid-area: 1 / 3 / 2 / 4; }
+#taskbar-app-div-4 { grid-area: 1 / 4 / 2 / 5; }
+#taskbar-app-div-5 { grid-area: 1 / 5 / 2 / 6; } 

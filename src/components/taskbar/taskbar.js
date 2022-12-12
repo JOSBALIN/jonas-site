@@ -75,7 +75,7 @@ export default function Taskbar(props) {
       </div>
       <div className="taskbar-middle">
         {props.openApps.reverse().map((app, index) => (
-          <div className={"taskbar-app-div-"+(index+1)} key={index}
+          <div id={"taskbar-app-div-"+(index+1)} key={index}
           onClick={(e) => {taskbarAppClick(app.id)}}>
             <TaskbarApps icon={app.icon} title={app.title} id={app.id}/>
           </div>
