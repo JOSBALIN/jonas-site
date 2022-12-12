@@ -1,5 +1,11 @@
 import "./pdfReader.css";
 import { Document, Page, Outline } from "react-pdf/dist/esm/entry.webpack5";
+import zoomIn from "../../images/application-images/pdf-reader/zoom-in.png";
+import zoomOut from "../../images/application-images/pdf-reader/zoom-out.png";
+import rotateClockwise from "../../images/application-images/pdf-reader/rotate-clockwise.png";
+import rotateCounterClockwise from "../../images/application-images/pdf-reader/rotate-counterclockwise.png";
+import rightArrowIcon from "../../images/application-images/pdf-reader/right-arrow.ico";
+import leftArrowIcon from "../../images/application-images/pdf-reader/left-arrow.ico";
 
 import { useState } from "react";
 
@@ -8,6 +14,7 @@ export default function PDFReader(props) {
   const [pageNumber, setPageNumber] = useState(1);
   const [openPDFs, setOpenPDFs] = useState([]);
   const [scale, setScale] = useState(0.8);
+  const [scalePercent, setScalePercent] = useState(scale*100);
   const [rotation, setRotation] = useState(0);
 
   function onDocumentLoadSuccess({ numPages }) {
@@ -15,14 +22,19 @@ export default function PDFReader(props) {
   }
 
 
-  function changePage(direction){
-    if(direction === "next" && pageNumber < numPages)  setPageNumber((pageNumber) => pageNumber + 1)
-    if(direction === "previous" && pageNumber > 1)     setPageNumber((pageNumber) => pageNumber - 1)
+  function changePage(direction, event){
+    if(direction === "next" && pageNumber < numPages)  setPageNumber((pageNumber) => pageNumber + 1);
+    if(direction === "previous" && pageNumber > 1)     setPageNumber((pageNumber) => pageNumber - 1);
+    if(event != null && event.target.value <= numPages) setPageNumber(Number(event.target.value))
   }
 
   function zoom(direction) {
     if (direction === "in" && scale < 4) setScale((scale) => scale + 0.2);
     if (direction === "out" && scale > 0.2) setScale((scale) => scale - 0.2);
+  }
+
+  function zoomChange(event){
+    setScale(event.target.value)
   }
 
 
@@ -49,46 +61,61 @@ export default function PDFReader(props) {
     )
   }
 
+  
+  const zoomButton = () => {
+    return (
+      <img src={zoomIn} onClick={() => zoom("in")}></img>
+    )
+  }
+
   function addPDF(document) {
     setOpenPDFs(openPDFs => [...openPDFs, document]);
   }
 
+
   return (
     <div className="pdf-reader-background">
-      <p>
-        Page {pageNumber} of {numPages}
-      </p>
       <div className="pdf-controls">
-      <button onClick={() => changePage("previous")}>
-        {" "}
-        PREVIOUS PAGE
-      </button>
-      <button onClick={() => changePage("next")}>
-        {" "}
-        NEXT PAGE
-      </button>
-      <button onClick={() => zoom("in")}>
-        {" "}
-        ZOOM IN
-      </button>
-      <button onClick={() => zoom("out")}>
-        {" "}
-        ZOOM OUT
-      </button>
-      {download(props.document)}
-      <button onClick={() => rotate("clockwise")}>
-        {" "}
-        ROTATE CLOCKWISE
-      </button>
-      <button onClick={() => rotate()}>
-        {" "}
-        ROTATE COUNTERCLOCKWISE
-      </button>
+      {/* <input
+        className="pdf-input"
+        type="percent"
+        value={scalePercent + "%"}
+        onChange={(e) => zoomChange(e)}
+      /> */}
+        <img className="pdf-zoom" src={zoomOut} onClick={() => zoom("out")}></img>
+        <img className="pdf-zoom" src={zoomIn} onClick={() => zoom("in")}></img>
+        <div className="page-index">
+          <img
+            src={leftArrowIcon}
+            className="page-arrow"
+            onClick={() => changePage("previous")}
+          ></img>
+          <input
+            className="pdf-input"
+            type="number"
+            value={pageNumber}
+            onChange={(e) => changePage("", e)}
+          />
+          /{numPages}
+          <img
+            src={rightArrowIcon}
+            className="page-arrow"
+            onClick={() => changePage("next")}
+          ></img>
+        </div>
+        {download(props.document)}
+        <img className="pdf-rotate" src={rotateClockwise} onClick={() => rotate("clockwise")}></img>
+        <img className="pdf-rotate" src={rotateCounterClockwise} onClick={() => rotate("counterclockwise")}></img>
       </div>
       <div className="pdf-container">
-      <Document file={props.document} onLoadSuccess={onDocumentLoadSuccess}>
-        <Page pageNumber={pageNumber} renderTextLayer={false} scale={scale} rotate={rotation}/>
-      </Document>
+        <Document file={props.document} onLoadSuccess={onDocumentLoadSuccess}>
+          <Page
+            pageNumber={pageNumber}
+            renderTextLayer={false}
+            scale={scale}
+            rotate={rotation}
+          />
+        </Document>
       </div>
     </div>
   );

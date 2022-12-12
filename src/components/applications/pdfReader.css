@@ -18,16 +18,26 @@
     display: block;
 }
 
+.pdf-container, .pdf-controls{
+    width:90%;
+    margin:auto;
+}
+
 .pdf-container {
     text-align: center;
-    height: 80%;
-    width: 100%;
     overflow: auto;
-    margin: auto;
-    border: solid black 1px;
-    background-color: #333333;
+    border: solid #ccc8b2 1px;
+    background-color: #d3d3d3;
     padding-top: 20px;
     padding-bottom: 20px;
+}
+
+.pdf-zoom{
+    margin: 0px 4px 0px 4px;
+}
+
+.contents{
+    padding-top: 0;
 }
 
 .annotationLayer {
@@ -35,30 +45,48 @@
 }
 
 .pdf-controls {
-    background-color: #666666;
+    border: solid 1px #ccc8b2;
+    background-color: #efeee3;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-.pdf-controls>button {
-    -webkit-font-smoothing: antialiased;
-    box-sizing: border-box;
-    border: 1px solid #003c74;
-    background: linear-gradient(180deg, #fff, #ecebe5 86%, #d8d0c4);
-    box-shadow: none;
-    border-radius: 3px;
-    min-width: 75px;
-    min-height: 23px;
-    padding: 0 12px;
+
+.page-index{
+    display:inline;
 }
 
 
-.pdf-controls>button:hover {
-    box-shadow: inset -1px 1px #fff0cf, inset 1px 2px #fdd889, inset -2px 2px #fbc761, inset 2px -2px #e5a01a;
+/* https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp */
+.pdf-input::-webkit-outer-spin-button,
+.pdf-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.pdf-input[type=number] {
+  -moz-appearance: textfield;
 }
 
 
-.pdf-controls>button:active {
-    box-shadow: none;
-background: linear-gradient(180deg,#cdcac3,#e3e3db 8%,#e5e5de 94%,#f2f2f1);
+
+.page-arrow{
+    margin: 0px 8px 0px 8px
+}
+
+.pdf-controls > img{
+    padding:2px;
+    
+}
+
+.pdf-controls > img:hover{
+    box-shadow: 0 0 2px black;
+}
+.pdf-input{
+    width:12px;
+    padding:0;
+    margin:0;
+    background-color: transparent;
+    border: 0;
 }
