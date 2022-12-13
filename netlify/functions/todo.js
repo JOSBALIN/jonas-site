@@ -1,11 +1,10 @@
 const axios = require("axios");
 
 exports.handler = async function (event, context) {
-  console.log(event);
-  console.log(context);
   try {
-    const { id } = event.queryStringParameters;
-    const response = await axios.get(`${process.env.TODO_BASE_URL}/${id}`);
+    // const { id } = event.queryStringParameters;
+    // const response = await axios.get(`${process.env.TODO_BASE_URL}/${id}`);
+    console.log(process.env.EMAILJS_API_KEY)
     return {
       statusCode: 200,
       body: JSON.stringify({ title: response.data.title }),
