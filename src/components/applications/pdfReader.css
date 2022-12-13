@@ -46,7 +46,7 @@
 
 .pdf-controls {
     border: solid 1px #ccc8b2;
-    background-color: #efeee3;
+    background-color: #eef2fb;
     padding-top: 20px;
     padding-bottom: 20px;
 }
@@ -61,7 +61,6 @@
 .pdf-input::-webkit-outer-spin-button,
 .pdf-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
-  margin: 0;
 }
 
 /* Firefox */
@@ -75,20 +74,28 @@
     margin: 0px 8px 0px 8px
 }
 
-.pdf-controls > img{
+.pdf-controls > img, .pdf-controls > a > img{
     padding:2px;
-    height:24px;
-    width:24px;
-    
+    height:32px;
+    width:32px;
+    vertical-align: middle;
+}
+
+.pdf-controls{
+    vertical-align: middle;
+    font-size: 28px;
 }
 
 .pdf-controls > img:hover{
     box-shadow: 0 0 2px black;
 }
+
+
 .pdf-input{
-    width:12px;
+    font-size:28px;
+    width:30px;
     padding:0;
     margin:0;
     background-color: transparent;
-    border: 0;
+    border: none;
 }

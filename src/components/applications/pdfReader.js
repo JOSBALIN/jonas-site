@@ -58,10 +58,9 @@ export default function PDFReader(props) {
 
   const downloadButton = () => {
     return(
-        <a href={props.document} target = "_blank"><img src={downloadIcon}/></a>
+        <a href={props.document} target = "_blank"><img src={downloadIcon} onClick={() => window.confirm("Are you sure you want to download this file?")}/></a>
     )
   }
-
   
   const zoomButton = () => {
     return (
