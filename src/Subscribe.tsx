@@ -9,17 +9,20 @@ export default function Subscribe() {
     };
 
     const data = {
-      name: target.name,
-      mail: target.email,
+      subscriberName: target.name,
+      subscriberEmail: target.email,
     };
     //call to the Netlify Function you created
-    fetch("./.netlify/functions/triggerSubscribeEmail", {
+    fetch("http://www.jonasbalin.com/.netlify/functions/triggerSubscribeEmail", {
       method: "POST",
       body: JSON.stringify({
-        subscriberName: "Johnson",
+        subscriberName: "PERSON NAME",
         subscriberEmail: "jackbamm@hotmail.com",
         inviteeEmail: "jonasbalin@gmail.com",
       }),
+      headers: {
+        
+      }
     });
   };
   return (
@@ -34,3 +37,4 @@ export default function Subscribe() {
     </div>
   );
 }
+
