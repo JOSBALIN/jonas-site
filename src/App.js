@@ -3,6 +3,7 @@ import ContactForm from "./components/ContactForm";
 
 export default function App() {
   const sendMail = async () => {
+    console.log("AAOAOA")
     await fetch(
       `${process.env.URL}/.netlify/functions/emails/subscribed`,
       {
@@ -24,7 +25,7 @@ export default function App() {
   
   return (
     <div className="App">
-      <button onClick={() => sendMail}>AAA</button>
+      <button onClick={() => sendMail()}>AAA</button>
     </div>
   );
 }
