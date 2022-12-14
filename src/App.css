@@ -1,4 +1,47 @@
-.desktop-background{
+body {
+  min-height: 95vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(54, 53, 53);
+  color: #c5cdd3;
+  font-family: sans-serif;
+}
+form {
+  background-color: rgb(26, 24, 24);
+  padding: 1em;
+  border-radius: 10px;
+}
+div {
+  padding-top: 1em;
+}
+input,
+textarea {
+  min-width: 250px;
+  box-sizing: border-box;
+  padding: 0.5em;
+  outline: none;
+  background-color: #222d35;
+  border: 2px solid transparent;
+  border-radius: 5px;
+}
+input:focus,
+textarea:focus {
+  border: 2px solid brown;
+  color: #c5cdd3;
+}
+textarea {
+  min-height: 250px;
+  resize: vertical;
+}
+.submit {
+  color: #c5cdd3;
+}
+.App {
+  padding: 1em;
+}
+
+/* .desktop-background{
   background-image: url("images/desktop-background.jpg");
   background-size: cover;
   height:100vh;
@@ -18,4 +61,4 @@ img {
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-}
+} */
