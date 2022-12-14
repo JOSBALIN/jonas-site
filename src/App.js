@@ -1,22 +1,22 @@
 import "./App.css";
-import ContactForm from "./components/ContactForm";
+import { default as Subscribe } from "./Subscribe.tsx";
 
 export default function App() {
+
   const sendMail = async () => {
-    console.log("AAOAOA")
     await fetch(
-      `${process.env.URL}/.netlify/functions/emails/subscribed`,
+      `http://localhost:8000/.netlify/functions/emails/subscribed`,
       {
         headers: {
-          "netlify-emails-secret": process.env.NETLIFY_EMAILS_SECRET,
+          "netlify-emails-secret": process.env.REACT_APP_NETLIFY_EMAILS_SECRET,
         },
         method: "POST",
         body: JSON.stringify({
           from: "jonasbalin@gmail.com",
           to: "jackbamm@hotmail.com",
-          subject: "TEST",
+          subject: "THIS IS MESSAGE",
           parameters: {
-            name: "WIWIWIWIWIWI"
+            name: "JOBAL"
           },
         }),
       }
@@ -25,7 +25,8 @@ export default function App() {
   
   return (
     <div className="App">
-      <button onClick={() => sendMail()}>AAA</button>
+      <Subscribe></Subscribe>
+      <button onClick={() => console.log(process.env.URL)}>BUTTONTEST</button>
     </div>
   );
 }
