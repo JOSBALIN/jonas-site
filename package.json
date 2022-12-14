@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@sendgrid/mail": "^7.7.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -40,5 +39,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "cheerio": "^1.0.0-rc.12",
+    "form-data": "^4.0.0",
+    "handlebars": "^4.7.7",
+    "mailgun.js": "^8.0.6",
+    "postmark": "^3.0.15"
   }
 }
