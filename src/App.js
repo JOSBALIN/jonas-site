@@ -8,7 +8,7 @@ export default function App() {
       `http://localhost:8000/.netlify/functions/emails/subscribed`,
       {
         headers: {
-          "netlify-emails-secret": process.env.REACT_APP_NETLIFY_EMAILS_SECRET,
+          "netlify-emails-secret": process.env.NETLIFY_EMAILS_SECRET,
         },
         method: "POST",
         body: JSON.stringify({
