@@ -13,16 +13,13 @@ export default function Subscribe() {
       subscriberEmail: target.email,
     };
     //call to the Netlify Function you created
-    fetch("https://eloquent-faun-2f980d.netlify.app/.netlify/functions/triggerSubscribeEmail", {
+    fetch("./.netlify/functions/triggerSubscribeEmail", {
       method: "POST",
       body: JSON.stringify({
         subscriberName: "PERSON NAME",
         subscriberEmail: "jackbamm@hotmail.com",
         inviteeEmail: "jonasbalin@gmail.com",
-      }),
-      headers: {
-        
-      }
+      })
     });
   };
   return (
