@@ -2,9 +2,9 @@
     text-align: center;
     align-items: center;
     margin: auto;
-    margin-bottom: 200px;
     height: 100%;
     width: 100%;
+    background-color: #6b84db;
 }
 
 .react-pdf__Document {
@@ -19,7 +19,7 @@
 }
 
 .pdf-container, .pdf-controls{
-    width:90%;
+    width:100%;
     margin:auto;
 }
 
@@ -36,17 +36,11 @@
     margin: 0px 4px 0px 4px;
 }
 
-.contents{
-    padding-top: 0;
-}
-
 .annotationLayer {
     display: none;
 }
 
 .pdf-controls {
-    border: solid 1px #ccc8b2;
-    background-color: #eef2fb;
     padding-top: 20px;
     padding-bottom: 20px;
 }

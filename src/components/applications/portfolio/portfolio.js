@@ -2,33 +2,16 @@ import "./portfolio.css";
 import PDFReader from "../pdfReader";
 import infoSecPDF from "./MatrixMultiplication.pdf";
 import photosIcon from "../../../images/app-icons/app-icon-photos.png";
+import expandMenu from "../../../images/application-images/portfolio/expand-menu.png";
 import { useState } from "react";
 import { AppWindow } from "../../appWindow";
 
 export default function Portfolio(props) {
   const [displayedDocument, setDisplayedDocument] = useState();
 
-  function openTab(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
 
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
-    } // Show the current tab, and add an "active" class to the button that opened the tab
-
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-  }
-
-  const changePDFReader = () => {
+  const summonPDFReader = () => {
     setDisplayedDocument(<PDFReader document={infoSecPDF} title={"aaaa"} />);
   };
 
@@ -36,26 +19,26 @@ export default function Portfolio(props) {
     <div className="portfolio-background">
       <div className="portfolio-left-div">
         <div className="portfolio-choice">
-          <div class="tab">
+          {/* <div className="tab">
             <button
-              class="tablinks active"
+              className="tablinks active"
               onClick={(e) => openTab(e, `Masters`)}
             >
               Master's
             </button>
-            <button class="tablinks" onClick={(e) => openTab(e, `Bachelors`)}>
+            <button className="tablinks" onClick={(e) => openTab(e, `Bachelors`)}>
               Bachelor's
             </button>
-          </div>
+          </div> */}
 
-          <div id="Masters" class="tabcontent" style={{ display: "block" }}>
-            <div className="tabcontent-title">
+          <div id="Masters" className="tabcontent">
+            <div className="tabcontent-title" onClick={""}>
               <h2>Master's</h2>
+              <img className="menu-control" src={expandMenu}></img>
             </div>
-            <button onClick={() => changePDFReader()}>TEST ME</button>
-            <h3>Master of IT, Software Design, IT University of Copenhagen</h3>
+            <div className="tabcontent-content" id="masters-content">
             <ul className="portfolio-list">
-              <li>
+              <li onClick={() => summonPDFReader(infoSecPDF)}>
                 2022: Master's Thesis - VR Multimedia Analytics Software
                 Usability: Implementing and Assessing Novel Application Features
                 in ViRMA
@@ -75,9 +58,10 @@ export default function Portfolio(props) {
                 Web-Based implementation of PhotoCube
               </li>
             </ul>
+            </div>
           </div>
 
-          <div id="Bachelors" class="tabcontent">
+          <div id="Bachelors" className="tabcontent">
           <div className="tabcontent-title">
               <h2>Bachelor's</h2>
             </div>
