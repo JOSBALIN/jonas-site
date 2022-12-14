@@ -13,7 +13,7 @@ export default function Subscribe() {
       subscriberEmail: target.email,
     };
     //call to the Netlify Function you created
-    fetch("http://www.jonasbalin.com/.netlify/functions/triggerSubscribeEmail", {
+    fetch("https://eloquent-faun-2f980d.netlify.app/.netlify/functions/triggerSubscribeEmail", {
       method: "POST",
       body: JSON.stringify({
         subscriberName: "PERSON NAME",
