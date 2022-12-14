@@ -37,6 +37,7 @@ export function AppWindow(props) {
   };
 
   const closeAppHandler = (id) => {
+    console.log("closed App, ID:"+id)
     props.closeApp(id);
   }
 
@@ -63,7 +64,7 @@ export function AppWindow(props) {
             id="topbar-selected-app"
             className="topbar"
             ref={noteRef}
-          > <button onClick={() => closeAppHandler(props.appId)}> TEST ME</button>
+          >
             <img
               style={maximized ? { display: "none" } : { display: "" }}
               className={"topbar-left"}
@@ -123,7 +124,7 @@ export function AppWindow(props) {
                   onClick={() => MaximizeWindow()}
                 />
               </button>
-              <button onClick={(e) => closeAppHandler(props.appId)}>
+              <button onClick={() => closeAppHandler(props.appId)}>
                 <img
                   id="close"
                   src="../images/application-topbar/desktop-app-topbar-close.png"
