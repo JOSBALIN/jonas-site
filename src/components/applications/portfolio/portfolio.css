@@ -9,15 +9,21 @@
 
 .portfolio-list{
     list-style:none;
+    color:#215ec6
 }
 
+.portfolio-list > li:hover{
+  color:#428eff;
+  text-decoration: underline;
+}
 
 .portfolio-left-div{
   flex:1;
   width:30%;
-  background-color: white;
-  border: solid 2px black;
+  background-color: #6b84db;
 }
+
+
 
 .portfolio-right-div{
   flex:1;
@@ -25,7 +31,6 @@
   width:50%;
   height:500px;
   background-color: white;
-  border: solid 2px black;
 }
 
 /* Style the tab */
@@ -74,8 +79,19 @@ padding: 0 12px 3px;
   
   /* Style the tab content */
   .tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+    background-color: #d6dff7;
+    border: solid 1px white;
+    margin: 32px 12px 32px 12px;
+  }
+
+  .tabcontent-title{
+    padding:0;
+    background: linear-gradient(to right, #ffffff, #c6d3f7);
+    color: #215dc6;
+    padding-left:24px;
+    font-size: 14px;
+  }
+
+  .tabcontent-title:hover{
+    color: #428eff;
   }
