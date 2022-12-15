@@ -5,7 +5,6 @@ import zoomOutIcon from "../../images/application-images/pdf-reader/zoom-out.png
 import rotateClockwiseIcon from "../../images/application-images/pdf-reader/rotate-clockwise.png";
 import rotateCounterClockwiseIcon from "../../images/application-images/pdf-reader/rotate-counterclockwise.png";
 import rightArrowIcon from "../../images/application-images/pdf-reader/right-arrow.ico";
-import leftArrowIcon from "../../images/application-images/pdf-reader/left-arrow.ico";
 import downloadIcon from "../../images/application-images/pdf-reader/download.ico";
  
 import { useState } from "react";
@@ -85,7 +84,8 @@ export default function PDFReader(props) {
         <img className="pdf-zoom" src={zoomOutIcon} onClick={() => zoom("out")}></img>
         <img className="pdf-zoom" src={zoomInIcon} onClick={() => zoom("in")}></img>
           <img
-            src={leftArrowIcon}
+            src={rightArrowIcon}
+            style={{transform:"rotate(180deg)"}}
             className="page-arrow"
             onClick={() => changePage("previous")}
           ></img>

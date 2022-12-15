@@ -1,3 +1,4 @@
+
 .portfolio-background{
     display:flex;
     height:100%;
@@ -59,9 +60,6 @@
     
   }
   
-  .tabcontent-title:hover{
-    filter:brightness(120%);
-  }
   
   .menu-control{
     background-color: white;
