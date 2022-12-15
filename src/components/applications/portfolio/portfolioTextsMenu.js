@@ -10,7 +10,7 @@ export default function PortfolioTextsMenu(props) {
       const icon = e.target.lastElementChild;
       if (e.type == "mouseover") {
         title.style.filter = "brightness(160%)";
-        icon.style.filter = "brightness(160%)";
+        icon.style.filter = "brightness(120%)";
         e.target.style.cursor = "pointer";
       } else {
         title.style.display = "";

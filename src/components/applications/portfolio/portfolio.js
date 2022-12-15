@@ -1,25 +1,25 @@
 import "./portfolio.css";
 import PDFReader from "../pdfReader";
-import infoSecPDF from "./MatrixMultiplication.pdf";
 import photosIcon from "../../../images/app-icons/app-icon-photos.png";
 import expandMenu from "../../../images/application-images/portfolio/expand-menu.png";
 import topBarImage from "../../../images/application-images/portfolio/portfolio-top-app-bar.png";
 import { useState } from "react";
 import { AppWindow } from "../../appWindow";
 import PortfolioTextsMenu from "./portfolioTextsMenu";
+import matMul from "./MatrixMultiplication.pdf"
 
-export default function Portfolio(props) {
+export default function Portfolio() {
   const [displayedDocument, setDisplayedDocument] = useState();
   const mastersPortfolio = [
     {
       title: "Final Project: Matrix Multiplication",
-      document: infoSecPDF,
+      document: matMul,
       year: "2022"
     },
   ]
 
-  const summonPDFReader = () => {
-    setDisplayedDocument(<PDFReader document={infoSecPDF} title={"aaaa"} />);
+  const summonPDFReader = (document) => {
+    setDisplayedDocument(<PDFReader document={document} />);
   };
 
   return (
@@ -39,6 +39,7 @@ export default function Portfolio(props) {
           </div> */}
 
           <PortfolioTextsMenu PDFReader={summonPDFReader} portfolio={mastersPortfolio} title={"Master's"}/>
+          <PortfolioTextsMenu PDFReader={summonPDFReader} portfolio={mastersPortfolio} title={"Bachelor's"}/>
 
           {/* <PortfolioTextsMenu PDFReader={summonPDFReader} document={infoSecPDF} title={"Bachelor's"}/> */}
 
