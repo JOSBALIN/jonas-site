@@ -18,15 +18,13 @@
 
 .text-contents{
     max-width: 800px;
-    left:0;
     margin:auto;
     border:ridge;
-    overflow:auto;
-    height: calc(80% - 100px);
     background-color: white;
     padding-left:16px;
     padding-right:16px;
     margin-top:26px;
+    margin-bottom:26px;
 }
 
 #cv-background{
