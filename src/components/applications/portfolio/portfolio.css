@@ -5,6 +5,8 @@
   background-size: 96.3px 100%
 }
 
+
+
 .nextPage{
   background-color: red;
   width:100px;
@@ -12,16 +14,17 @@
   position:absolute;
 }
 
+.portfolio-container{
+  height:100%;
+  overflow:hidden;
+}
 
 .portfolio-background{
     display:flex;
-    height:100%;
 }
 
 .portfolio-choice{
-  z-index: 200;
   overflow-y: scroll;
-  height:100%;
 }
 
 .portfolio-list{
@@ -36,14 +39,15 @@
 }
 
 .portfolio-left-div{
-  flex:0.5;
+  width:400px;
   background-color: #6b84db;
 }
 
 .portfolio-right-div{
-  flex:1;
-  width:90%;
-  background-color: white;
+  overflow:visible;
+  width:100%;
+  background-color: #d3d3d3;
+  height:100%;
 }
 
 /* Style the tab content */

@@ -61,15 +61,6 @@ export default function PDFReader(props) {
     )
   }
   
-  const zoomButton = () => {
-    return (
-      <img src={zoomInIcon} onClick={() => zoom("in")}></img>
-    )
-  }
-
-  function addPDF(document) {
-    setOpenPDFs(openPDFs => [...openPDFs, document]);
-  }
 
   const output = () => {
     console.log(props.selfContained)
@@ -103,8 +94,8 @@ export default function PDFReader(props) {
         <img className="pdf-rotate" src={rotateCounterClockwiseIcon} onClick={() => rotate("counterclockwise")}></img>
       </div>
       )
-    } else {
-      return (
+    } else { 
+      return ( 
         <div className="embedded-pdf-elements">
         <div id="embedded-previous-page" onClick={() => changePage("previous")}></div>
         <div id="embedded-next-page" onClick={() => changePage("next")}></div>
@@ -119,8 +110,9 @@ export default function PDFReader(props) {
 
 
   return (
-    <div className="pdf-reader-background">
+    <div className="total-background">
       {output()}
+    <div className="pdf-reader-background">
       <div className="pdf-container">
         <Document file={props.document} onLoadSuccess={onDocumentLoadSuccess}>
           <Page
@@ -131,6 +123,7 @@ export default function PDFReader(props) {
           />
         </Document>
       </div>
+    </div>
     </div>
   );
 }
