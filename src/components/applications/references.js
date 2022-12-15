@@ -1,6 +1,8 @@
 import "./references.css";
 import christianProfil from "../../images/application-images/references/Christian-profil.png";
 import { useState } from "react";
+import { hover } from "@testing-library/user-event/dist/hover";
+import PortfolioTextsMenu from "./portfolio/portfolioTextsMenu";
 
 export default function References(props) {
   const [contacts, setContacts] = useState([
@@ -52,6 +54,17 @@ export default function References(props) {
     },
   ]);
 
+
+  function changeHoverState(e) {
+    const elementStyle = e.target.style;
+    if (e.type == "mouseover") {
+      elementStyle.textDecoration = "underline";
+    } else {
+      elementStyle.textDecoration = "none";
+      elementStyle.fontWeight = "normal"
+    }
+  }
+
   const handleClick = (e, contact) => {
     setSelectedContact(contact);
     var i, activeContacts
@@ -74,24 +87,40 @@ export default function References(props) {
       </div>
       <div className="references-container">
         <div className="references-selected">
-        <img
+          <img
             src={selectedContact.photo}
             className="references-selected-photo"
           ></img>
           <h1 className="reference-name">{selectedContact.name}</h1>
-          <h3 className="reference-work">{selectedContact.title} | {selectedContact.company}</h3>
-          <h4 className="contact-info"> <a href={"mailto:" + selectedContact.mail}>{selectedContact.mail}</a> | <a href={"tel:" + selectedContact.phone}>{selectedContact.phone}</a></h4>
+          <h3 className="reference-work">
+            {selectedContact.title} | {selectedContact.company}
+          </h3>
+          <h4 className="contact-info">
+            {" "}
+            <a href={"mailto:" + selectedContact.mail}>
+              {selectedContact.mail}
+            </a>{" "}
+            |{" "}
+            <a href={"tel:" + selectedContact.phone}>{selectedContact.phone}</a>
+          </h4>
           <div className="contact-expanded-text">
-          <p>{selectedContact.expandedText}</p>
+            <p>{selectedContact.expandedText}</p>
           </div>
-
         </div>
 
         <div className="left-panel">
           <ul className="list-references">
-          {contacts.map((contact, index) => (
-            <li className="element-reference" onClick={(e) => handleClick(e, contact)}>{contact.name}</li>
-          ))}
+            {contacts.map((contact, index) => (
+              <li
+              key={index}
+                className="element-reference"
+                onClick={(e) => handleClick(e, contact)}
+                onMouseOver={(e) => changeHoverState(e)}
+                onMouseLeave={(e) => changeHoverState(e)}
+              >
+                {contact.name}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

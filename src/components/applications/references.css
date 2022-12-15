@@ -54,9 +54,7 @@
         padding:3px;
     }
 
-    .element-reference:hover{
-        cursor:pointer
-    }
+ 
 
     .active-contact{
         background-color: #316ac5;
@@ -81,7 +79,7 @@
         height:300px;
         overflow:auto;
         border: solid #d8d2bd 1px;
-        background-color: white;
+        background-color: #f0ede0;
     }
 
     .reference-short{
