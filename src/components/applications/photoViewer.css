@@ -1,7 +1,7 @@
 .photos-row{
     padding-top:10px;
     display:flex;
-    margin:20px;
+    margin:0px;
     width:100%;
     overflow-x:scroll;
     left:0;
@@ -67,7 +67,7 @@
 
 .photos-preview-lower{
     width:160px;
-    height:160px;
+    height:100%;
 }
 
 .photos-preview-upper > img{
