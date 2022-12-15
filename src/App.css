@@ -1,4 +1,4 @@
-body {
+/* body {
   min-height: 95vh;
   display: flex;
   justify-content: center;
@@ -39,9 +39,9 @@ textarea {
 }
 .App {
   padding: 1em;
-}
+} */
 
-/* .desktop-background{
+.desktop-background{
   background-image: url("images/desktop-background.jpg");
   background-size: cover;
   height:100vh;
@@ -61,4 +61,4 @@ img {
   -webkit-user-drag: none;
   -webkit-user-select: none;
   -ms-user-select: none;
-} */
+}
