@@ -71,16 +71,13 @@ export default function PDFReader(props) {
     setOpenPDFs(openPDFs => [...openPDFs, document]);
   }
 
+  const output = () => {
+    console.log(props.selfContained)
+    if(props.selfContained){
+      return(
 
-  return (
-    <div className="pdf-reader-background">
-      <div className="pdf-controls">
-      {/* <input
-        className="pdf-input"
-        type="percent"
-        value={scalePercent + "%"}
-        onChange={(e) => zoomChange(e)}
-      /> */}
+        <div className="pdf-controls">
+        <div className="nextPage"></div>
         <img className="pdf-zoom" src={zoomOutIcon} onClick={() => zoom("out")}></img>
         <img className="pdf-zoom" src={zoomInIcon} onClick={() => zoom("in")}></img>
           <img
@@ -105,6 +102,25 @@ export default function PDFReader(props) {
         <img className="pdf-rotate" src={rotateClockwiseIcon} onClick={() => rotate("clockwise")}></img>
         <img className="pdf-rotate" src={rotateCounterClockwiseIcon} onClick={() => rotate("counterclockwise")}></img>
       </div>
+      )
+    } else {
+      return (
+        <div className="embedded-pdf-elements">
+        <div id="embedded-previous-page" onClick={() => changePage("previous")}></div>
+        <div id="embedded-next-page" onClick={() => changePage("next")}></div>
+        <p id="embedded-page-number"> {pageNumber}/{numPages}</p>
+        <div id="embedded-zoom-in" onClick={() => zoom("in")}></div>
+        <div id="embedded-zoom-out" onClick={() => zoom("out")}></div>
+        <div id="embedded-file-title"><p>C:\Document and Settings\JonasBalin\Documents\Portfolio\{props.title}</p></div>
+        </div>
+      )
+    }
+  }
+
+
+  return (
+    <div className="pdf-reader-background">
+      {output()}
       <div className="pdf-container">
         <Document file={props.document} onLoadSuccess={onDocumentLoadSuccess}>
           <Page

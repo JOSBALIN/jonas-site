@@ -9,7 +9,7 @@ import PortfolioTextsMenu from "./portfolioTextsMenu";
 import matMul from "./MatrixMultiplication.pdf"
 
 export default function Portfolio() {
-  const [displayedDocument, setDisplayedDocument] = useState();
+  const [displayedDocument, setDisplayedDocument] = useState(<PDFReader document={matMul} selfContained={false} title={"ElemMatMul.pdf"} />);
   const mastersPortfolio = [
     {
       title: "Final Project: Matrix Multiplication",
@@ -19,10 +19,12 @@ export default function Portfolio() {
   ]
 
   const summonPDFReader = (document) => {
-    setDisplayedDocument(<PDFReader document={document} />);
+    setDisplayedDocument(<PDFReader document={document} selfContained={false} />);
   };
 
   return (
+    <div className="portfolio-container">
+    <div className="portfolio-top-menu" id="taskbar">      <img className="top-menu-img" src={topBarImage}></img></div>
     <div className="portfolio-background">
       <div className="portfolio-left-div">
         <div className="portfolio-choice">
@@ -46,6 +48,7 @@ export default function Portfolio() {
         </div>
       </div>
       <div className="portfolio-right-div">{displayedDocument}</div>
+    </div>
     </div>
   );
 }

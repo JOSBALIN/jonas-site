@@ -1,3 +1,17 @@
+.portfolio-top-menu{
+  overflow:hidden;
+  background-image: url("../../../images/application-images/portfolio/portfolio-top-app-bar-fill.png");
+  height:96.3px;
+  background-size: 96.3px 100%
+}
+
+.nextPage{
+  background-color: red;
+  width:100px;
+  height:100px;
+  position:absolute;
+}
+
 
 .portfolio-background{
     display:flex;
@@ -5,6 +19,7 @@
 }
 
 .portfolio-choice{
+  z-index: 200;
   overflow-y: scroll;
   height:100%;
 }

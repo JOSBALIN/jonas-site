@@ -94,3 +94,58 @@
     background-color: transparent;
     border: none;
 }
+
+/* The following part is for embedded PDF controls in the portfolio app */
+#embedded-previous-page, #embedded-next-page, #embedded-zoom-in, #embedded-zoom-out{
+    position:absolute;
+    top:72px;
+    width:38px;
+    height:38px;
+    border-radius: 20px;
+}
+
+#embedded-previous-page{
+    left:10px;
+}
+
+#embedded-next-page{
+    left:132px;
+}
+
+#embedded-previous-page:hover, #embedded-next-page:hover{
+    background-color: #ffffff35;
+}
+
+#embedded-page-number{
+    position:absolute;
+    top:33px;
+    left:60px;
+    font-size: 32px;
+}
+
+#embedded-zoom-in:hover, #embedded-zoom-out:hover{
+    border: solid 1px black;
+}
+
+#embedded-zoom-in{
+    left:258px;
+    border-radius: 0;
+    height:44px;
+    width:42px;
+    top:68px
+}
+
+#embedded-zoom-out{
+    left:300px;
+    border-radius: 0;
+    height:44px;
+    width:42px;
+    top:68px
+}
+
+#embedded-file-title{
+    position:absolute;
+    top:110px;
+    left:110px;
+    font-size: large;
+}
