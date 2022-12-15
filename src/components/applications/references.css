@@ -54,6 +54,10 @@
         padding:3px;
     }
 
+    .element-reference:hover{
+        cursor: pointer;
+    }
+
  
 
     .active-contact{
