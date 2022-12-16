@@ -11,19 +11,23 @@ export default function Contact() {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    const mail = {
+      fromMail: e.target[3].value,
+      body:  e.target[5].value
+    }
 
-    emailjs.sendForm("Gmail", "template_a11lnf9", e.target).then(
+    emailjs.send("Gmail", "template_a11lnf9", mail, "MXZIAi2k_cdxOUALP").then(
       (result) => {
-        console.log(result.text);
       },
       (error) => {
-        console.log(error.text);
+
       }
     );
   };
 
   return (
-    <form onSubmit={sendEmail}>
+    <form name="contact-form" method="post">
+      <input type="hidden" name="form-name" value="contact-form" />
       <div className={"top-menu-contact"}>
         {/* Send button is invisible, overlaid the actual image */}
         <button

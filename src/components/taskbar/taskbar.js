@@ -33,21 +33,8 @@ export default function Taskbar(props) {
   }, []);
 
 
-  const removeElement = (id) => {
-    setTaskbarApps(current =>
-      current.filter(app => {
-        return app.id !== id;
-      }),
-    );
-  };
-
-
-  const taskbarAppClick = (e, app, index) => {
-    props.summonApplication(app.id)
-
-    // removeElement(app.id)
-
-      console.log(taskbarApps)
+  const taskbarAppClick = (e, app) => {
+    props.summonApplication(e, app.id)
 
   
 
@@ -82,7 +69,7 @@ export default function Taskbar(props) {
   return (
     <div className="taskbar noselect">
     <StartMenu style={startMenuVisibility} outsideClick={startMenuClicked} hideMenu={hideStartMenu}/>
-      <button onClick={() => console.log(taskbarApps)}>AAA</button>
+
       <img className="start-bar" src={taskBar}></img>
       <img
         id="start-menu-button"
@@ -103,7 +90,7 @@ export default function Taskbar(props) {
         {taskbarApps.map((app, index) => (
           <div key={index}
           className={"taskbar-app"}
-          onClick={(e) => taskbarAppClick(e, app, index)}>
+          onClick={(e) => taskbarAppClick(e, app)}>
             <TaskbarApps icon={app.icon} title={app.title} id={app.id}/>
           </div>
         ))}

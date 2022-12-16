@@ -33,7 +33,8 @@ export default function Desktop() {
   const [appGridClasses, setAppGridClasses] = useState([]);
   const [newApp, setNewApp] = useState(false);
   const [closedAppsTaskbars, setClosedAppsTaskbars] = useState([])
-
+  const selectedStyle = {filter:"grayscale(0%)"}
+  const deselectedStyle = {filter:"grayscale(70%)"}
 
   // Get all instances of classes titled app-grid
   useEffect(() => {
@@ -57,28 +58,29 @@ export default function Desktop() {
   // Handling of z-index and app selection status coloring
   // Functional but could use refinement
   const passZIndex = (appId) => {
-    const selectedStyle = "filter:grayscale(0%);"
-    const deselectedStyle = "filter:grayscale(70%);"
 
     setZIndex((zIndex) => zIndex + 1);
 
     // Deselect currently selected app, apply styles
-    if(openApps.find(current => current.isSelected === true)){
-    const deselectedApp = openApps.find(current => current.isSelected === true)
-    // deselectedApp.elementTaskbar.style = deselectedStyle
-    deselectedApp.elementTopbar.style = deselectedStyle
-    deselectedApp.isSelected = false;
-    }
+    openApps.map(current => current.isSelected = false)
     
     // Create new selected app, apply styles
     //const appId = ref.current.parentElement.parentElement.id.charAt(ref.current.parentElement.parentElement.id.length-1)
     const selectedApp = openApps.find(current => current.id === appId)
-
-    // selectedApp.elementTaskbar.style = selectedStyle
-    selectedApp.elementTopbar.style = selectedStyle
-    selectedApp.elementApp.style.zIndex = zIndex
     selectedApp.isSelected = true;
   };
+
+  function applySelectionStyle(app, selected){
+    if(selected){
+      // Create new selected app, apply styles
+      //const appId = ref.current.parentElement.parentElement.id.charAt(ref.current.parentElement.parentElement.id.length-1)
+      const selectedApp = openApps.find((current) => current.id === app.id);
+
+      // selectedApp.elementTaskbar.style = selectedStyle
+      selectedApp.elementTopbar.style = selectedStyle;
+      selectedApp.elementApp.style.zIndex = zIndex;
+    }
+  }
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
@@ -216,19 +218,8 @@ export default function Desktop() {
 
   
 
-    const summonApplication = (appId) => {
-
-      // const selectedApp = openApps.find(current => current.id === appId)
-      
-      // // Hide selected app
-      // if(selectedApp.isSelected && selectedApp.elementApp.style.display == ""){
-      //   selectedApp.elementApp.style.display = "none"
-      // }
-      // else // Summon selected app 
-      //  {
-      //   selectedApp.elementApp.style.display = ""
-      //   passZIndex(appId)
-      // }
+    const summonApplication = (e, appId) => {
+      passZIndex(appId)
     };
 
   // add an application to list
@@ -251,7 +242,9 @@ export default function Desktop() {
           </div>
         ))}
         {openApps.map((app) => (
-          <div key={app.id}>{launchApplication(app)}</div>
+          <div key={app.id}
+          style={{... app.isSelected ? {filter:"grayscale(0%)"} : {filter:"grayscale(70%)"}}}
+          >{launchApplication(app)}</div>
         ))}
       </div>
       <div className="desktop-frontlayer">
