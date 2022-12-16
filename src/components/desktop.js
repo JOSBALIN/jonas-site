@@ -19,68 +19,30 @@ import contactIcon from "../images/app-icons/app-icon-contact.png";
 import referencesIcon from "../images/app-icons/app-icon-references.ico";
 import Portfolio from "./applications/portfolio/portfolio";
 import PdfReader from "./applications/pdfReader";
-import { unmountComponentAtNode } from 'react-dom';
-
-import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
-
 import matrixMultiplicationPDF from './applications/portfolio/MatrixMultiplication.pdf';
 
 
 export default function Desktop() {
-  // List of open apps to control taskbar icons
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
   const [appGridClasses, setAppGridClasses] = useState([]);
-  const [newApp, setNewApp] = useState(false);
-  const [closedAppsTaskbars, setClosedAppsTaskbars] = useState([])
-  const selectedStyle = {filter:"grayscale(0%)"}
-  const deselectedStyle = {filter:"grayscale(70%)"}
 
   // Get all instances of classes titled app-grid
   useEffect(() => {
     setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
   }, []);
 
-  useEffect(() => {
-    setOpenApps(
-      openApps.map((obj) => ({
-        ...obj,
-        elementApp: document.getElementById("applicationId:" + obj.id),
-        // elementTaskbar: document.getElementById("taskbar-app-id-" + obj.id),
-        elementTopbar: document.getElementById("applicationId:" + obj.id).firstChild.firstChild,
-      }))
-    );
-  }, [newApp]);
-
-
-
-
   // Handling of z-index and app selection status coloring
   // Functional but could use refinement
   const passZIndex = (appId) => {
-
     setZIndex((zIndex) => zIndex + 1);
 
     // Deselect currently selected app, apply styles
     openApps.map(current => current.isSelected = false)
     
     // Create new selected app, apply styles
-    //const appId = ref.current.parentElement.parentElement.id.charAt(ref.current.parentElement.parentElement.id.length-1)
-    const selectedApp = openApps.find(current => current.id === appId)
-    selectedApp.isSelected = true;
+    openApps.find(current => current.id === appId).isSelected = true;
   };
-
-  function applySelectionStyle(app, selected){
-    if(selected){
-      // Create new selected app, apply styles
-      //const appId = ref.current.parentElement.parentElement.id.charAt(ref.current.parentElement.parentElement.id.length-1)
-      const selectedApp = openApps.find((current) => current.id === app.id);
-
-      // selectedApp.elementTaskbar.style = selectedStyle
-      selectedApp.elementTopbar.style = selectedStyle;
-      selectedApp.elementApp.style.zIndex = zIndex;
-    }
-  }
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
@@ -184,7 +146,7 @@ export default function Desktop() {
     });
   };
 
-  function closeApp(e, appId)  {
+  function closeApp(appId)  {
     setOpenApps(prev => prev.filter(app => app.id !== appId ))
   }
 
@@ -210,15 +172,12 @@ export default function Desktop() {
           },
         ]);
         appIconSelection(-1); // resets icon selection
-        setNewApp(!newApp) // needed to update HTML elements in openApps arr
       }
     }
   };
 
-
-  
-
     const summonApplication = (e, appId) => {
+      // Missing condition for when app is already selected and should therefore hide.
       passZIndex(appId)
     };
 
@@ -243,7 +202,7 @@ export default function Desktop() {
         ))}
         {openApps.map((app) => (
           <div key={app.id}
-          style={{... app.isSelected ? {filter:"grayscale(0%)"} : {filter:"grayscale(70%)"}}}
+          style={{... app.isSelected ? {filter:"grayscale(0%)", zIndex:{zIndex}} : {filter:"grayscale(70%)"}}}
           >{launchApplication(app)}</div>
         ))}
       </div>
