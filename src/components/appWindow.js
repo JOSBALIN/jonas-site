@@ -36,9 +36,9 @@ export function AppWindow(props) {
     }
   };
 
-  const closeAppHandler = (id) => {
-    console.log("closed App, ID:"+id)
-    props.closeApp(id);
+  const closeAppHandler = (e, appId) => {
+    console.log(appId)
+    props.closeApp(e, appId);
   }
 
   // parent function, updates z-index
@@ -124,7 +124,7 @@ export function AppWindow(props) {
                   onClick={() => MaximizeWindow()}
                 />
               </button>
-              <button onClick={() => closeAppHandler(props.appId)}>
+              <button onClick={(e) => closeAppHandler(e, props.appId)}>
                 <img
                   id="close"
                   src="../images/application-topbar/desktop-app-topbar-close.png"

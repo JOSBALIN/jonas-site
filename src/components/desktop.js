@@ -19,6 +19,7 @@ import contactIcon from "../images/app-icons/app-icon-contact.png";
 import referencesIcon from "../images/app-icons/app-icon-references.ico";
 import Portfolio from "./applications/portfolio/portfolio";
 import PdfReader from "./applications/pdfReader";
+import { unmountComponentAtNode } from 'react-dom';
 
 import { Document, Page } from 'react-pdf/dist/esm/entry.webpack5';
 
@@ -41,10 +42,10 @@ export default function Desktop() {
 
   useEffect(() => {
     setOpenApps(
-      openApps.map((obj, index) => ({
+      openApps.map((obj) => ({
         ...obj,
         elementApp: document.getElementById("applicationId:" + obj.id),
-        elementTaskbar: document.getElementById("taskbar-app-id-" + obj.id),
+        // elementTaskbar: document.getElementById("taskbar-app-id-" + obj.id),
         elementTopbar: document.getElementById("applicationId:" + obj.id).firstChild.firstChild,
       }))
     );
@@ -62,19 +63,21 @@ export default function Desktop() {
     setZIndex((zIndex) => zIndex + 1);
 
     // Deselect currently selected app, apply styles
-    const deselectedApp = openApps.find(current => current.selected === true)
-    deselectedApp.elementTaskbar.style = deselectedStyle
+    if(openApps.find(current => current.isSelected === true)){
+    const deselectedApp = openApps.find(current => current.isSelected === true)
+    // deselectedApp.elementTaskbar.style = deselectedStyle
     deselectedApp.elementTopbar.style = deselectedStyle
-    deselectedApp.selected = false;
+    deselectedApp.isSelected = false;
+    }
     
     // Create new selected app, apply styles
     //const appId = ref.current.parentElement.parentElement.id.charAt(ref.current.parentElement.parentElement.id.length-1)
     const selectedApp = openApps.find(current => current.id === appId)
 
-    selectedApp.elementTaskbar.style = selectedStyle
+    // selectedApp.elementTaskbar.style = selectedStyle
     selectedApp.elementTopbar.style = selectedStyle
     selectedApp.elementApp.style.zIndex = zIndex
-    selectedApp.selected = true;
+    selectedApp.isSelected = true;
   };
 
   // Function to launch given application within AppWindow component
@@ -179,22 +182,8 @@ export default function Desktop() {
     });
   };
 
-  const closeApp = (appId) =>  {
-    // Remove app-container
-
-    document.getElementById("applicationId:"+appId).style.display = "none"
-    const taskbarToRemove = document.getElementById("taskbar-app-id-"+appId).parentElement.parentElement
-
-    taskbarToRemove.style.display = "none"
-    console.log(taskbarToRemove)
-    console.log(appId)
-
-    // Re-arrange taskbar
-    for (let i = Number(taskbarToRemove.id.slice(-1))+1; i <= openApps.length; i++) {
-      if(document.getElementById("taskbar-app-div-"+i)) document.getElementById("taskbar-app-div-"+i).id = "taskbar-app-div-"+(i-1)
-      } 
-
-      taskbarToRemove.id = "hidden-taskbar-app-div"+appId
+  function closeApp(e, appId)  {
+    setOpenApps(prev => prev.filter(app => app.id !== appId ))
   }
 
   // single-click, color app-icon. Double-click, launch app
@@ -216,7 +205,6 @@ export default function Desktop() {
             title: app[key].title,
             icon: app[key].icon,
             windowDimensions: app[key].windowDimensions,
-            selected:true
           },
         ]);
         appIconSelection(-1); // resets icon selection
@@ -229,29 +217,18 @@ export default function Desktop() {
   
 
     const summonApplication = (appId) => {
-      const selectedApp = openApps.find(current => current.id === appId)
+
+      // const selectedApp = openApps.find(current => current.id === appId)
       
-      // Hide selected app
-      if(selectedApp.selected && selectedApp.elementApp.style.display == ""){
-        selectedApp.elementApp.style.display = "none"
-        selectedApp.elementTaskbar.style = "filter:grayscale(70%);"
-      }
-      else // Summon selected app 
-       {
-        selectedApp.elementApp.style.display = ""
-        passZIndex(appId)
-        console.log(selectedApp.elementTaskbar.parentElement.parentElement.style.display == "none")
-        if(selectedApp.elementTaskbar.parentElement.parentElement.style.display == "none"){
-          for (let i = openApps.length; i > 0; i--) {
-            console.log(i);
-            if(document.getElementById("taskbar-app-div-"+i)) {
-              selectedApp.elementTaskbar.parentElement.parentElement.style.display = ""
-              selectedApp.elementTaskbar.parentElement.parentElement.id = "taskbar-app-div-"+(i+1)
-              break;
-            }
-          }
-        }
-      }
+      // // Hide selected app
+      // if(selectedApp.isSelected && selectedApp.elementApp.style.display == ""){
+      //   selectedApp.elementApp.style.display = "none"
+      // }
+      // else // Summon selected app 
+      //  {
+      //   selectedApp.elementApp.style.display = ""
+      //   passZIndex(appId)
+      // }
     };
 
   // add an application to list
@@ -273,8 +250,8 @@ export default function Desktop() {
             <AppIcon title={app.title} icon={app.icon}></AppIcon>
           </div>
         ))}
-        {openApps.map((app, key) => (
-          <div key={key}>{launchApplication(app)}</div>
+        {openApps.map((app) => (
+          <div key={app.id}>{launchApplication(app)}</div>
         ))}
       </div>
       <div className="desktop-frontlayer">
@@ -284,7 +261,6 @@ export default function Desktop() {
           summonApplication={summonApplication}
         />
       </div>
-      <button onClick={ ()=> closeApp(1)}>CLICKTOTEST</button>
     </div>
   );
 }

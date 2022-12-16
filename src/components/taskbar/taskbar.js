@@ -12,6 +12,13 @@ export default function Taskbar(props) {
   const [time, setTime] = useState();
   const [startMenuVisibility, setstartMenuVisibility] = useState({display:"none"})
   const [startMenuClicked, setStartMenuClicked] = useState(false)
+  const [taskbarApps, setTaskbarApps] = useState(props.openApps)
+  const selectedAppStyle = {filter:"brightness:(200%)"}
+  const deselectedAppStyle = {filter:"brighness:(50%)"}
+
+  useEffect(() => {
+    setTaskbarApps(props.openApps);
+}, [props.openApps])
 
   // Updating time in taskbar
   useEffect(() => {
@@ -26,8 +33,25 @@ export default function Taskbar(props) {
   }, []);
 
 
-  const taskbarAppClick = (appId) => {
-    props.summonApplication(appId)
+  const removeElement = (id) => {
+    setTaskbarApps(current =>
+      current.filter(app => {
+        return app.id !== id;
+      }),
+    );
+  };
+
+
+  const taskbarAppClick = (e, app, index) => {
+    props.summonApplication(app.id)
+
+    // removeElement(app.id)
+
+      console.log(taskbarApps)
+
+  
+
+
   }
 
   // Hides menu if clicked outside of start button & menu
@@ -41,7 +65,6 @@ export default function Taskbar(props) {
   const showStartMenu = () => {
     setstartMenuVisibility();
     setStartMenuClicked(true)
-    console.log(props.openApps)
   }
 
   const pressedStartButton = () => {
@@ -52,12 +75,14 @@ export default function Taskbar(props) {
     }
 
   }
+  
 
 
 
   return (
     <div className="taskbar noselect">
     <StartMenu style={startMenuVisibility} outsideClick={startMenuClicked} hideMenu={hideStartMenu}/>
+      <button onClick={() => console.log(taskbarApps)}>AAA</button>
       <img className="start-bar" src={taskBar}></img>
       <img
         id="start-menu-button"
@@ -73,10 +98,12 @@ export default function Taskbar(props) {
         <div id="current-time">{time}</div>
         <img className="start-bar-right" src={taskBarRight}></img>
       </div>
+
       <div className="taskbar-middle">
-        {props.openApps.reverse().map((app, index) => (
-          <div id={"taskbar-app-div-"+(index+1)} key={index}
-          onClick={(e) => {taskbarAppClick(app.id)}}>
+        {taskbarApps.map((app, index) => (
+          <div key={index}
+          className={"taskbar-app"}
+          onClick={(e) => taskbarAppClick(e, app, index)}>
             <TaskbarApps icon={app.icon} title={app.title} id={app.id}/>
           </div>
         ))}

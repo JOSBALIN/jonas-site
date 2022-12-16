@@ -24,13 +24,6 @@
   right:0;
 }
 
-/* Ensure taskbar is in front of applications 
-Need to fix, messes with taskbar apps' z-index
-but this works for the draggable-apps*/
-/* .start-bar, .taskbar-right, .start-button{
-  z-index: 1000;
-} */
-
 
 .start-bar{
   position:absolute;
@@ -50,7 +43,7 @@ but this works for the draggable-apps*/
   bottom:0;
 }
 
-.app-title{
+.taskbar-app-title{
   position:relative;
   top:2px;
   width: 120px;
@@ -111,13 +104,14 @@ but this works for the draggable-apps*/
       height:30px;
   }
 
-  .selected-taskbar-app{
+  /* .selected-taskbar-app{
     filter:grayscale(0%);
-}
+} */
 
 
+/* 
 #taskbar-app-div-1 { grid-area: 1 / 1 / 2 / 2; }
 #taskbar-app-div-2 { grid-area: 1 / 2 / 2 / 3; }
 #taskbar-app-div-3 { grid-area: 1 / 3 / 2 / 4; }
 #taskbar-app-div-4 { grid-area: 1 / 4 / 2 / 5; }
-#taskbar-app-div-5 { grid-area: 1 / 5 / 2 / 6; } 
+#taskbar-app-div-5 { grid-area: 1 / 5 / 2 / 6; }  */

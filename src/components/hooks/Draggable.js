@@ -38,9 +38,10 @@ export default function Draggable(holdToDrag, elementToMove, dragEnabled) {
 
     holdToDrag.current.addEventListener("mousedown", handleMouseDown);
 
-    return () => {
-      holdToDrag.current.removeEventListener("mousedown", handleMouseDown);
-    };
+    // return () => {
+    //   holdToDrag.current.removeEventListener("mousedown", handleMouseDown);
+    // };
+
   }, [offsetX, offsetY]);
 
   useEffect(() => {
