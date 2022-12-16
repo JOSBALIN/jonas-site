@@ -25,22 +25,18 @@ import matrixMultiplicationPDF from './applications/portfolio/MatrixMultiplicati
 export default function Desktop() {
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
-  const [appGridClasses, setAppGridClasses] = useState([]);
+  const [appGridClasses, setAppGridClasses] = useState();
 
   // Get all instances of classes titled app-grid
   useEffect(() => {
     setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
   }, []);
+  
 
   // Handling of z-index and app selection status coloring
-  // Functional but could use refinement
   const passZIndex = (appId) => {
     setZIndex((zIndex) => zIndex + 1);
-
-    // Deselect currently selected app, apply styles
     openApps.map(current => current.isSelected = false)
-    
-    // Create new selected app, apply styles
     openApps.find(current => current.id === appId).isSelected = true;
   };
 
@@ -148,6 +144,7 @@ export default function Desktop() {
 
   function closeApp(appId)  {
     setOpenApps(prev => prev.filter(app => app.id !== appId ))
+    console.log(openApps)
   }
 
   // single-click, color app-icon. Double-click, launch app
