@@ -68,6 +68,8 @@ export function DraggableElement({
   // Ref elements, pointers to specific HTML elements
   const refHoldToDrag = useRef(null);
   const refElementToMove = useRef(null);
+  console.log(zIndex);
+  const zIndexStyle = {zIndex:zIndex}
 
   // create instance of draggable
   Draggable(refHoldToDrag, refElementToMove, dragEnabled);
@@ -78,7 +80,7 @@ export function DraggableElement({
       ref={refElementToMove}
       className={"draggable-parent app-container"}
       id={"applicationId:"+appId}
-      style={{ ...style, ...zIndex, ...{ display } }}
+      style={{ ...style, ...zIndexStyle, ...{ display } }}
     >
       <div ref={refHoldToDrag} className="draggable-child app-contents">
         {dragElement}

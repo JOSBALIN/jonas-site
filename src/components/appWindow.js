@@ -7,15 +7,15 @@ export function AppWindow(props) {
   const [title, setTitle] = useState(props.title);
   const [contents, setContents] = useState(props.contents);
   const [icon, setIcon] = useState(props.icon)
-
-
+  const [isSelected, setIsSelected] = useState(props.isSelected)
   const noteRef = useRef(); // dragging functionality
   
   // tracks order of apps
-  const [zIndex, setZIndex] = useState({
-    zIndex: props.zIndex,
-  });
+  const [zIndex, setZIndex] = useState(props.zIndex);
+
+  console.log(typeof(zIndex))
   
+
   const [draggable, setDraggable] = useState(true);   // draggable toggle
   
   // window dimensions
@@ -43,6 +43,8 @@ export function AppWindow(props) {
   // parent function, updates z-index
   const zIndexHandler = () => {
     props.passZIndex(props.appId)
+    setZIndex(props.zIndex)
+    console.log(zIndex)
   };
 
   // "minimizes" window - hides it

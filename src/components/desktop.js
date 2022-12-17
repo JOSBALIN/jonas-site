@@ -37,11 +37,15 @@ export default function Desktop() {
   const passZIndex = (appId) => {
     setZIndex((zIndex) => zIndex + 1);
     openApps.map(current => current.isSelected = false)
-    openApps.find(current => current.id === appId).isSelected = true;
+    const selectedApp = openApps.find(current => current.id === appId) 
+    selectedApp.isSelected = true;
+    selectedApp.zIndex = zIndex;
   };
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
+    openApps.map(current => current.isSelected = false)
+    console.log(zIndex)
     return (
       <AppWindow
         passZIndex={passZIndex}
@@ -51,7 +55,9 @@ export default function Desktop() {
         appId={app.id}
         icon={app.icon}
         contents={app.component}
-        windowDimensions={app.windowDimensions}/>
+        windowDimensions={app.windowDimensions}
+        isSelected={true}
+        />
     );
   };
 
@@ -199,7 +205,7 @@ export default function Desktop() {
         ))}
         {openApps.map((app) => (
           <div key={app.id}
-          style={{... app.isSelected ? {filter:"grayscale(0%)", zIndex:{zIndex}} : {filter:"grayscale(70%)"}}}
+          // style={{... app.isSelected ? {filter:"grayscale(0%)", zIndex:{zIndex}} : {filter:"grayscale(70%)"}}} Commented out due to creating div height/width, exploring alternatives
           >{launchApplication(app)}</div>
         ))}
       </div>
