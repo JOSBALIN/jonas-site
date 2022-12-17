@@ -36,7 +36,7 @@ export default function Desktop() {
   // Handling of z-index and app selection status coloring
   const passZIndex = (appId) => {
     setZIndex((zIndex) => zIndex + 1);
-    openApps.map(current => current.isSelected = false)
+    openApps.map(current => (current.isSelected = false))
     const selectedApp = openApps.find(current => current.id === appId) 
     selectedApp.isSelected = true;
     selectedApp.zIndex = zIndex;
@@ -44,8 +44,6 @@ export default function Desktop() {
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
-    openApps.map(current => current.isSelected = false)
-    console.log(zIndex)
     return (
       <AppWindow
         passZIndex={passZIndex}
@@ -56,7 +54,7 @@ export default function Desktop() {
         icon={app.icon}
         contents={app.component}
         windowDimensions={app.windowDimensions}
-        isSelected={true}
+        isSelected={app.isSelected}
         />
     );
   };

@@ -8,13 +8,9 @@ export function AppWindow(props) {
   const [contents, setContents] = useState(props.contents);
   const [icon, setIcon] = useState(props.icon)
   const [isSelected, setIsSelected] = useState(props.isSelected)
-  const noteRef = useRef(); // dragging functionality
-  
+  const noteRef = useRef(); // dragging functionality  
   // tracks order of apps
   const [zIndex, setZIndex] = useState(props.zIndex);
-
-  console.log(typeof(zIndex))
-  
 
   const [draggable, setDraggable] = useState(true);   // draggable toggle
   
@@ -26,7 +22,7 @@ export function AppWindow(props) {
   // maximizes application window; disables dragging
   const MaximizeWindow = () => {
     if (!maximized) {
-      setWindowDimensions({ height: "100%", width: "100%", transform: "none" });
+      setWindowDimensions({ height: "100%", width: "100%", transform: "none", borderRadius:"0" });
       setMaximized(true);
       setDraggable(false);
     } else {
@@ -36,6 +32,8 @@ export function AppWindow(props) {
     }
   };
 
+
+
   const closeAppHandler = (appId) => {
     props.closeApp(appId);
   }
@@ -44,7 +42,8 @@ export function AppWindow(props) {
   const zIndexHandler = () => {
     props.passZIndex(props.appId)
     setZIndex(props.zIndex)
-    console.log(zIndex)
+    setIsSelected(props.isSelected)
+    console.log(props.isSelected)
   };
 
   // "minimizes" window - hides it
@@ -63,8 +62,9 @@ export function AppWindow(props) {
           <div 
           onMouseDownCapture={zIndexHandler}
             id="topbar-selected-app"
-            className="topbar"
+            className={"topbar " + isSelected}
             ref={noteRef}
+            style={props.isSelected ? { filter: "grayscale(0%)" } : { filter: "grayscale(70%)" }}
           >
             <img
               style={maximized ? { display: "none" } : { display: "" }}
