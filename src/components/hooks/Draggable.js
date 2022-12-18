@@ -68,7 +68,6 @@ export function DraggableElement({
   // Ref elements, pointers to specific HTML elements
   const refHoldToDrag = useRef(null);
   const refElementToMove = useRef(null);
-  console.log(zIndex);
   const zIndexStyle = {zIndex:zIndex}
 
   // create instance of draggable

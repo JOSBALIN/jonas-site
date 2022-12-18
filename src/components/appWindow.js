@@ -43,7 +43,6 @@ export function AppWindow(props) {
     props.passZIndex(props.appId)
     setZIndex(props.zIndex)
     setIsSelected(props.isSelected)
-    console.log(props.isSelected)
   };
 
   // "minimizes" window - hides it
