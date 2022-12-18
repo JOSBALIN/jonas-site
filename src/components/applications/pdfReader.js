@@ -17,15 +17,16 @@ export default function PDFReader(props) {
   const [scalePercent, setScalePercent] = useState(scale*100);
   const [rotation, setRotation] = useState(0);
 
+  // Load document, reset page selection
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
+    setPageNumber(1);
   }
 
 
   function changePage(direction, event){
     if(direction === "next" && pageNumber < numPages)  setPageNumber((pageNumber) => pageNumber + 1);
     if(direction === "previous" && pageNumber > 1)     setPageNumber((pageNumber) => pageNumber - 1);
-    if(event != null && event.target.value <= numPages) setPageNumber(Number(event.target.value))
   }
 
   function zoom(direction) {
@@ -63,7 +64,6 @@ export default function PDFReader(props) {
   
 
   const output = () => {
-    console.log(props.selfContained)
     if(props.selfContained){
       return(
 

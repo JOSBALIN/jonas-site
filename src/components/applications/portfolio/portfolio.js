@@ -8,6 +8,7 @@ import { AppWindow } from "../../appWindow";
 import PortfolioTextsMenu from "./portfolioTextsMenu";
 import matMul from "./MatrixMultiplication.pdf"
 import infoSecPDF from "./Video Game Information Security and RCE In Source Engine Games.pdf"
+import mastersThesis from "./VR Multimedia Analytics Softare Usability.pdf"
 
 export default function Portfolio() {
   const [displayedDocument, setDisplayedDocument] = useState(
@@ -26,6 +27,11 @@ export default function Portfolio() {
     {
       title: "Final Project: Matrix Multiplication",
       document: matMul,
+      year: "2022",
+    },
+    {
+      title: "Master's thesis",
+      document: mastersThesis,
       year: "2022",
     },
   ];
