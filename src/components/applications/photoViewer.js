@@ -57,11 +57,6 @@ export default function PhotoViewer(props) {
             shortText: "W/ colleagu2323e at work party",
         },
     ])
-
-    const [displayPage, setDisplayPage] = useState(1);
-
-
-
     
     // Import photo code borrowed from https://gist.github.com/shaquille-galimba/64f462f0b119945630427f9bedeceba7
     const importAll = (r) => {
@@ -72,24 +67,22 @@ export default function PhotoViewer(props) {
     
     const images = importAll(require.context('../../images/photos', false, /\.(png|jpe?g|svg)$/));
 
-    
     const [selectedPhoto, setSelectedPhoto] = useState({
         photo: images[photosMetadata[0].photo],
         index: 0
     })
-    
-    
+        
     const photoDisplay = (photo, shortText, index) => {
         return (<img src={images[`${photo}`]} alt={shortText} key={shortText} onClick={() => handleClick(photo, shortText, index)} className={"preview-images"}/>
         )
     }
     
     const handleClick = (photo, text, index) => {
-        console.log(index)
         setSelectedPhoto(
             {
                 photo: images[`${photo}`],
-                index: index
+                index: index,
+                text: text
             }
         );
         console.log(selectedPhoto)
