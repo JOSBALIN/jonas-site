@@ -152,12 +152,12 @@
     top:68px
 }
 
-#embedded-file-title{
+#embedded-file-title > p{
     position:absolute;
-    top:106px;
+    top:108px;
     left:106px;
     font-size: large;
-    width:100%;
+    width:630px;
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
