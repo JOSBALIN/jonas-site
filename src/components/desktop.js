@@ -119,17 +119,6 @@ export default function Desktop() {
         width: "50%",
       },
     },
-    {
-      id: 6,
-      title: "PDFTest",
-      icon: photosIcon,
-      component: <PdfReader document={matrixMultiplicationPDF} title={"Matrix Multiplication"}/>,
-      windowDimensions:{
-        height: "80%",
-        width: "50%",
-        resize:"none",
-      },
-    },
   ];
 
   const [applications, setApplications] = useState(initialAppStates);
