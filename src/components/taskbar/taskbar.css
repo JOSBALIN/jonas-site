@@ -69,7 +69,6 @@
   bottom:1px;
   z-index:0;
   height:90%;
-  filter:grayscale(70%);
 }
 
 .taskbar-application{
@@ -78,6 +77,10 @@
   height:30px;
   bottom:0px;
   position:absolute;
+}
+
+.taskbar-app{
+  padding-right:1px;
 }
 
 @media only screen and (max-width: 800px) {

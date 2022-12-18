@@ -91,7 +91,7 @@ export default function Taskbar(props) {
           <div key={index}
           className={"taskbar-app"}
           onClick={(e) => taskbarAppClick(e, app)}>
-            <TaskbarApps icon={app.icon} title={app.title} id={app.id}/>
+            <TaskbarApps icon={app.icon} title={app.title} id={app.id} isSelected={app.isSelected}/>
           </div>
         ))}
       </div>
