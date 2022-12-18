@@ -19,6 +19,10 @@ export function AppWindow(props) {
   const [maximized, setMaximized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(props.windowDimensions);
 
+  const topStyle = {filter: "brightness(180%)", filter:"grayscale(50%)"
+
+  }
+
   // maximizes application window; disables dragging
   const MaximizeWindow = () => {
     if (!maximized) {
@@ -63,20 +67,20 @@ export function AppWindow(props) {
             id="topbar-selected-app"
             className={"topbar " + isSelected}
             ref={noteRef}
-            style={props.isSelected ? { filter: "grayscale(0%)" } : { filter: "grayscale(70%)" }}
+            style={props.isSelected ? { filter: "grayscale(0%)" } : {filter:"brightness(130%)"}}
           >
-            <img
+            {/* <img
               style={maximized ? { display: "none" } : { display: "" }}
               className={"topbar-left"}
               src={require("../images/application-topbar/desktop-app-topbar-left.png")}
-            />
+            /> */}
             <img src={icon} className="topbar-icon"></img>
             <div className="topbar-title">{title}</div>
-            <img
+            {/* <img
               className={"topbar-right"}
               style={maximized ? { display: "none" } : { display: "" }}
               src={require("../images/application-topbar/desktop-app-topbar-right.png")}
-            />
+            /> */}
             <div
               className="topbar-buttons"
               onMouseEnter={() => setDraggable(false)}

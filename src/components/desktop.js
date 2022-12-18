@@ -18,8 +18,6 @@ import Contact from "./applications/contact";
 import contactIcon from "../images/app-icons/app-icon-contact.png";
 import referencesIcon from "../images/app-icons/app-icon-references.ico";
 import Portfolio from "./applications/portfolio/portfolio";
-import PdfReader from "./applications/pdfReader";
-import matrixMultiplicationPDF from './applications/portfolio/MatrixMultiplication.pdf';
 
 
 export default function Desktop() {
