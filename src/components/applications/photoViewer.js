@@ -85,7 +85,6 @@ export default function PhotoViewer(props) {
                 text: text
             }
         );
-        console.log(selectedPhoto)
     }
     
     const setBackground = () => {
