@@ -17,6 +17,24 @@
     background-size: 126.05px 100%
 }
 
+#embedded-previous-photo, #embedded-next-photo{
+    position: absolute;
+    top:95px;
+    left:10px;
+    width: 26px;
+    height: 26px;
+    border-radius: 20px;
+    background-color: transparent
+}
+
+#embedded-next-photo{
+    left:96px;
+}
+
+#embedded-previous-photo:hover, #embedded-next-photo:hover{
+    background-color: #ffffff35;
+}
+
 .photo-controls{
     width:20px;
     padding: 4px;
