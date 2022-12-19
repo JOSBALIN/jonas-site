@@ -3,6 +3,9 @@ import fetch from "node-fetch";
 
 const handler: Handler = async function (event) {
   console.log(process.env.NETLIFY_EMAILS_SECRET)
+  console.log(process.env.NETLIFY_EMAILS_PROVIDER)
+  console.log(process.env.NETLIFY_EMAILS_DIRECTORY)
+  console.log(process.env.NETLIFY_EMAILS_PROVIDER_API_KEY)
   if (event.body === null) {
     return {
       statusCode: 400,
