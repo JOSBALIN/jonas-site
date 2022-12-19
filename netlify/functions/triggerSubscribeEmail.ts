@@ -2,7 +2,7 @@ import { Handler } from "@netlify/functions";
 import fetch from "node-fetch";
 
 const handler: Handler = async function (event) {
-  console.log("EXECUTING")
+  console.log(process.env.NETLIFY_EMAILS_SECRET)
   if (event.body === null) {
     return {
       statusCode: 400,
