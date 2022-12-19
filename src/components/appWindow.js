@@ -20,25 +20,23 @@ export function AppWindow(props) {
   const [windowDimensions, setWindowDimensions] = useState(props.windowDimensions);
 
   const borderStyle = {
-    
-        border: "ridge",
+    border: "ridge",
     borderColor: "#0026ac",
     borderWidth: "4px",
-    borderTop:"none",
-    borderRadius: "16px 16px 0px 0px"
-
-  }
+    borderTop: "none",
+    borderRadius: "16px 16px 0px 0px",
+  };
 
   // maximizes application window; disables dragging
-  const MaximizeWindow = () => {
-    if (!maximized) {
-      setWindowDimensions({ height: "100%", width: "100%", transform: "none", borderRadius:"0" });
-      setMaximized(true);
-      setDraggable(false);
-    } else {
+  function maximizeWindow(){
+    if (maximized) {
       setWindowDimensions({ height: "50%", width: "50%"});
       setMaximized(false);
       setDraggable(true);
+    } else {
+      setWindowDimensions({ height: "100%", width: "100%", transform: "none", borderRadius:"0" });
+      setMaximized(true);
+      setDraggable(false);
     }
   };
 
@@ -131,7 +129,7 @@ export function AppWindow(props) {
                     (e.currentTarget.src =
                       "../images/application-topbar/desktop-app-topbar-expand-pressed.png")
                   }
-                  onClick={() => MaximizeWindow()}
+                  onClick={() => maximizeWindow()}
                 />
               </button>
               <button onClick={(e) => closeAppHandler(props.appId)}>

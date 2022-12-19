@@ -33,12 +33,8 @@ export default function Taskbar(props) {
   }, []);
 
 
-  const taskbarAppClick = (e, app) => {
-    props.summonApplication(e, app.id)
-
-  
-
-
+  const taskbarAppClick = (app) => {
+    props.summonApplication(app)
   }
 
   // Hides menu if clicked outside of start button & menu
@@ -90,7 +86,7 @@ export default function Taskbar(props) {
         {taskbarApps.map((app, index) => (
           <div key={index}
           className={"taskbar-app"}
-          onClick={(e) => taskbarAppClick(e, app)}>
+          onClick={(e) => taskbarAppClick(app)}>
             <TaskbarApps icon={app.icon} title={app.title} id={app.id} isSelected={app.isSelected}/>
           </div>
         ))}

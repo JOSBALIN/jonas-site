@@ -119,7 +119,6 @@ export default function Desktop() {
     },
   ];
 
-  const [applications, setApplications] = useState(initialAppStates);
 
   // Handles class delegation of selected icons
   const appIconSelection = (key) => {
@@ -134,8 +133,7 @@ export default function Desktop() {
   };
 
   function closeApp(appId)  {
-    setOpenApps(prev => prev.filter(app => app.id !== appId ))
-    console.log(openApps)
+    setOpenApps(list => list.filter(app => app.id !== appId ))
   }
 
   // single-click, color app-icon. Double-click, launch app
@@ -145,8 +143,8 @@ export default function Desktop() {
     // Execute on double click
     if (event.detail === 2) {
       // Check if app is open
-      if (openApps.some(current => current.id === app[key].id)) {
-        return summonApplication(app[key].id);
+      if (openApps.find(current => current.id === app[key].id)) {
+        return summonApplication(app);
       } else {
 
         setOpenApps((current) => [
@@ -164,21 +162,20 @@ export default function Desktop() {
     }
   };
 
-    const summonApplication = (e, appId) => {
+    const summonApplication = (app) => {
       // Missing condition for when app is already selected and should therefore hide.
-      passZIndex(appId)
+      if(app.isSelected){
+        app.component.display = ""
+      }
+      else {passZIndex(app.id)}
     };
 
-  // add an application to list
-  const addApplication = (obj) => {
-    setApplications((current) => [...current, obj]);
-  };
 
 
   return (
     <div className="desktop-background noselect" id="desktop-background">
       <div className="parent">
-        {applications.map((app, key, appComp) => (
+        {initialAppStates.map((app, key, appComp) => (
           <div
             className={"app-grid " + app.id}
             onClick={(event) => handleClick(event, key, appComp)}
@@ -204,21 +201,3 @@ export default function Desktop() {
     </div>
   );
 }
-
-// Button that creates a new application, internal use
-
-// <button
-// onClick={(e) =>
-//   addApplication({
-//     id: "5",
-//     title: "Trivia2",
-//     icon: "empty",
-//     component: <AppWindow open={true} />,
-//     selected: "false",
-//     open: "false",
-//     style: { backgroundColor: "lightblue" },
-//   })
-// }
-// >
-// asdasdsad
-// </button>
