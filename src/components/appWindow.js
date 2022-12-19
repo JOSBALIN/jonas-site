@@ -19,7 +19,13 @@ export function AppWindow(props) {
   const [maximized, setMaximized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(props.windowDimensions);
 
-  const topStyle = {filter: "brightness(180%)", filter:"grayscale(50%)"
+  const borderStyle = {
+    
+        border: "ridge",
+    borderColor: "#0026ac",
+    borderWidth: "4px",
+    borderTop:"none",
+    borderRadius: "16px 16px 0px 0px"
 
   }
 
@@ -151,7 +157,8 @@ export function AppWindow(props) {
           </div>
         }
         parentElement={
-            <div className="contents" onMouseDownCapture={zIndexHandler}>{contents}</div >
+            <div className="contents" onMouseDownCapture={zIndexHandler}
+            >{contents}</div >
         }
         style={windowDimensions}
         display={display}
