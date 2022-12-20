@@ -14,7 +14,7 @@ export default function PDFReader(props) {
   const [pageNumber, setPageNumber] = useState(1);
   const [openPDFs, setOpenPDFs] = useState([]);
   const [scale, setScale] = useState(0.8);
-  const [scalePercent, setScalePercent] = useState(scale*100);
+  const [scalePercent, setScalePercent] = useState(scale * 100);
   const [rotation, setRotation] = useState(0);
 
   // Load document, reset page selection
@@ -23,10 +23,11 @@ export default function PDFReader(props) {
     setPageNumber(1);
   }
 
-
-  function changePage(direction, event){
-    if(direction === "next" && pageNumber < numPages)  setPageNumber((pageNumber) => pageNumber + 1);
-    if(direction === "previous" && pageNumber > 1)     setPageNumber((pageNumber) => pageNumber - 1);
+  function changePage(direction, event) {
+    if (direction === "next" && pageNumber < numPages)
+      setPageNumber((pageNumber) => pageNumber + 1);
+    if (direction === "previous" && pageNumber > 1)
+      setPageNumber((pageNumber) => pageNumber - 1);
   }
 
   function zoom(direction) {
@@ -34,10 +35,9 @@ export default function PDFReader(props) {
     if (direction === "out" && scale > 0.2) setScale((scale) => scale - 0.2);
   }
 
-  function zoomChange(event){
-    setScale(event.target.value)
+  function zoomChange(event) {
+    setScale(event.target.value);
   }
-
 
   // Edge cases used to avoid console.logging errors for going below 0* or exceeding 360*
   function rotate(direction) {
@@ -57,23 +57,36 @@ export default function PDFReader(props) {
   }
 
   const downloadButton = () => {
-    return(
-        <a href={props.document} target = "_blank"><img src={downloadIcon} onClick={() => window.confirm("Are you sure you want to download this file?")}/></a>
-    )
-  }
-  
+    return (
+      <a href={props.document} target="_blank">
+        <img
+          src={downloadIcon}
+          onClick={() =>
+            window.confirm("Are you sure you want to download this file?")
+          }
+        />
+      </a>
+    );
+  };
 
   const output = () => {
-    if(props.selfContained){
-      return(
-
+    if (props.selfContained) {
+      return (
         <div className="pdf-controls">
-        <div className="nextPage"></div>
-        <img className="pdf-zoom" src={zoomOutIcon} onClick={() => zoom("out")}></img>
-        <img className="pdf-zoom" src={zoomInIcon} onClick={() => zoom("in")}></img>
+          <div className="nextPage"></div>
+          <img
+            className="pdf-zoom"
+            src={zoomOutIcon}
+            onClick={() => zoom("out")}
+          ></img>
+          <img
+            className="pdf-zoom"
+            src={zoomInIcon}
+            onClick={() => zoom("in")}
+          ></img>
           <img
             src={rightArrowIcon}
-            style={{transform:"rotate(180deg)"}}
+            style={{ transform: "rotate(180deg)" }}
             className="page-arrow"
             onClick={() => changePage("previous")}
           ></img>
@@ -89,41 +102,59 @@ export default function PDFReader(props) {
             className="page-arrow"
             onClick={() => changePage("next")}
           ></img>
-        {downloadButton()}
-        <img className="pdf-rotate" src={rotateClockwiseIcon} onClick={() => rotate("clockwise")}></img>
-        <img className="pdf-rotate" src={rotateCounterClockwiseIcon} onClick={() => rotate("counterclockwise")}></img>
-      </div>
-      )
-    } else { 
-      return ( 
-        <div className="embedded-pdf-elements">
-        <div id="embedded-previous-page" onClick={() => changePage("previous")}></div>
-        <div id="embedded-next-page" onClick={() => changePage("next")}></div>
-        <p id="embedded-page-number"> {pageNumber}/{numPages}</p>
-        <div id="embedded-zoom-in" onClick={() => zoom("in")}></div>
-        <div id="embedded-zoom-out" onClick={() => zoom("out")}></div>
-        <div id="embedded-file-title"><p>C:\Document and Settings\JonasBalin\Documents\Portfolio\{props.title}</p></div>
+          {downloadButton()}
+          <img
+            className="pdf-rotate"
+            src={rotateClockwiseIcon}
+            onClick={() => rotate("clockwise")}
+          ></img>
+          <img
+            className="pdf-rotate"
+            src={rotateCounterClockwiseIcon}
+            onClick={() => rotate("counterclockwise")}
+          ></img>
         </div>
-      )
+      );
+    } else {
+      return (
+        <div className="embedded-pdf-elements">
+          <div
+            id="embedded-previous-page"
+            onClick={() => changePage("previous")}
+          ></div>
+          <div id="embedded-next-page" onClick={() => changePage("next")}></div>
+          <p id="embedded-page-number">
+            {" "}
+            {pageNumber}/{numPages}
+          </p>
+          <div id="embedded-zoom-in" onClick={() => zoom("in")}></div>
+          <div id="embedded-zoom-out" onClick={() => zoom("out")}></div>
+          <div id="embedded-file-title">
+            <p>
+              C:\Document and Settings\JonasBalin\Documents\Portfolio\
+              {props.title}
+            </p>
+          </div>
+        </div>
+      );
     }
-  }
-
+  };
 
   return (
     <div className="total-background">
       {output()}
-    <div className="pdf-reader-background">
-      <div className="pdf-container">
-        <Document file={props.document} onLoadSuccess={onDocumentLoadSuccess}>
-          <Page
-            pageNumber={pageNumber}
-            renderTextLayer={false}
-            scale={scale}
-            rotate={rotation}
-          />
-        </Document>
+      <div className="pdf-reader-background">
+        <div className="pdf-container">
+          <Document file={props.document} onLoadSuccess={onDocumentLoadSuccess} onLoadError={console.error}>
+            <Page
+              pageNumber={pageNumber}
+              renderTextLayer={false}
+              scale={scale}
+              rotate={rotation}
+            />
+          </Document>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
