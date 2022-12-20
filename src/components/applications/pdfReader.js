@@ -1,15 +1,17 @@
 import "./pdfReader.css";
-import { Document, Page, Outline } from "react-pdf/dist/esm/entry.webpack5";
+import { Document, Page, Outline, pdfjs } from "react-pdf/dist/esm/entry.webpack5";
 import zoomInIcon from "../../images/application-images/pdf-reader/zoom-in.png";
 import zoomOutIcon from "../../images/application-images/pdf-reader/zoom-out.png";
 import rotateClockwiseIcon from "../../images/application-images/pdf-reader/rotate-clockwise.png";
 import rotateCounterClockwiseIcon from "../../images/application-images/pdf-reader/rotate-counterclockwise.png";
 import rightArrowIcon from "../../images/application-images/pdf-reader/right-arrow.ico";
 import downloadIcon from "../../images/application-images/pdf-reader/download.ico";
+
  
 import { useState } from "react";
 
 export default function PDFReader(props) {
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [openPDFs, setOpenPDFs] = useState([]);
