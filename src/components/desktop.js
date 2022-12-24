@@ -18,12 +18,30 @@ import Contact from "./applications/contact.tsx";
 import contactIcon from "../images/app-icons/app-icon-contact.png";
 import referencesIcon from "../images/app-icons/app-icon-references.ico";
 import Portfolio from "./applications/portfolio/portfolio";
+import { UseHoverTooltip } from './hooks/useHoverTooltip';
+import { useRef } from 'react';
+import './hooks/hoverTooltip.css';
 
 
 export default function Desktop() {
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
   const [appGridClasses, setAppGridClasses] = useState();
+  const [cursorX, setCursorX] = useState(0);
+  const [cursorY, setCursorY] = useState(0);
+
+  useEffect(() => {
+    const handleMouseMove = (event) => {
+      setCursorX(event.clientX);
+      setCursorY(event.clientY);
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
 
   // Get all instances of classes titled app-grid
   useEffect(() => {
@@ -169,11 +187,33 @@ export default function Desktop() {
       }
       else {passZIndex(app.id)}
     };
+    
 
-
+    const [tooltipVisible, cursorPosition, text, element] = UseHoverTooltip();
+  const tooltipPosition = {
+    position: 'absolute',
+    top: cursorY+20,
+    left:cursorX
+  }
 
   return (
     <div className="desktop-background noselect" id="desktop-background">
+       <div ref={element}>
+        Hover over me (element 1)
+      </div>
+      <div>
+        Hover over me (element 2)
+      </div>
+      {tooltipVisible && (
+        <div
+        className="tooltip"
+          style={
+            tooltipPosition
+          }
+        >
+          {"aaa"}
+        </div>
+      )}
       <div className="parent">
         {initialAppStates.map((app, key, appComp) => (
           <div
@@ -195,8 +235,7 @@ export default function Desktop() {
         <Taskbar
           className="taskbar"
           openApps={openApps}
-          summonApplication={summonApplication}
-        />
+          summonApplication={summonApplication}/>
       </div>
     </div>
   );
