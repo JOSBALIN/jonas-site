@@ -1,32 +1,45 @@
 import "./contact.css";
-import emailjs from "emailjs-com";
 import topBarImage from "../../images/application-images/contact-top-menu.png";
 import topBarImageHover from "../../images/application-images/contact-top-menu-hover.png";
 import topBarImagePressed from "../../images/application-images/contact-top-menu-pressed.png";
 import smallMailIcon from "../../images/application-images/contact-to-from.png";
 import { useState } from "react";
+import React from "react";
 
 export default function Contact() {
   const [topImage, setTopImage] = useState(topBarImage);
 
-  const sendEmail = (e) => {
-    e.preventDefault();
-    const mail = {
-      fromMail: e.target[3].value,
-      body:  e.target[5].value
-    }
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const target = event.target as typeof event.target & {
+      from: {value:string};
+      subject: { value: string };
+      body: { value: string };
+    };
+    
+    console.log(target.subject.value)
+    const data = {
+      contactFrom: target.from.value,
+      contactSubject: target.subject.value,
+      contactBody: target.body.value,
+    };
 
-    emailjs.send("Gmail", "template_a11lnf9", mail, "MXZIAi2k_cdxOUALP").then(
-      (result) => {
-      },
-      (error) => {
+    console.log(data.contactFrom)
 
-      }
-    );
+    console.log(data.contactBody)
+    //call to the Netlify Function you created
+    fetch("./.netlify/functions/triggerSubscribeEmail", {
+      method: "POST",
+      body: JSON.stringify({
+        contactFrom: data.contactFrom,
+        contactSubject: data.contactSubject,
+        contactBody: data.contactBody,
+      })
+    });
   };
 
   return (
-    <form name="contact-form" method="post">
+    <form name="contact-form" method="post" onSubmit={handleSubmit}>
       <input type="hidden" name="form-name" value="contact-form" />
       <div className={"top-menu-contact"}>
         {/* Send button is invisible, overlaid the actual image */}
@@ -41,13 +54,13 @@ export default function Contact() {
         <img className="top-menu-img-contact" src={topImage}></img>
       </div>
       <div className="top-inputs">
-        <div class="column1-row1"> 
+        <div className="column1-row1"> 
           <div className="labels-icons">
             <img className="small-mail-icon" src={smallMailIcon} />{" "}
             <label htmlFor="recipient-mail">To:</label>
           </div>
         </div>
-        <div class="column2-row1"> 
+        <div className="column2-row1"> 
           <input
             type="email"
             id="recipient-mail"
@@ -57,40 +70,40 @@ export default function Contact() {
           />
         
         </div>
-        <div class="column1-row2"> 
+        <div className="column1-row2"> 
           <div className="labels-icons">
             <img className="small-mail-icon" src={smallMailIcon} />
-            <label htmlFor="sender-mail">From:</label>
+            <label htmlFor="from">From:</label>
           </div>
         
         </div>
-        <div class="column2-row2"> 
+        <div className="column2-row2"> 
         <input
             type="email"
             id="from-mail"
-            name="fromMail"
-            placeholder="your e-mail here"
+            name="from"
+            placeholder="your e-mail/name here"
           />
         </div>
-        <div class="column1-row3"> 
+        <div className="column1-row3"> 
           <div className="labels-icons">
             <label htmlFor="subject">Subject:</label>
           </div>
         
         </div>
-        <div class="column2-row3"> 
+        <div className="column2-row3"> 
         
-        <input type="text" id="subject" name="subject" />
+        <input type="text" id="subject" name="subject" required />
         </div>
       </div>
 
         <div className="labels-column">
         </div>
-        <div class="inputs-column">
+        <div className="inputs-column">
 
 
         </div>
-      <textarea name="body" id="body"></textarea>
+      <textarea name="body" id="body" required></textarea>
     </form>
   );
 }

@@ -14,7 +14,7 @@ import photosIcon from "../images/app-icons/app-icon-photos.ico";
 import githubIcon from "../images/app-icons/app-icon-github.png";
 import MusicPlayer from "./applications/musicPlayer";
 import References from "./applications/references";
-import Contact from "./applications/contact";
+import Contact from "./applications/contact.tsx";
 import contactIcon from "../images/app-icons/app-icon-contact.png";
 import referencesIcon from "../images/app-icons/app-icon-references.ico";
 import Portfolio from "./applications/portfolio/portfolio";

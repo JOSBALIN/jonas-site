@@ -14,9 +14,9 @@ const handler: Handler = async function (event) {
   }
 
   const requestBody = JSON.parse(event.body) as {
-    subscriberName: string;
-    subscriberEmail: string;
-    inviteeEmail: string;
+    contactFrom: string;
+    contactSubject: string;
+    contactBody: string;
   };
 
   //automatically generated snippet from the email preview
@@ -27,12 +27,12 @@ const handler: Handler = async function (event) {
     },
     method: "POST",
     body: JSON.stringify({
-      from: requestBody.inviteeEmail,
-      to: requestBody.subscriberEmail,
-      subject: "You've been subscribed",
+      from: "jonasbalin@gmail.com",
+      to: "jackbamm@hotmail.com",
+      subject: "JXP Contact: " + requestBody.contactSubject, //THIS IS THE SUBJECT
       parameters: {
-        name: requestBody.subscriberName,
-        email: requestBody.subscriberEmail,
+        from: requestBody.contactFrom,
+        body: requestBody.contactBody,
       },
     }),
   });

@@ -44,7 +44,6 @@ export default function Portfolio() {
 
   const selectionPDF = (data) => {
     setDisplayedDocument(
-
       <PDFReader document={data.document} title={data.title} year={data.year} selfContained={false}/>
     )
   }
@@ -52,7 +51,6 @@ export default function Portfolio() {
   return (
     <div className="portfolio-container">
       <div className="portfolio-top-menu" id="taskbar">
-        {" "}
         <img className="top-menu-img" src={topBarImage}></img>
       </div>
       <div className="portfolio-background">
