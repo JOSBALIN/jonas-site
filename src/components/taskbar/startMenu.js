@@ -16,12 +16,14 @@ export default function StartMenu(props) {
   };
 
   const shutdownPC = () => {
+    if(window.confirm("Are you sure you want to turn this PC off?")){
     setShowShutdown(true);
     const audio = new Audio(XPShutdownAudio);
     audio.addEventListener("ended", () => {
       window.location.replace('')
     });
     audio.play();
+  }
   };
 
   return (
