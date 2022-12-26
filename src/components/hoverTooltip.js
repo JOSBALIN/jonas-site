@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import "./hoverTooltip.css"
 
 export function HoverTooltip({ text, reference }) {
   const [tooltipVisible, setTooltipVisible] = useState(false);

@@ -18,9 +18,8 @@ import Contact from "./applications/contact.tsx";
 import contactIcon from "../images/app-icons/app-icon-contact.png";
 import referencesIcon from "../images/app-icons/app-icon-references.ico";
 import Portfolio from "./applications/portfolio/portfolio";
-import { UseHoverTooltip } from './hooks/useHoverTooltip';
+import { HoverTooltip } from './hoverTooltip';
 import { useRef } from 'react';
-import './hooks/hoverTooltip.css';
 
 
 export default function Desktop() {
@@ -188,26 +187,8 @@ export default function Desktop() {
       else {passZIndex(app.id)}
     };
     
-
-  const [tooltipVisible, cursorPosition, text, element] = UseHoverTooltip('This is the hover tooltip');
-  const tooltipPosition = {
-    position: 'absolute',
-    top: cursorY+20,
-    left:cursorX
-  }
-
   return (
     <div className="desktop-background noselect" id="desktop-background">
-      {tooltipVisible && (
-        <div
-        className="tooltip"
-          style={
-            tooltipPosition
-          }
-        >
-          {"aaa"}
-        </div>
-      )}
       <div className="parent">
         {initialAppStates.map((app, key, appComp) => (
           <div
@@ -215,7 +196,6 @@ export default function Desktop() {
             onClick={(event) => handleClick(event, key, appComp)}
             key={key}
             app={app.component}
-            ref={element}
           >
             <AppIcon title={app.title} icon={app.icon}></AppIcon>
           </div>
