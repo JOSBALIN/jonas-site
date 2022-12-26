@@ -28,16 +28,24 @@ export function HoverTooltip({ text, reference }) {
     };
   }, [reference, showTimer]);
 
+  const tooltipStyle = {
+    position: 'absolute',
+    left: cursorPosition.x + 20,
+    top: cursorPosition.y + 20,
+    zIndex: 10000
+  };
+
+  // Add check to ensure tooltip is contained within the window
+  if (cursorPosition.y + 200 > window.innerHeight) {
+    tooltipStyle.top = cursorPosition.y - 200;
+  }
+
   return (
     <div>
       {tooltipVisible && (
         <div
           className="tooltip"
-          style={{
-            position: 'absolute',
-            left: cursorPosition.x,
-            top: cursorPosition.y,
-          }}
+          style={tooltipStyle}
         >
           {text}
         </div>
