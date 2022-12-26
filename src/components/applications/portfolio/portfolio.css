@@ -89,7 +89,71 @@
     margin-right:8px;
     margin-top: 2px;
   }
+
   
+  .dialog-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 200px;
+    background-color: white;
+    border: 2px solid #0026ac;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 10000;
+  }
+
+  .dialog-box-lock{
+    float:left;
+  }
+  
+  .dialog-box-title-bar {
+    height: 30px;
+    background-color: #3b5998;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+    padding-left: 10px;
+  }
+  
+  .dialog-box-content {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .dialog-box-buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .dialog-box-button {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 6px 12px;
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .dialog-box-button:hover {
+    background-color: #444;
+  }
+  
+  .background-hidden{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 999;
+  }
+
 /*   
   Style the tab
   .tab {
