@@ -7,13 +7,24 @@ import { useRef, useState } from "react";
 import React from "react";
 import { HoverTooltip } from "../hoverTooltip";
 import { useMouseCoordinates } from "../hooks/useMouseCoordinates";
+import ReCAPTCHA from "react-google-recaptcha"
 
 export default function Contact() {
   const [topImage, setTopImage] = useState(topBarImage);
+  const [recaptchaResponse, setRecaptchaResponse] = React.useState('');
+  const [showRecaptcha, setShowRecaptcha] = useState(false);
   const hoverRef = useRef(null);
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!recaptchaResponse) {
+      // ReCAPTCHA has not been completed yet
+      setShowRecaptcha(true);
+      return;
+    }
+
     const target = event.target as typeof event.target & {
       from: { value: string };
       subject: { value: string };
@@ -37,6 +48,13 @@ export default function Contact() {
     });
   };
 
+  const handleRecaptcha = (response) => {
+    setRecaptchaResponse(response);
+    setTimeout(() => {    setShowRecaptcha(false);
+    }, 1000)
+  }
+
+
   return (
     <form name="contact-form" method="post" onSubmit={handleSubmit}>
       <input type="hidden" name="form-name" value="contact-form" />
@@ -53,6 +71,14 @@ export default function Contact() {
         ></button>
         <img className="top-menu-img-contact" src={topImage}></img>
       </div>
+      {showRecaptcha && (
+        <ReCAPTCHA
+          sitekey=""
+          onChange={(response) => handleRecaptcha(response)}
+          executeOnLoad={false}
+          style={{ position: 'absolute', top: 64, left: 6 }}
+        />
+      )}
       <div className="top-inputs">
         <div className="column1-row1">
           <div className="labels-icons">
