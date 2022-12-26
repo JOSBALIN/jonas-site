@@ -10,7 +10,6 @@ import { useMouseCoordinates } from "../hooks/useMouseCoordinates";
 
 export default function Contact() {
   const [topImage, setTopImage] = useState(topBarImage);
-  const coordinates = useMouseCoordinates();
   const hoverRef = useRef(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
