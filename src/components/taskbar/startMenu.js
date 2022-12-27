@@ -26,6 +26,10 @@ export default function StartMenu(props) {
   }
   };
 
+  const handleAppClick = (app) => {
+    props.launchApplication(app)
+  }
+
   return (
     <OutsideAlerter
       enabled={props.outsideClick}
@@ -37,10 +41,17 @@ export default function StartMenu(props) {
             src={require("../../images/desktop-start-menu-compact.png")}
           ></img>
 
-          <div className="start-menu-button start-menu-app a01"></div>
-          <div className="start-menu-button start-menu-app a02"></div>
-          <div className="start-menu-button start-menu-app a03"></div>
-          <div className="start-menu-button start-menu-app a04"></div>
+          {props.appList.map((app, index) => (
+            <div
+              key={app.id}
+              className={"start-menu-button start-menu-app"}
+              style={{ bottom: 482 - 54 * index }}
+              onClick={(event) => handleAppClick(event, app[1], app)}
+            >
+              <img className="start-menu-app-icon" src={app.icon} />
+              <p className="start-menu-app-title">{app.title}</p>
+            </div>
+          ))}
 
           <div className="start-menu-button log-off"></div>
           <div
@@ -60,11 +71,11 @@ export default function StartMenu(props) {
                 backgroundColor: "#5a7edc",
               }}
             >
-              <img src={XPShutDownBackground} style={centeredStyle}/>
+              <img src={XPShutDownBackground} style={centeredStyle} />
             </div>
           )}
         </div>
       }
-    ></OutsideAlerter>
+    />
   );
 }

@@ -59,6 +59,8 @@ export default function Desktop() {
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
+    console.log("launch")
+    console.log(app)
     return (
       <AppWindow
         passZIndex={passZIndex}
@@ -201,16 +203,17 @@ export default function Desktop() {
           </div>
         ))}
         {openApps.map((app) => (
-          <div key={app.id}
-          // style={{... app.isSelected ? {filter:"grayscale(0%)", zIndex:{zIndex}} : {filter:"grayscale(70%)"}}} Commented out due to creating div height/width, exploring alternatives
-          >{launchApplication(app)}</div>
+          <div key={app.id}>{launchApplication(app)}</div>
         ))}
       </div>
       <div className="desktop-frontlayer">
         <Taskbar
           className="taskbar"
           openApps={openApps}
-          summonApplication={summonApplication}/>
+          appList={initialAppStates}
+          launchApplication={handleClick}
+          summonApplication={summonApplication}
+        />
       </div>
     </div>
   );
