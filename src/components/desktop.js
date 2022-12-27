@@ -64,7 +64,7 @@ export default function Desktop() {
   const initialAppStates = [
     {
       id: 1,
-      title: "My CV",
+      title: "MyCV.doc",
       icon: wordPadIcon,
       component: <MyCV/>,
       windowDimensions:{
@@ -74,7 +74,7 @@ export default function Desktop() {
     },
     {
       id: 2,
-      title: "Photos",
+      title: "My Photos",
       icon: photosIcon,
       component: <PhotoViewer/>,
       windowDimensions:{
@@ -90,7 +90,7 @@ export default function Desktop() {
     // },
     {
       id: 3,
-      title: "References",
+      title: "My References",
       icon: referencesIcon,
       component: <References/>,
       windowDimensions:{
@@ -101,7 +101,7 @@ export default function Desktop() {
     },
     {
       id: 4,
-      title: "Mail",
+      title: "Mail Me",
       icon: contactIcon,
       component: <Contact/>,
       windowDimensions:{

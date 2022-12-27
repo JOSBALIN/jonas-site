@@ -28,6 +28,10 @@
     margin-bottom:60px;
 }
 
+div[contenteditable]:focus {
+    outline: none;
+  }
+
 #cv-background{
     background-color: lightgray;
     overflow:hidden;
