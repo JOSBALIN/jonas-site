@@ -9,7 +9,6 @@ export default function PortfolioTextsMenu(props) {
     const title = e.target.firstElementChild;
     const icon = e.target.lastElementChild;
     if (e.type == "mouseover") {
-      title.style.filter = "brightness(160%)";
       icon.style.filter = "brightness(120%)";
       e.target.style.cursor = "pointer";
     } else {
@@ -55,24 +54,6 @@ export default function PortfolioTextsMenu(props) {
               {subject.title}
             </li>
           ))}
-          {/* <li onClick={() => props.PDFReader(props.document)}>
-            2022: Master's Thesis - VR Multimedia Analytics Software Usability:
-            Implementing and Assessing Novel Application Features in ViRMA
-          </li> */}
-          {/* <li>
-            <a target="_blank">
-              2022: Applied Information Security - Video Game Information
-              Security and RCE In Source Engine Games
-            </a>
-          </li>
-          <li>2022: Technical Interaction Design, Final Report</li>
-          <li>
-            2021: Applied Algorithms - Final Project: Matrix Multiplication
-          </li>
-          <li>
-            2021: Research Project: Improvements to the usability of the
-            Web-Based implementation of PhotoCube
-          </li> */}
         </ul>
       </div>
     </div>
