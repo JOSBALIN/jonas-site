@@ -19,14 +19,6 @@ export function AppWindow(props) {
   const [maximized, setMaximized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(props.windowDimensions);
 
-  const borderStyle = {
-    border: "ridge",
-    borderColor: "#0026ac",
-    borderWidth: "4px",
-    borderTop: "none",
-    borderRadius: "16px 16px 0px 0px",
-  };
-
   // maximizes application window; disables dragging
   function maximizeWindow(){
     if (maximized) {
@@ -40,7 +32,9 @@ export function AppWindow(props) {
     }
   };
 
-
+  useEffect(() => {
+    if(props.isSelected) setZIndex(props.zIndex)
+  }, [props.zIndex]);
 
   const closeAppHandler = (appId) => {
     props.closeApp(appId);

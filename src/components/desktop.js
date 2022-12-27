@@ -11,36 +11,19 @@ import MyCV from "./applications/myCV";
 import PhotoViewer from "./applications/photoViewer";
 import wordPadIcon from "../images/app-icons/app-icon-wordpad.ico";
 import photosIcon from "../images/app-icons/app-icon-photos.ico";
-import githubIcon from "../images/app-icons/app-icon-github.png";
-import MusicPlayer from "./applications/musicPlayer";
 import References from "./applications/references";
 import Contact from "./applications/contact.tsx";
 import contactIcon from "../images/app-icons/app-icon-contact.png";
 import referencesIcon from "../images/app-icons/app-icon-references.ico";
 import Portfolio from "./applications/portfolio/portfolio";
-import { HoverTooltip } from './hoverTooltip';
-import { useRef } from 'react';
 
 
 export default function Desktop() {
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
   const [appGridClasses, setAppGridClasses] = useState();
-  const [cursorX, setCursorX] = useState(0);
-  const [cursorY, setCursorY] = useState(0);
 
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      setCursorX(event.clientX);
-      setCursorY(event.clientY);
-    };
 
-    document.addEventListener('mousemove', handleMouseMove);
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-    };
-  }, []);
 
   // Get all instances of classes titled app-grid
   useEffect(() => {
@@ -51,16 +34,15 @@ export default function Desktop() {
   // Handling of z-index and app selection status coloring
   const passZIndex = (appId) => {
     setZIndex((zIndex) => zIndex + 1);
-    openApps.map(current => (current.isSelected = false))
-    const selectedApp = openApps.find(current => current.id === appId) 
+    openApps.map((current) => (current.isSelected = false));
+    const selectedApp = openApps.find((current) => current.id === appId);
     selectedApp.isSelected = true;
     selectedApp.zIndex = zIndex;
+    console.log(selectedApp)
   };
 
   // Function to launch given application within AppWindow component
   const launchApplication = (app) => {
-    console.log("launch")
-    console.log(app)
     return (
       <AppWindow
         passZIndex={passZIndex}
@@ -182,9 +164,11 @@ export default function Desktop() {
   };
 
     const summonApplication = (app) => {
+      console.log("Summon!")
       // Missing condition for when app is already selected and should therefore hide.
+      console.log(app.id)
       if(app.isSelected){
-        app.component.display = ""
+        // app.component.style.display = ""
       }
       else {passZIndex(app.id)}
     };
