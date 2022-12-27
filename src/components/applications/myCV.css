@@ -2,13 +2,14 @@
     overflow:hidden;
     background-image: url("../../images/application-images/myCV-top-menu-background.png");
     height:126.05px;
-    background-size: 126.05px 100%
+    background-size: 126.05px 100%;
+    position:fixed;
+    text-align: center;
 }
 
 .top-menu-img{
     width:860px;
     height:auto;
-    margin:0;
 }
 
 .top-menu-img-bg{
@@ -23,13 +24,13 @@
     background-color: white;
     padding-left:16px;
     padding-right:16px;
-    margin-top:26px;
-    margin-bottom:26px;
+    margin-top:160px;
+    margin-bottom:60px;
 }
 
 #cv-background{
     background-color: lightgray;
-    height:100%;
+    overflow:hidden;
 }
 
 h1, h2{
