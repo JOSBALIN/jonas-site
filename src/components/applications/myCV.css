@@ -1,10 +1,9 @@
 .top-menu{
     overflow:hidden;
     background-image: url("../../images/application-images/myCV-top-menu-background.png");
-    height:126.05px;
-    background-size: 126.05px 100%;
-    position:fixed;
-    text-align: center;
+    height:96.6px;
+    background-size: 96.6px 100%;
+    position:static
 }
 
 .top-menu-img{
@@ -24,7 +23,7 @@
     background-color: white;
     padding-left:16px;
     padding-right:16px;
-    margin-top:160px;
+    margin-top:16px;
     margin-bottom:60px;
 }
 
