@@ -15,7 +15,7 @@ export function AppWindow(props) {
   const [draggable, setDraggable] = useState(true);   // draggable toggle
   
   // window dimensions
-  const [display, setDisplay] = useState(""); // application minimization
+  const [display, setDisplay] = useState(props.display); // application minimization
   const [maximized, setMaximized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(props.windowDimensions);
 

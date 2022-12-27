@@ -54,6 +54,7 @@ export default function Desktop() {
         contents={app.component}
         windowDimensions={app.windowDimensions}
         isSelected={app.isSelected}
+        display={""}
         />
     );
   };
@@ -164,13 +165,10 @@ export default function Desktop() {
   };
 
     const summonApplication = (app) => {
-      console.log("Summon!")
-      // Missing condition for when app is already selected and should therefore hide.
-      console.log(app.id)
-      if(app.isSelected){
-        // app.component.style.display = ""
+      if (app.isSelected) {
+      } else {
+        passZIndex(app.id);
       }
-      else {passZIndex(app.id)}
     };
     
   return (

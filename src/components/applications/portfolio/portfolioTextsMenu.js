@@ -20,6 +20,7 @@ export default function PortfolioTextsMenu(props) {
   }
 
   const handleClick = (selectedPDF) => {
+    console.log(selectedPDF)
     props.selectionPDF(selectedPDF)
   }
 

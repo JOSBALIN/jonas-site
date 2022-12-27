@@ -36,24 +36,20 @@ export default function PhotoViewer(props) {
       shortText: "W/ colleague at work party",
     },
     {
-      photo: "EllieJonas.jpg",
-      shortText: "My dog 123123123 me!",
+      photo: "JonasJan02.jpg",
+      shortText: "My brother and me",
     },
     {
-      photo: "EllieJonas2.jpg",
-      shortText: "My dog and me (123123)!",
+      photo: "JonasJan03.jpg",
+      shortText: "My brother and me, again",
     },
     {
-      photo: "EllieJonas2.jpg",
-      shortText: "Master's 43434",
+      photo: "JonasJan04.jpg",
+      shortText: "My brother and me, again, again",
     },
     {
-      photo: "JonasGuitar.jpg",
-      shortText: "Guitar1232 w/ fam",
-    },
-    {
-      photo: "SilasJonas.jpg",
-      shortText: "W/ colleagu2323e at work party",
+      photo: "JonasJan01.jpg",
+      shortText: "Okay, we probably went too far here",
     },
   ]);
 
