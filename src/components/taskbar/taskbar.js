@@ -53,14 +53,6 @@ export default function Taskbar(props) {
     setStartMenuClicked(true);
   };
 
-  const pressedStartButton = () => {
-    if (startMenuClicked) {
-      return startButtonPressed;
-    } else {
-      return startButton;
-    }
-  };
-
   return (
     <div className="taskbar noselect">
       <StartMenu
@@ -75,7 +67,7 @@ export default function Taskbar(props) {
       <img
         id="start-menu-button"
         className="start-button"
-        src={pressedStartButton()}
+        src={startMenuClicked ? startButtonPressed : startButton}
         // Refactor these icon changes. Spaghetti right now.
         onMouseEnter={(e) => (e.currentTarget.src = startButtonHover)}
         onMouseDownCapture={() => showStartMenu()}

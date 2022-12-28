@@ -33,7 +33,7 @@
     margin-right:5px;
 }
 
-form{
+.contact-form{
     background-color: #efeee3;
     height:100%
 }
@@ -56,25 +56,15 @@ form{
 
 .top-inputs {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: 100px auto;
     grid-template-rows: repeat(3, 1fr);
     grid-row-gap: 2px
     }
-    
-    .column1-row1 { grid-area: 1 / 1 / 2 / 2; }
-    .column2-row1{ grid-area: 1 / 2 / 2 / 6; }
-    .column1-row2 { grid-area: 2 / 1 / 3 / 2; }
-    .column2-row2 { grid-area: 2 / 2 / 3 / 6; }
-    .column1-row3 { grid-area: 3 / 1 / 4 / 2; }
-    .column2-row3{ grid-area: 3 / 2 / 4 / 6; } 
-
-    div[class^="column1"] {
-        width:100px;
-      }
-
-input {
+  
+.contact-form input {
     width: 98%;
     border-radius: 0;
+    display:flex;
 }
 
-input:focus, select:focus, textarea:focus { outline: none; }
+.contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; }

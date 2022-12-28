@@ -1,7 +1,7 @@
 import "./startMenu.css";
-import OutsideAlerter from "../hooks/OutsideAlerter";
+import OutsideAlerter from "../hooks/useOutsideAlerter";
 import { useState } from "react";
-import XPShutdownAudio from "./XP-Shutdown.mp3";
+import XPShutdownAudio from "../../audio/audio-XP-Shutdown.mp3";
 import XPShutDownBackground from "../../images/desktop-shutdown.png"
 
 export default function StartMenu(props) {
@@ -71,7 +71,16 @@ export default function StartMenu(props) {
                 backgroundColor: "#5a7edc",
               }}
             >
-              <img src={XPShutDownBackground} style={centeredStyle} />
+              <img
+                src={XPShutDownBackground}
+                style={{
+                  position: "absolute",
+                  top: 200,
+                  right: 0,
+                  left: 250,
+                  margin: "auto",
+                }}
+              />
             </div>
           )}
         </div>

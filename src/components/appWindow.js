@@ -3,19 +3,13 @@ import { DraggableElement } from "./hooks/Draggable";
 import { unmountComponentAtNode, render } from "react-dom";
 
 export function AppWindow(props) {
-  // app information
-  const [title, setTitle] = useState(props.title);
-  const [contents, setContents] = useState(props.contents);
-  const [icon, setIcon] = useState(props.icon)
   const [isSelected, setIsSelected] = useState(props.isSelected)
-  const noteRef = useRef(); // dragging functionality  
-  // tracks order of apps
   const [zIndex, setZIndex] = useState(props.zIndex);
-
+  const noteRef = useRef(); // enables dragging functionality  
   const [draggable, setDraggable] = useState(true);   // draggable toggle
   
   // window dimensions
-  const [display, setDisplay] = useState(props.display); // application minimization
+  const [display, setDisplay] = useState(props.display);
   const [maximized, setMaximized] = useState(false);
   const [windowDimensions, setWindowDimensions] = useState(props.windowDimensions);
 
@@ -43,7 +37,6 @@ export function AppWindow(props) {
   // parent function, updates z-index
   const zIndexHandler = () => {
     props.passZIndex(props.appId)
-    setZIndex(props.zIndex)
     setIsSelected(props.isSelected)
   };
 
@@ -72,8 +65,8 @@ export function AppWindow(props) {
               className={"topbar-left"}
               src={require("../images/application-topbar/desktop-app-topbar-left.png")}
             /> */}
-            <img src={icon} className="topbar-icon"></img>
-            <div className="topbar-title">{title}</div>
+            <img src={props.icon} className="topbar-icon"></img>
+            <div className="topbar-title">{props.title}</div>
             {/* <img
               className={"topbar-right"}
               style={maximized ? { display: "none" } : { display: "" }}
@@ -150,7 +143,7 @@ export function AppWindow(props) {
         }
         parentElement={
             <div className="contents" onMouseDownCapture={zIndexHandler}
-            >{contents}</div >
+            >{props.contents}</div >
         }
         style={windowDimensions}
         display={display}

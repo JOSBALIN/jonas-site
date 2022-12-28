@@ -6,7 +6,6 @@ import smallMailIcon from "../../images/application-images/contact-to-from.png";
 import { useRef, useState } from "react";
 import React from "react";
 import { HoverTooltip } from "../hoverTooltip";
-import { useMouseCoordinates } from "../hooks/useMouseCoordinates";
 import ReCAPTCHA from "react-google-recaptcha"
 
 export default function Contact() {
@@ -56,7 +55,7 @@ export default function Contact() {
 
 
   return (
-    <form name="contact-form" method="post" onSubmit={handleSubmit}>
+    <form className="contact-form" name="contact-form" method="post" onSubmit={handleSubmit}>
       <input type="hidden" name="form-name" value="contact-form" />
       <div className={"top-menu-contact"}>
         {/* Send button is invisible, overlaid the actual image */}

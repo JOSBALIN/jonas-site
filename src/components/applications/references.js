@@ -5,7 +5,7 @@ import { hover } from "@testing-library/user-event/dist/hover";
 import PortfolioTextsMenu from "./portfolio/portfolioTextsMenu";
 
 export default function References(props) {
-  const [contacts, setContacts] = useState([
+  const [references, setReferences] = useState([
     {
       name: "Christian Borup",
       title: "Junior Consultant, colleague",
@@ -65,7 +65,7 @@ export default function References(props) {
     }
   }
 
-  const handleClick = (e, contact) => {
+  const handleReferenceClick = (e, contact) => {
     setSelectedContact(contact);
     var i, activeContacts
 
@@ -77,7 +77,7 @@ export default function References(props) {
     e.currentTarget.className += " active-contact";
   };
 
-  const [selectedContact, setSelectedContact] = useState(contacts[0]);
+  const [selectedContact, setSelectedContact] = useState(references[0]);
 
   return (
     <div className="references-background">
@@ -110,11 +110,11 @@ export default function References(props) {
 
         <div className="left-panel">
           <ul className="list-references">
-            {contacts.map((contact, index) => (
+            {references.map((contact, index) => (
               <li
               key={index}
                 className="element-reference"
-                onClick={(e) => handleClick(e, contact)}
+                onClick={(e) => handleReferenceClick(e, contact)}
                 onMouseOver={(e) => changeHoverState(e)}
                 onMouseLeave={(e) => changeHoverState(e)}
               >

@@ -8,7 +8,7 @@ import previousPhoto from "../../images/application-images/photos-arrow-back.png
 import nextPhoto from "../../images/application-images/photos-arrow-next.png";
 import setBackgroundIcon from "../../images/application-images/photoViewer-set-background.ico";
 
-export default function PhotoViewer(props) {
+export default function PhotoViewer() {
   // Future refactoring, place all photos and lists of these in external file
   const [photosMetadata, setPhotosMetadata] = useState([
     {
@@ -54,7 +54,7 @@ export default function PhotoViewer(props) {
   ]);
 
   // Import photo code borrowed from https://gist.github.com/shaquille-galimba/64f462f0b119945630427f9bedeceba7
-  const importAll = (r) => {
+  const importAllPhotos = (r) => {
     let images = {};
     r.keys().forEach((item) => {
       images[item.replace("./", "")] = r(item);
@@ -62,7 +62,7 @@ export default function PhotoViewer(props) {
     return images;
   };
 
-  const images = importAll(
+  const images = importAllPhotos(
     require.context("../../images/photos", false, /\.(png|jpe?g|svg)$/)
   );
 
@@ -71,19 +71,19 @@ export default function PhotoViewer(props) {
     index: 0,
   });
 
-  const photoDisplay = (photo, shortText, index) => {
+  const displayPreviewPhotos = (photo, shortText, index) => {
     return (
       <img
         src={images[`${photo}`]}
         alt={shortText}
         key={shortText}
-        onClick={() => handleClick(photo, shortText, index)}
+        onClick={() => handlePreviewClick(photo, shortText, index)}
         className={"preview-images"}
       />
     );
   };
 
-  const handleClick = (photo, text, index) => {
+  const handlePreviewClick = (photo, text, index) => {
     setSelectedPhoto({
       photo: images[`${photo}`],
       index: index,
@@ -91,12 +91,12 @@ export default function PhotoViewer(props) {
     });
   };
 
-  const setBackground = () => {
+  const setDesktopBackground = () => {
     document.getElementById("desktop-background").style.backgroundImage =
       "url(" + selectedPhoto.photo + ")";
   };
 
-  const iteratePhoto = (direction) => {
+  const iterateFocusedPhoto = (direction) => {
     if (direction === "next") {
       const nextPhoto = photosMetadata[selectedPhoto.index + 1].photo;
       setSelectedPhoto({
@@ -119,11 +119,11 @@ export default function PhotoViewer(props) {
         <div className="top-menu-embedded-controls">
           <div
             id="embedded-previous-photo"
-            onClick={() => iteratePhoto("previous")}
+            onClick={() => iterateFocusedPhoto("previous")}
           ></div>
           <div
             id="embedded-next-photo"
-            onClick={() => iteratePhoto("next")}
+            onClick={() => iterateFocusedPhoto("next")}
           ></div>
         </div>
       </div>
@@ -134,17 +134,17 @@ export default function PhotoViewer(props) {
             className="photo-controls"
             id="previous-photo"
             src={previousPhoto}
-            onClick={() => iteratePhoto("previous")}
+            onClick={() => iterateFocusedPhoto("previous")}
           />
           <img
             className="photo-controls"
             id="next-photo"
             src={nextPhoto}
-            onClick={() => iteratePhoto("next")}
+            onClick={() => iterateFocusedPhoto("next")}
           />
           <img
             className="photo-controls"
-            onClick={() => setBackground()}
+            onClick={() => setDesktopBackground()}
             id="set-background"
             src={setBackgroundIcon}
           ></img>
@@ -155,7 +155,7 @@ export default function PhotoViewer(props) {
         {photosMetadata.map((data, index) => (
           <div className="photos-preview" key={index}>
             <div className="photos-preview-upper">
-              {photoDisplay(data.photo, data.shortText, index)}
+              {displayPreviewPhotos(data.photo, data.shortText, index)}
             </div>
             <div className="photos-preview-lower">
               <p>{data.shortText}</p>
