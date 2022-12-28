@@ -3,7 +3,7 @@ import taskBar from "../../images/desktop-startbar.png";
 import taskBarRight from "../../images/desktop-startbar-right.png";
 import startButtonHover from "../../images/desktop-startbutton-hover.png";
 import startButtonPressed from "../../images/desktop-startbutton-pressed.png";
-import TaskbarApps from "./taskbar-apps";
+import TaskbarApps from "./taskbar-apps.tsx";
 import { useState, useEffect } from "react";
 import "./taskbar.css";
 import StartMenu from "./startMenu";
