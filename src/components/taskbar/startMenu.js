@@ -5,7 +5,7 @@ import XPShutdownAudio from "../../audio/audio-XP-Shutdown.mp3";
 import XPShutDownBackground from "../../images/desktop-shutdown.png"
 
 export default function StartMenu(props) {
-  const [showShutdown, setShowShutdown] = useState(false);
+  const [shutdown, setShutdown] = useState(false);
 
   const centeredStyle = {
     position: 'absolute',
@@ -17,7 +17,7 @@ export default function StartMenu(props) {
 
   const shutdownPC = () => {
     if(window.confirm("Are you sure you want to turn this PC off?")){
-    setShowShutdown(true);
+    setShutdown(true);
     const audio = new Audio(XPShutdownAudio);
     audio.addEventListener("ended", () => {
       window.location.replace('')
@@ -59,7 +59,7 @@ export default function StartMenu(props) {
             onClick={shutdownPC}
           ></div>
 
-          {showShutdown && (
+          {shutdown && (
             <div
               style={{
                 position: "fixed",
