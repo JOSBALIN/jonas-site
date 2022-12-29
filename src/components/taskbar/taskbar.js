@@ -37,7 +37,8 @@ export default function Taskbar(props) {
   }, []);
 
   const taskbarAppClick = (app) => {
-    props.summonApplication(app);
+    console.log(app)
+    props.launchApplication(app);
   };
 
   // Hides menu if clicked outside of start button & menu

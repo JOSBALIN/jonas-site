@@ -134,7 +134,7 @@ export default function Desktop() {
 
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, appId) => {
-    appIconSelection(appId);
+    appIconSelection(appId-1);
 
     // Execute on double click
     if (event.detail === 2 || event.target.className.includes("start-menu")) {
@@ -171,7 +171,7 @@ export default function Desktop() {
         {appList.map((app, key, appComp) => (
           <div
             className={"app-grid " + app.id}
-            onClick={(event) => handleClick(event, key, appComp)}
+            onClick={(event) => handleClick(event, app.id)}
             key={key}
             app={app.component}
           >
