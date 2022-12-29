@@ -12,13 +12,13 @@
 // }
 
 
+import React from 'react';
 import './App.css';
 import Desktop from "./components/desktop"
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="app-root">
-
       <Desktop/>
     </div>
   );

@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
-import appBackgroundDefault from '../.././images/desktop-taskbar-app.png';
-import appBackgroundHover from '../.././images/desktop-taskbar-app-hover.png';
-import appBackgroundDown from '../.././images/desktop-taskbar-app-focus.png';
+import React, { useState } from 'react';
+import appBackgroundDefault from '../../images/desktop-taskbar-app.png';
+import appBackgroundHover from '../../images/desktop-taskbar-app-hover.png';
+import appBackgroundDown from '../../images/desktop-taskbar-app-focus.png';
 import './taskbar.css';
 
 interface Props {

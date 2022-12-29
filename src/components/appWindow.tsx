@@ -1,12 +1,30 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { DraggableElement } from "./hooks/Draggable";
-import { unmountComponentAtNode, render } from "react-dom";
 
-export function AppWindow(props) {
-  const [isSelected, setIsSelected] = useState(props.isSelected)
+interface Props {
+  appId: string;
+  isSelected: boolean;
+  zIndex: number;
+  display: string;
+  windowDimensions: {
+    height: string;
+    width: string;
+    transform: string;
+    borderRadius: string;
+  };
+  contents:string;
+  icon: string;
+  title: string;
+  closeApp: (appId: string) => void;
+  passZIndex: (appId: string) => void;
+}
+
+
+const AppWindow: React.FC<Props> = (props) => {
+  const [isSelected, setIsSelected] = useState(props.isSelected);
   const [zIndex, setZIndex] = useState(props.zIndex);
-  const noteRef = useRef(); // enables dragging functionality  
-  const [draggable, setDraggable] = useState(true);   // draggable toggle
+  const draggableRef = useRef<HTMLDivElement | null>(null); // enables dragging functionality  
+  const [draggable, setDraggable] = useState(true); // draggable toggle
   
   // window dimensions
   const [display, setDisplay] = useState(props.display);
@@ -14,65 +32,72 @@ export function AppWindow(props) {
   const [windowDimensions, setWindowDimensions] = useState(props.windowDimensions);
 
   // maximizes application window; disables dragging
-  function maximizeWindow(){
+  function maximizeWindow() {
     if (maximized) {
-      setWindowDimensions({ height: "50%", width: "50%"});
+      setWindowDimensions({ height: "50%", width: "50%", transform:"", borderRadius:"20px" });
       setMaximized(false);
       setDraggable(true);
     } else {
-      setWindowDimensions({ height: "100%", width: "100%", transform: "none", borderRadius:"0" });
+      setWindowDimensions({
+        height: "100%",
+        width: "100%",
+        transform: "none",
+        borderRadius: "0",
+      });
       setMaximized(true);
       setDraggable(false);
     }
-  };
+  }
 
   useEffect(() => {
-    if(props.isSelected) setZIndex(props.zIndex)
+    if (props.isSelected) setZIndex(props.zIndex);
+    if(props.isSelected && display === "none") setDisplay("")
   }, [props.zIndex]);
 
-  const closeAppHandler = (appId) => {
+  const closeAppHandler = (appId: string) => {
     props.closeApp(appId);
-  }
+  };
 
   // parent function, updates z-index
   const zIndexHandler = () => {
-    props.passZIndex(props.appId)
-    setIsSelected(props.isSelected)
+    props.passZIndex(props.appId);
+    setIsSelected(props.isSelected);
   };
 
-  // "minimizes" window - hides it
-  // Sometimes has to be clicked twice - get a fix in future
+  // Consider moving to desktop to facilitate deselection on minimization
   const minimizeWindow = () => {
-    if(display == "none"){
-      setDisplay("")
+    if (display === "none") {
+      setDisplay("");
     } else {
-      setDisplay("none")
+      setDisplay("none");
     }
   };
 
   return (
-      <DraggableElement
-        dragElement={
-          <div 
+    <DraggableElement
+      dragElement={
+        <div
           onMouseDownCapture={zIndexHandler}
-            id="topbar-selected-app"
-            className={"topbar " + isSelected}
-            ref={noteRef}
-            style={props.isSelected ? { filter: "grayscale(0%)" } : {filter:"brightness(130%)"}}
-          >
-            {/* <img
+          id="topbar-selected-app"
+          className={"topbar " + isSelected}
+          ref={draggableRef}
+          style={
+            props.isSelected ? { filter: "grayscale(0%)" } : { filter: "brightness(130%)" }
+          }
+        >
+          {/* <img
               style={maximized ? { display: "none" } : { display: "" }}
               className={"topbar-left"}
               src={require("../images/application-topbar/desktop-app-topbar-left.png")}
             /> */}
-            <img src={props.icon} className="topbar-icon"></img>
-            <div className="topbar-title">{props.title}</div>
-            {/* <img
+          <img src={props.icon} className="topbar-icon" />
+          <div className="topbar-title">{props.title}</div>
+          {/* <img
               className={"topbar-right"}
               style={maximized ? { display: "none" } : { display: "" }}
               src={require("../images/application-topbar/desktop-app-topbar-right.png")}
             /> */}
-            <div
+          <div
               className="topbar-buttons"
               onMouseEnter={() => setDraggable(false)}
               onMouseLeave={() => {if(!maximized)setDraggable(true)}}
@@ -154,6 +179,8 @@ export function AppWindow(props) {
   );
 }
 
+
+export default AppWindow;
 // Explainers
 // <DraggableElement dragElement={element mouse hold} parentElement={parent to drag}
 

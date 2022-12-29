@@ -1,7 +1,7 @@
 import "../App.css";
 import * as React from "react";
 import Taskbar from "./taskbar/taskbar";
-import { AppWindow } from "./appWindow";
+import AppWindow from "./appWindow";
 import "./appWindow.css";
 import "./desktop.css";
 import { useState } from "react";
@@ -63,7 +63,7 @@ export default function Desktop() {
   // future refactor - place these in external file
   const initialAppStates = [
     {
-      id: 1,
+      id: 0,
       title: "MyCV.doc",
       icon: wordPadIcon,
       component: <MyCV/>,
@@ -73,7 +73,7 @@ export default function Desktop() {
       },
     },
     {
-      id: 2,
+      id: 1,
       title: "My Photos",
       icon: photosIcon,
       component: <PhotoViewer/>,
@@ -89,7 +89,7 @@ export default function Desktop() {
     //   component: <MusicPlayer/>,
     // },
     {
-      id: 3,
+      id: 2,
       title: "My References",
       icon: referencesIcon,
       component: <References/>,
@@ -100,7 +100,7 @@ export default function Desktop() {
       },
     },
     {
-      id: 4,
+      id: 3,
       title: "Mail Me",
       icon: contactIcon,
       component: <Contact/>,
@@ -110,7 +110,7 @@ export default function Desktop() {
       },
     },
     {
-      id: 5,
+      id: 4,
       title: "Portfolio",
       icon: photosIcon,
       component: <Portfolio/>,
@@ -139,24 +139,24 @@ export default function Desktop() {
   }
 
   // single-click, color app-icon. Double-click, launch app
-  const handleClick = (event, key, app) => {
-    appIconSelection(key);
+  const handleClick = (event, appId) => {
+    appIconSelection(appId);
 
     // Execute on double click
-    if (event.detail === 2) {
+    if (event.detail === 2 || event.target.className.includes("start-menu")) {
       // Check if app is open
-      if (openApps.find(current => current.id === app[key].id)) {
-        return summonApplication(app);
+      if (openApps.find(current => current.id === initialAppStates[appId].id)) {
+        return summonApplication(initialAppStates[appId]);
       } else {
 
         setOpenApps((current) => [
           ...current,
           {
-            component: app[key].component,
-            id: app[key].id,
-            title: app[key].title,
-            icon: app[key].icon,
-            windowDimensions: app[key].windowDimensions,
+            component: initialAppStates[appId].component,
+            id: initialAppStates[appId].id,
+            title: initialAppStates[appId].title,
+            icon: initialAppStates[appId].icon,
+            windowDimensions: initialAppStates[appId].windowDimensions,
           },
         ]);
         appIconSelection(-1); // resets icon selection

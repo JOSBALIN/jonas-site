@@ -53,6 +53,8 @@ export default function Taskbar(props) {
     setStartMenuClicked(true);
   };
 
+
+
   return (
     <div className="taskbar noselect">
       <StartMenu
