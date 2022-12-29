@@ -1,5 +1,6 @@
 import "./myCV.css";
 import topBarImage from "../../images/application-images/myCV-top-menu.png";
+import React from "react";
 
 export default function MyCV() {
   return (
