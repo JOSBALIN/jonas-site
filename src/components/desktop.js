@@ -61,7 +61,7 @@ export default function Desktop() {
 
   // all applications to be displayed on the desktop, initial states
   // future refactor - place these in external file
-  const initialAppStates = [
+  const appList = [
     {
       id: 0,
       title: "MyCV.doc",
@@ -82,12 +82,6 @@ export default function Desktop() {
         width: "40%",
       },
     },
-    // {
-    //   id: "3",
-    //   title: "Music",
-    //   icon: wordPadIcon,
-    //   component: <MusicPlayer/>,
-    // },
     {
       id: 2,
       title: "My References",
@@ -145,18 +139,18 @@ export default function Desktop() {
     // Execute on double click
     if (event.detail === 2 || event.target.className.includes("start-menu")) {
       // Check if app is open
-      if (openApps.find(current => current.id === initialAppStates[appId].id)) {
-        return summonApplication(initialAppStates[appId]);
+      if (openApps.find(current => current.id === appList[appId].id)) {
+        return summonApplication(appList[appId]);
       } else {
 
         setOpenApps((current) => [
           ...current,
           {
-            component: initialAppStates[appId].component,
-            id: initialAppStates[appId].id,
-            title: initialAppStates[appId].title,
-            icon: initialAppStates[appId].icon,
-            windowDimensions: initialAppStates[appId].windowDimensions,
+            component: appList[appId].component,
+            id: appList[appId].id,
+            title: appList[appId].title,
+            icon: appList[appId].icon,
+            windowDimensions: appList[appId].windowDimensions,
           },
         ]);
         appIconSelection(-1); // resets icon selection
@@ -174,7 +168,7 @@ export default function Desktop() {
   return (
     <div className="desktop-background noselect" id="desktop-background">
       <div className="parent">
-        {initialAppStates.map((app, key, appComp) => (
+        {appList.map((app, key, appComp) => (
           <div
             className={"app-grid " + app.id}
             onClick={(event) => handleClick(event, key, appComp)}
@@ -192,7 +186,7 @@ export default function Desktop() {
         <Taskbar
           className="taskbar"
           openApps={openApps}
-          appList={initialAppStates}
+          appList={appList}
           launchApplication={handleClick}
           summonApplication={summonApplication}
         />
