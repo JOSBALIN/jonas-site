@@ -3,14 +3,35 @@ import taskBar from "../../images/desktop-startbar.png";
 import taskBarRight from "../../images/desktop-startbar-right.png";
 import startButtonHover from "../../images/desktop-startbutton-hover.png";
 import startButtonPressed from "../../images/desktop-startbutton-pressed.png";
-import TaskbarApps from "./taskbar-apps.tsx";
+import TaskbarApps from "./taskbar-apps";
 import { useState, useEffect } from "react";
 import "./taskbar.css";
 import StartMenu from "./startMenu";
+import React from "react";
 
-export default function Taskbar(props) {
-  const [time, setTime] = useState();
-  const [startMenuVisibility, setstartMenuVisibility] = useState({
+interface TaskbarProps {
+  openApps: Array<{
+    id: string,
+    title: string,
+    icon: string,
+    isSelected: boolean,
+  }>,
+  appList: Array<{
+    id: string,
+    title: string,
+    icon: string,
+  }>,
+  launchApplication: (app: {
+    id: string,
+    title: string,
+    icon: string,
+    isSelected: boolean,
+  }) => void
+}
+
+const Taskbar: React.FC<TaskbarProps> = (props) => {
+  const [time, setTime] = useState<string>();
+  const [startMenuVisibility, setstartMenuVisibility] = useState<{display: string}>({
     display: "none",
   });
   const [startMenuClicked, setStartMenuClicked] = useState(false);
@@ -36,25 +57,28 @@ export default function Taskbar(props) {
     };
   }, []);
 
-  const taskbarAppClick = (app) => {
+  const taskbarAppClick = (app: {
+    id: string,
+    title: string,
+    icon: string,
+    isSelected: boolean,
+  }) => {
     console.log(app)
     props.launchApplication(app);
   };
 
   // Hides menu if clicked outside of start button & menu
-  const hideStartMenu = (e) => {
-    if (e.target.id != "start-menu-button") {
+  const hideStartMenu = (e: React.MouseEvent) => {
+    if (e.currentTarget.id != "start-menu-button") {
       setstartMenuVisibility({ display: "none" });
       setStartMenuClicked(false);
     }
   };
 
   const showStartMenu = () => {
-    setstartMenuVisibility();
+    setstartMenuVisibility({display: ""});
     setStartMenuClicked(true);
   };
-
-
 
   return (
     <div className="taskbar noselect">
@@ -65,7 +89,6 @@ export default function Taskbar(props) {
         appList={props.appList}
         launchApplication={props.launchApplication}
       />
-
       <img className="start-bar" src={taskBar}></img>
       <img
         id="start-menu-button"
@@ -75,12 +98,10 @@ export default function Taskbar(props) {
         onMouseEnter={(e) => (e.currentTarget.src = startButtonHover)}
         onMouseDownCapture={() => showStartMenu()}
       ></img>
-
       <div className="taskbar-right">
         <div id="current-time">{time}</div>
         <img className="start-bar-right" src={taskBarRight}></img>
       </div>
-
       <div className="taskbar-middle">
         {taskbarApps.map((app, index) => (
           <div
@@ -91,7 +112,6 @@ export default function Taskbar(props) {
             <TaskbarApps
               icon={app.icon}
               title={app.title}
-              id={app.id}
               isSelected={app.isSelected}
             />
           </div>
@@ -99,4 +119,7 @@ export default function Taskbar(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Taskbar;
+
