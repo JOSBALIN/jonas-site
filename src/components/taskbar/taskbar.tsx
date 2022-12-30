@@ -4,7 +4,7 @@ import taskBarRight from "../../images/desktop-startbar-right.png";
 import startButtonHover from "../../images/desktop-startbutton-hover.png";
 import startButtonPressed from "../../images/desktop-startbutton-pressed.png";
 import TaskbarApps from "./taskbar-apps";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./taskbar.css";
 import StartMenu from "./startMenu";
 import React from "react";
@@ -36,6 +36,7 @@ const Taskbar: React.FC<TaskbarProps> = (props) => {
   });
   const [startMenuClicked, setStartMenuClicked] = useState(false);
   const [taskbarApps, setTaskbarApps] = useState(props.openApps);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setTaskbarApps(props.openApps);
@@ -80,8 +81,28 @@ const Taskbar: React.FC<TaskbarProps> = (props) => {
     setStartMenuClicked(true);
   };
 
+  useEffect(() => {
+    // Add a mousedown event listener to the document
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Return a cleanup function to remove the event listener
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  function handleClickOutside(event: MouseEvent) {
+    // Check if the target of the event is within the component
+    if (ref.current && !ref.current.contains(event.target as Node) && !startMenuClicked) {
+      setstartMenuVisibility({display: "none"});
+      setStartMenuClicked(false);
+      console.log('Clicked outside');
+    }
+  }
+
   return (
     <div className="taskbar noselect">
+      <div className="start-menu-ref-wrapper" ref={ref}>
       <StartMenu
         style={startMenuVisibility}
         outsideClick={startMenuClicked}
@@ -97,7 +118,8 @@ const Taskbar: React.FC<TaskbarProps> = (props) => {
         // Refactor these icon changes. Spaghetti right now.
         onMouseEnter={(e) => (e.currentTarget.src = startButtonHover)}
         onMouseDownCapture={() => showStartMenu()}
-      ></img>
+        ></img>
+        </div>
       <div className="taskbar-right">
         <div id="current-time">{time}</div>
         <img className="start-bar-right" src={taskBarRight}></img>

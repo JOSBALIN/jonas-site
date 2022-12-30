@@ -1,12 +1,13 @@
 import "./startMenu.css";
 import OutsideAlerter from "../hooks/useOutsideAlerter";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import XPShutdownAudio from "../../audio/audio-XP-Shutdown.mp3";
 import XPShutDownBackground from "../../images/desktop-shutdown.png"
 import React from "react";
 
 export default function StartMenu(props) {
   const [shutdown, setShutdown] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   const shutdownPC = () => {
     if(window.confirm("Are you sure you want to turn this PC off?")){
@@ -23,11 +24,8 @@ export default function StartMenu(props) {
     props.launchApplication(event, appId)
   }
 
+
   return (
-    <OutsideAlerter
-      enabled={props.outsideClick}
-      hideMenu={props.hideMenu}
-      children={
         <div className={"start-menu"} style={props.style}>
           <img
             className="start-menu-img"
@@ -77,7 +75,5 @@ export default function StartMenu(props) {
             </div>
           )}
         </div>
-      }
-    />
   );
 }

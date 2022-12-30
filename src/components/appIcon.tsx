@@ -6,7 +6,6 @@ interface Props {
 }
 
 const AppIcon: React.FC<Props> = (props) => {
-  console.log(props.icon)
   return (
     <div className="app-icon">
       <div className="icon-img-overlay">
