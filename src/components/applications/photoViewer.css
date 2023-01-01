@@ -1,124 +1,133 @@
-.photos-row{
-    padding-top:10px;
-    display:flex;
-    margin:0px;
-    height:270px;
-    width:100%;
+.photos-row {
+    padding-top: 10px;
+    display: flex;
+    margin: 0px;
+    height: 270px;
+    width: 100%;
     overflow-y: hidden;
-    overflow-x:scroll;
-    left:0;
+    overflow-x: scroll;
+    left: 0;
     text-align: center;
 }
 
-.top-menu-photos{
-    overflow:hidden;
+.top-menu-photos {
+    overflow: hidden;
     background-image: url("../../images/application-images/photoViewer-top-menu-background.png");
-    height:69.033px;
+    height: 69.033px;
     background-size: 126.05px 100%
 }
 
-#embedded-previous-photo, #embedded-next-photo{
+#embedded-previous-photo, #embedded-next-photo {
     position: absolute;
-    top:95px;
-    left:10px;
+    top: 95px;
+    left: 10px;
     width: 26px;
     height: 26px;
     border-radius: 20px;
     background-color: transparent
 }
 
-#embedded-next-photo{
-    left:96px;
+#embedded-next-photo {
+    left: 96px;
 }
 
-#embedded-previous-photo:hover, #embedded-next-photo:hover{
+#embedded-previous-photo:hover, #embedded-next-photo:hover {
     background-color: #ffffff35;
 }
 
-.photo-controls{
-    width:20px;
+.photo-controls {
+    width: 20px;
     padding: 4px;
 }
 
-.photo-controls:hover{
+.photo-controls:hover {
     box-shadow: 0 0 2px black
 }
 
 
-.top-menu-img-photos{
-    width:400px;
-    height:auto;
-    margin:0;
+.top-menu-img-photos {
+    width: 400px;
+    height: auto;
+    margin: 0;
 }
 
-.focused-photo{
+.focused-photo {
     margin: auto;
-    padding-top:20px;
-    padding-bottom:40px;
+    padding-top: 20px;
+    padding-bottom: 40px;
     width: 100%;
-    min-height:200px;
-    height:40%;
+    min-height: 200px;
+    height: 40%;
     background-color: #eef2fb;
     text-align: center;
 }
 
 .focused-photo-img {
-    height:100%;
-    width:auto;
+    height: 100%;
+    width: auto;
     border: solid 2px
 }
 
 
 .photos-preview {
-    margin:auto;
+    margin: auto;
     padding: 0px 12px 0px 12px;
 }
 
 
-.photos-preview-upper{
-    height:160px;
-    width:160px;
+.photos-preview-upper {
+    height: 160px;
+    width: 160px;
 }
 
-.photos-preview-lower{
-    width:160px;
-    height:20px;
+.photos-preview-lower {
+    width: 160px;
+    height: 20px;
 }
 
-.photos-preview-upper > img{
-    margin:auto;
+.photos-preview-upper>img {
+    margin: auto;
     border: solid 4px;
     border-color: #ece9d8;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
 }
 
-.selected-photo{
-    border:solid 4px #316ac5 !important;
+.selected-photo {
+    border: solid 4px #316ac5 !important;
 }
 
-.photos-background{
+.photos-background {
     background-image: url("../../images/application-images/photos-background.png");
     background-repeat: no-repeat;
     background-position: bottom right;
-    height:100%;
+    height: 100%;
 }
 
-.winXP-button{
+.winXP-button {
     padding: 2px 16px 2px 16px;
     border: 1px solid #003c74;
     border-radius: 4px;
-    background-color:white;
+    background-color: white;
 }
 
-.winXP-button:hover{
+.winXP-button:hover {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     border: 2px solid #e59700;
 }
 
-.preview-images{
+.preview-images {
     width: 160px;
     height: 160px;
+}
+
+
+/* Phone layout */
+@media only screen and (max-width: 800px) {
+    .sub-menu > img {
+        width:24px;
+        height:24px;
+    }
 }

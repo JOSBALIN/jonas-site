@@ -135,8 +135,8 @@ export default function Desktop() {
   const handleClick = (event, appId) => {
     appIconSelection(appId-1);
 
-    // Execute on double click
-    if (event.detail === 2 || event.target.className.includes("start-menu")) {
+    // Execute on double click or if in start-menu
+    if (event.detail === 2 || event.target && event.target.className.includes("start-menu")) {
       // Check if app is open
       if (openApps.find(current => current.id === appList[appId].id)) {
         return summonApplication(appList[appId]);

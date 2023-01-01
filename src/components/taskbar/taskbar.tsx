@@ -27,6 +27,12 @@ interface TaskbarProps {
     icon: string,
     isSelected: boolean,
   }) => void
+  summonApplication: (app: {
+    id: string,
+    title: string,
+    icon: string,
+    isSelected: boolean,
+  }) => void
 }
 
 const Taskbar: React.FC<TaskbarProps> = (props) => {
@@ -65,7 +71,7 @@ const Taskbar: React.FC<TaskbarProps> = (props) => {
     isSelected: boolean,
   }) => {
     console.log(app)
-    props.launchApplication(app);
+    props.summonApplication(app);
   };
 
   // Hides menu if clicked outside of start button & menu

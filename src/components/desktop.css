@@ -1,26 +1,28 @@
-.parent {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    grid-column-gap: 48px;
-    grid-row-gap: 8px;
-    float:left;    
-    margin-left:40px;
-    width:0px;
-    height:0px;
-}
 
-@media only screen and (max-width: 800px) {
-    .parent {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(6, 1fr);
-        grid-column-gap: 50px;
-        grid-row-gap: 8px;
-        margin-left:20px;
+
+  .parent {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+      grid-column-gap: 48px;
+      grid-row-gap: 8px;
+      float:left;    
+      margin-left:40px;
+      width:0px;
+      height:0px;
     }
-  }
     
-   
+    /* Phone layout */
+    @media only screen and (max-width: 800px) {
+        .parent {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(6, 1fr);
+            grid-column-gap: 50px;
+            grid-row-gap: 8px;
+            margin-left:20px;
+        }
+      }
+    
     
     div[class^="app-grid"]{
         margin: auto;

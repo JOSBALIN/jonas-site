@@ -14,18 +14,6 @@
     border-radius: 16px 16px 0px 0px
 }
 
-/* Forced sizing for mobile layouts */
-@media only screen and (max-width: 800px) {
-    .app-container{
-        width:100% !important;
-        height:100% !important;
-        position:absolute !important;
-        top:0 !important;
-        left:0 !important;
-        resize: none !important;
-    }
-  }
-
 .topbar {
     height:60px;
     font-weight: bold;
@@ -90,8 +78,22 @@
     overflow: scroll;
 }
 
-/* Left side of app gradient
 
- linear-gradient(90deg, rgba(1,156,240,1) 0%, rgba(8,49,217,1) 33%, rgba(22,106,238,1) 66%, rgba(8,85,221,1) 100%);
- 
- */
+/* Forced sizing for mobile layouts */
+@media only screen and (max-width: 800px) {
+    .app-container{
+        width:100% !important;
+        height:100% !important;
+        position:absolute;
+        top:0;
+        left:0;
+        resize: none;
+        border-radius: 0;
+    }
+    #minimize, #maximize{
+        display:none;
+    }
+    .topbar-buttons {
+        padding-right:12px;
+    }
+  }
