@@ -38,7 +38,6 @@ export default function Desktop() {
     const selectedApp = openApps.find((current) => current.id === appId);
     selectedApp.isSelected = true;
     selectedApp.zIndex = zIndex;
-    console.log(selectedApp)
   };
 
   // Function to launch given application within AppWindow component
