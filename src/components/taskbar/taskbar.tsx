@@ -69,11 +69,9 @@ const Taskbar: React.FC<TaskbarProps> = (props) => {
   };
 
   // Hides menu if clicked outside of start button & menu
-  const hideStartMenu = (e: React.MouseEvent) => {
-    if (e.currentTarget.id != "start-menu-button") {
+  const hideStartMenu = () => {
       setstartMenuVisibility({ display: "none" });
       setStartMenuClicked(false);
-    }
   };
 
   const showStartMenu = () => {
@@ -84,19 +82,12 @@ const Taskbar: React.FC<TaskbarProps> = (props) => {
   useEffect(() => {
     // Add a mousedown event listener to the document
     document.addEventListener('mousedown', handleClickOutside);
-
-    // Return a cleanup function to remove the event listener
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
   }, []);
 
   function handleClickOutside(event: MouseEvent) {
     // Check if the target of the event is within the component
     if (ref.current && !ref.current.contains(event.target as Node) && !startMenuClicked) {
-      setstartMenuVisibility({display: "none"});
-      setStartMenuClicked(false);
-      console.log('Clicked outside');
+      hideStartMenu();
     }
   }
 
@@ -106,7 +97,6 @@ const Taskbar: React.FC<TaskbarProps> = (props) => {
       <StartMenu
         style={startMenuVisibility}
         outsideClick={startMenuClicked}
-        hideMenu={hideStartMenu}
         appList={props.appList}
         launchApplication={props.launchApplication}
       />
