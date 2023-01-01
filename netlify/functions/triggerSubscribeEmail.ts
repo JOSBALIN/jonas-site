@@ -28,8 +28,8 @@ const handler: Handler = async function (event) {
     method: "POST",
     body: JSON.stringify({
       from: "jonasbalin@gmail.com",
-      to: "jackbamm@hotmail.com",
-      subject: "JXP Contact: " + requestBody.contactSubject, //THIS IS THE SUBJECT
+      to: "contact@jsjb.dk",
+      subject: "JXP Contact: " + requestBody.contactSubject,
       parameters: {
         from: requestBody.contactFrom,
         body: requestBody.contactBody,
