@@ -49,6 +49,15 @@
     min-height:260px;
 }
 
+iframe{
+    border:ridge #efeee3 4px;
+    background-color: #ecebda;
+    margin-left: 0;
+    margin-right:auto;
+    padding:0;
+    margin:0;
+}
+
 .labels-icons{
     margin:4px 0px 0px 24px;
     width: 70px;
