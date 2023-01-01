@@ -12,7 +12,6 @@ export default function Contact() {
   const [topImage, setTopImage] = useState(topBarImage);
   const [recaptchaResponse, setRecaptchaResponse] = React.useState('');
   const [showRecaptcha, setShowRecaptcha] = useState(false);
-  const hoverRef = useRef(null);
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -49,8 +48,9 @@ export default function Contact() {
 
   const handleRecaptcha = (response) => {
     setRecaptchaResponse(response);
+    // keep reCAPTCHA on screen before hiding automatically
     setTimeout(() => {    setShowRecaptcha(false);
-    }, 1000)
+    }, 1400)
   }
 
 
@@ -66,16 +66,14 @@ export default function Contact() {
           onMouseLeave={() => setTopImage(topBarImage)}
           onMouseUp={() => setTopImage(topBarImageHover)}
           onMouseDownCapture={() => setTopImage(topBarImagePressed)}
-          ref={hoverRef}
         ></button>
         <img className="top-menu-img-contact" src={topImage}></img>
       </div>
       {showRecaptcha && (
         <ReCAPTCHA
-          sitekey=""
+          sitekey={"6LcnwKkjAAAAALsbCxaNrKwTw85uBqK8acInKk9B"}
           onChange={(response) => handleRecaptcha(response)}
-          executeOnLoad={false}
-          style={{ position: 'absolute', top: 64, left: 6 }}
+          style={{ position: 'absolute', top: 64, left: 6}}
         />
       )}
       <div className="top-inputs">
@@ -89,7 +87,7 @@ export default function Contact() {
           <input
             type="email"
             id="recipient-mail"
-            value="jonasbalin@gmail.com"
+            value="contact@jsjb.dk"
             readOnly
             disabled
           />
@@ -102,10 +100,11 @@ export default function Contact() {
         </div>
         <div className="column2-row2">
           <input
-            type="email"
+            type="text"
             id="from-mail"
             name="from"
             placeholder="your e-mail/name here"
+            required
           />
         </div>
         <div className="column1-row3">
@@ -121,7 +120,6 @@ export default function Contact() {
       <div className="labels-column"></div>
       <div className="inputs-column"></div>
       <textarea name="body" id="body" required></textarea>
-      <HoverTooltip text="This is the hover tooltip" reference={hoverRef.current} />
     </form>
   );
 }
