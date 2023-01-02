@@ -111,6 +111,9 @@ export default function MyCV() {
           the GitHub repo's readme, or the documentation application found on
           the desktop.
         </p>
+        <h3 className="cv-subheadline">Senfølgerforeningen, 2022-Ongoing</h3>
+        <h4 className="cv-position-title">Volunteer</h4>
+        <p>I am currently volunteering for Senfølgerforeningen, an organization that aids people with latent effects of cancer. As the only person in the organization with a degree in IT, I am handling most of their IT needs.</p>
         <h2 className="cv-headline">References</h2>
       </div>
     </div>
