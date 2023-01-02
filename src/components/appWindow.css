@@ -7,8 +7,8 @@
     min-height:120px;
     resize:both;
     overflow:hidden;
-    border: ridge;
-    border-color: #0026ac;
+    border: solid;
+    border-color: #0046c0;
     border-width: 4px;
     border-top:none;
     border-radius: 16px 16px 0px 0px

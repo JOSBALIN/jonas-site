@@ -78,8 +78,7 @@ const AppWindow: React.FC<Props> = (props) => {
       dragElement={
         <div
           onMouseDownCapture={zIndexHandler}
-          id="topbar-selected-app"
-          className={"topbar " + isSelected}
+          className={"topbar"}
           ref={draggableRef}
           style={
             props.isSelected ? { filter: "grayscale(0%)" } : { filter: "brightness(130%)" }
