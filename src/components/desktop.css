@@ -39,13 +39,14 @@
     .app-tile-title p{
         margin:0;
     }
+    
 
-    .selected p{
+    .app-grid-selected p{
         background-color: #316ac5;
     }
 
 
-    .selected img{
+    .app-grid-selected img{
         filter: sepia(100%) hue-rotate(190deg) saturate(500%);
     }
 
