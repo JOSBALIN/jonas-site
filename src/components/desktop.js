@@ -131,17 +131,22 @@ export default function Desktop() {
     setOpenApps(list => list.filter(app => app.id !== appId ))
   }
 
+  function detectInputType (event) {
+    if(event.detail === 2) return true // double click on mouse
+    if(event.isTrusted) return true // touch input
+    if(event.target && event.target.className.includes("start-menu")) return true // Click in start menu
+    return false;
+  }
+
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, appId) => {
     appIconSelection(appId-1);
 
-    // Execute on double click or if in start-menu
-    if (event.detail === 2 || event.target && event.target.className.includes("start-menu")) {
+    if (detectInputType(event)) {
       // Check if app is open
       if (openApps.find(current => current.id === appList[appId].id)) {
         return summonApplication(appList[appId]);
       } else {
-
         setOpenApps((current) => [
           ...current,
           {
@@ -167,10 +172,11 @@ export default function Desktop() {
   return (
     <div className="desktop-background noselect" id="desktop-background">
       <div className="parent">
-        {appList.map((app, key, appComp) => (
+        {appList.map((app, key) => (
           <div
             className={"app-grid " + app.id}
             onClick={(event) => handleClick(event, app.id)}
+            onTouchEnd={(event) => handleClick(event, app.id)}
             key={key}
             app={app.component}
           >
