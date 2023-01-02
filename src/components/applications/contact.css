@@ -1,3 +1,4 @@
+/* Styling for top-elements of application */
 .top-inputs{
     margin: 8px 16px 4px 0px;
 
@@ -27,40 +28,22 @@
     width:50px;
     height:52px;
 }
+/* Styling for top elements end */
 
+/* Styling for contact & subject inputs */
 .small-mail-icon{
     height:14px;
     margin-right:5px;
 }
 
-.contact-form{
-    background-color: #efeee3;
-    height:100%
-}
-
-#body {
-    width:95%;
-    height:50%;
-    resize: none;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border:ridge #efeee3 4px;
-    min-height:260px;
-}
-
-iframe{
-    border:ridge #efeee3 4px;
-    background-color: #ecebda;
-    margin-left: 0;
-    margin-right:auto;
-    padding:0;
-    margin:0;
-}
-
 .labels-icons{
     margin:4px 0px 0px 24px;
     width: 70px;
+}
+
+.contact-form{
+    background-color: #efeee3;
+    height:100%
 }
 
 .top-inputs {
@@ -77,3 +60,33 @@ iframe{
 }
 
 .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; }
+
+#body {
+    width:95%;
+    height:50%;
+    resize: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border:ridge #efeee3 4px;
+    min-height:260px;
+}
+
+
+
+
+/* ReCAPTCHA styling */
+iframe{
+    border:solid #d8d2bd 1px;
+    background-color: #f0efe1;
+    margin-left: 0;
+    margin-right:auto;
+    padding-left:24px;
+    padding-top:4px;
+    margin:0;
+    text-align: center;
+    position:absolute;
+    top:-4px;
+    width:100vw;
+    height: 81px;
+}

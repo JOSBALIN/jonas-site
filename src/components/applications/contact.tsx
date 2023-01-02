@@ -9,9 +9,10 @@ import { HoverTooltip } from "../hoverTooltip";
 import ReCAPTCHA from "react-google-recaptcha"
 
 export default function Contact() {
-  const [topImage, setTopImage] = useState(topBarImage);
-  const [recaptchaResponse, setRecaptchaResponse] = React.useState('');
-  const [showRecaptcha, setShowRecaptcha] = useState(false);
+  const [topImage, setTopImage] = useState<string>(topBarImage);
+  const [recaptchaResponse, setRecaptchaResponse] = React.useState<string>('');
+  const [showRecaptcha, setShowRecaptcha] = useState<boolean>(true);
+  const formRef = React.createRef<HTMLFormElement>();
 
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +36,8 @@ export default function Contact() {
       contactBody: target.body.value,
     };
 
-    //call to the Netlify Function you created
+    formRef.current.reset();
+    //call to the Netlify Function created
     fetch("./.netlify/functions/triggerSubscribeEmail", {
       method: "POST",
       body: JSON.stringify({
@@ -49,13 +51,13 @@ export default function Contact() {
   const handleRecaptcha = (response) => {
     setRecaptchaResponse(response);
     // keep reCAPTCHA on screen before hiding automatically
-    setTimeout(() => {    setShowRecaptcha(false);
+    setTimeout(() => {setShowRecaptcha(false);
     }, 1400)
   }
 
 
   return (
-    <form className="contact-form" name="contact-form" method="post" onSubmit={handleSubmit}>
+    <form className="contact-form" name="contact-form" method="post" onSubmit={handleSubmit} ref={formRef}>
       <input type="hidden" name="form-name" value="contact-form" />
       <div className={"top-menu-contact"}>
         {/* Send button is invisible, overlaid the actual image */}
