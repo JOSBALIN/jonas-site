@@ -30,22 +30,18 @@ export default function Contact() {
       body: { value: string };
     };
 
-    const data = {
-      contactFrom: target.from.value,
-      contactSubject: target.subject.value,
-      contactBody: target.body.value,
-    };
-
-    formRef.current.reset();
     //call to the Netlify Function created
     fetch("./.netlify/functions/triggerSubscribeEmail", {
       method: "POST",
       body: JSON.stringify({
-        contactFrom: data.contactFrom,
-        contactSubject: data.contactSubject,
-        contactBody: data.contactBody,
+        contactFrom: target.from.value,
+        contactSubject: target.subject.value,
+        contactBody: target.body.value,
       }),
     });
+    
+    formRef.current.reset();
+    window.alert("Your message has been sent! I will get back to you at my earliest convenience. Thank you for your patience.")
   };
 
   const handleRecaptcha = (response) => {
