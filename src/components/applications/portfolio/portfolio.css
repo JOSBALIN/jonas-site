@@ -22,13 +22,14 @@
     display:flex;
 }
 
-.portfolio-choice{
-  overflow-y: scroll;
-}
-
 .portfolio-list{
     list-style:none;
     color:#215ec6;
+    padding:0;
+}
+
+.tabcontent-content{
+  padding:4px;
 }
 
 .portfolio-list > li:hover{
@@ -39,6 +40,7 @@
 
 .portfolio-left-div{
   width:400px;
+  overflow-y: scroll;
   background-color: #6b84db;
 }
 
@@ -46,7 +48,6 @@
   overflow:visible;
   width:100%;
   background-color: #d3d3d3;
-  height:100%;
 }
 
 /* Style the tab content */
@@ -63,6 +64,11 @@
   padding-left:24px;
   font-size: 14px;
   height:32px;
+}
+
+.tabcontent > h3 {
+  color: #215dc6;
+  font-size: 12px;
 }
 
 .tabcontent-title, .tabcontent{

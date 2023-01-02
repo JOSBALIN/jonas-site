@@ -23,7 +23,7 @@ export default function PortfolioTextsMenu(props) {
   }
 
   return (
-    <div id="Masters" className="tabcontent">
+    <div className="tabcontent">
       <div
         className="tabcontent-title"
         onMouseOver={(e) => changeHoverState(e)}
@@ -41,11 +41,7 @@ export default function PortfolioTextsMenu(props) {
           }
         />
       </div>
-      <div
-        className="tabcontent-content"
-        id="masters-content"
-        style={contentsHidden ? { display: "none" } : { display: "" }}
-      >
+      <div className="tabcontent-content" style={contentsHidden ? { display: "none" } : { display: "" }}>
         <ul className="portfolio-list">
           {props.portfolio.map((subject, key) => (
             <li key={key} onClick={() => handleClick(subject)}>

@@ -122,12 +122,14 @@ export default function Portfolio() {
               selectionPDF={selectionPDF}
             />
           </div>
+          <div className="tabcontent">
+            <h3>{currentTextData.title}</h3>
           <p>
-          Title: {currentTextData.title}<br/>
           Description: {currentTextData.description}<br/>
           Course: {currentTextData.course}<br/>
           Year: {currentTextData.year}<br/>
           </p>
+          </div>
         </div>
         <div className="portfolio-right-div">{displayedDocument}</div>
       </div>
