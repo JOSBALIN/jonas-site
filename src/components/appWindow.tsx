@@ -84,18 +84,8 @@ const AppWindow: React.FC<Props> = (props) => {
             props.isSelected ? { filter: "grayscale(0%)" } : { filter: "brightness(130%)" }
           }
         >
-          {/* <img
-              style={maximized ? { display: "none" } : { display: "" }}
-              className={"topbar-left"}
-              src={require("../images/application-topbar/desktop-app-topbar-left.png")}
-            /> */}
           <img src={props.icon} className="topbar-icon" />
           <div className="topbar-title">{props.title}</div>
-          {/* <img
-              className={"topbar-right"}
-              style={maximized ? { display: "none" } : { display: "" }}
-              src={require("../images/application-topbar/desktop-app-topbar-right.png")}
-            /> */}
           <div
               className="topbar-buttons"
               onMouseEnter={() => setDraggable(false)}
@@ -180,20 +170,3 @@ const AppWindow: React.FC<Props> = (props) => {
 
 
 export default AppWindow;
-// Explainers
-// <DraggableElement dragElement={element mouse hold} parentElement={parent to drag}
-
-// useEffect explainer
-
-// useEffect(() => {
-//     This part runs when component is added to UI and states change
-// })
-
-// useEffect(() => {
-//     code here
-// },
-// [dragging] <== This code only runs when this state is changed
-//)
-
-// useEffect(() => {
-//     return () => This part runs when component is removed from UI
