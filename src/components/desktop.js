@@ -1,35 +1,31 @@
 import "../App.css";
 import * as React from "react";
-import Taskbar from "./taskbar/taskbar";
-import AppWindow from "./appWindow";
+import { useState, useEffect } from "react";
 import "./appWindow.css";
 import "./desktop.css";
-import { useState } from "react";
-import AppIcon from "./appIcon";
-import { useEffect } from "react";
+import Taskbar from "./taskbar/taskbar";
+import AppWindow from "./appWindow";
+
+// App imports
 import MyCV from "./applications/myCV";
 import PhotoViewer from "./applications/photoViewer";
+import Contact from "./applications/contact.tsx";
+import Portfolio from "./applications/portfolio/portfolio";
+import References from "./applications/references";
+
+// File icons, can be improved via condensed via webpack, future refactor
+import AppIcon from "./appIcon";
 import wordPadIcon from "../images/app-icons/app-icon-wordpad.ico";
 import photosIcon from "../images/app-icons/app-icon-photos.ico";
-import References from "./applications/references";
-import Contact from "./applications/contact.tsx";
 import contactIcon from "../images/app-icons/app-icon-contact.png";
+import portfolioIcon from "../images/app-icons/app-icon-portfolio.ico";
 import referencesIcon from "../images/app-icons/app-icon-references.ico";
-import Portfolio from "./applications/portfolio/portfolio";
 
 
 export default function Desktop() {
   const [openApps, setOpenApps] = useState([]);
   const [zIndex, setZIndex] = useState(1);
   const [appGridClasses, setAppGridClasses] = useState();
-
-
-
-  // Get all instances of classes titled app-grid
-  useEffect(() => {
-    setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
-  }, []);
-  
 
   // Handling of z-index and app selection status coloring
   const passZIndex = (appId) => {
@@ -54,7 +50,7 @@ export default function Desktop() {
         windowDimensions={app.windowDimensions}
         isSelected={app.isSelected}
         display={""}
-        />
+      />
     );
   };
 
@@ -65,8 +61,8 @@ export default function Desktop() {
       id: 0,
       title: "MyCV.doc",
       icon: wordPadIcon,
-      component: <MyCV/>,
-      windowDimensions:{
+      component: <MyCV />,
+      windowDimensions: {
         height: "90%",
         width: "50%",
       },
@@ -75,8 +71,8 @@ export default function Desktop() {
       id: 1,
       title: "My Photos",
       icon: photosIcon,
-      component: <PhotoViewer/>,
-      windowDimensions:{
+      component: <PhotoViewer />,
+      windowDimensions: {
         height: "60%",
         width: "40%",
       },
@@ -85,19 +81,19 @@ export default function Desktop() {
       id: 2,
       title: "My References",
       icon: referencesIcon,
-      component: <References/>,
-      windowDimensions:{
+      component: <References />,
+      windowDimensions: {
         height: "450px",
         width: "1000px",
-        resize:"horizontal",
+        resize: "horizontal",
       },
     },
     {
       id: 3,
       title: "Mail Me",
       icon: contactIcon,
-      component: <Contact/>,
-      windowDimensions:{
+      component: <Contact />,
+      windowDimensions: {
         height: "70%",
         width: "50%",
       },
@@ -105,15 +101,20 @@ export default function Desktop() {
     {
       id: 4,
       title: "Portfolio",
-      icon: photosIcon,
-      component: <Portfolio/>,
-      windowDimensions:{
+      icon: portfolioIcon,
+      component: <Portfolio />,
+      windowDimensions: {
         height: "30%",
         width: "50%",
       },
     },
   ];
 
+
+  // Get all instances of classes titled app-grid
+  useEffect(() => {
+    setAppGridClasses(Array.from(document.getElementsByClassName("app-grid")));
+  }, []);
 
   // Handles class delegation of selected icons
   // Naive implementation improve in future refactor
@@ -128,25 +129,24 @@ export default function Desktop() {
     });
   };
 
-  function closeApp(appId)  {
-    setOpenApps(list => list.filter(app => app.id !== appId ))
+  function closeApp(appId) {
+    setOpenApps((list) => list.filter((app) => app.id !== appId));
   }
 
-  function detectInputType (event) {
-    console.log(event)
-    if(event.detail === 2) return true // double click on mouse
-    if(event.type === "touchend") return true // touch input
-    if(event.target && event.target.className.includes("start-menu")) return true // Click in start menu
+  function detectInputType(event) {
+    if (event.detail === 2) return true; // double click on mouse
+    if (event.type === "touchend") return true; // touch input
+    if (event.target && event.target.className.includes("start-menu")) return true; // Click in start menu
     return false;
   }
 
   // single-click, color app-icon. Double-click, launch app
   const handleClick = (event, appId) => {
-    appIconSelection(appId-1);
+    appIconSelection(appId - 1);
 
     if (detectInputType(event)) {
       // Check if app is open
-      if (openApps.find(current => current.id === appList[appId].id)) {
+      if (openApps.find((current) => current.id === appList[appId].id)) {
         return summonApplication(appList[appId]);
       } else {
         setOpenApps((current) => [
@@ -164,13 +164,13 @@ export default function Desktop() {
     }
   };
 
-    const summonApplication = (app) => {
-      if (app.isSelected) {
-      } else {
-        passZIndex(app.id);
-      }
-    };
-    
+  const summonApplication = (app) => {
+    if (app.isSelected) {
+    } else {
+      passZIndex(app.id);
+    }
+  };
+
   return (
     <div className="desktop-background noselect" id="desktop-background">
       <div className="parent">
