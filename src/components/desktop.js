@@ -116,13 +116,14 @@ export default function Desktop() {
 
 
   // Handles class delegation of selected icons
+  // Naive implementation improve in future refactor
   const appIconSelection = (key) => {
     appGridClasses.map((appGrid) => {
       if (appGrid.className.length > 12) {
         appGrid.className = appGrid.className.slice(0, 10);
       }
       if (parseInt(appGrid.className.slice(-1)) == key + 1) {
-        appGrid.className += " selected";
+        appGrid.className += " app-grid-selected";
       }
     });
   };
@@ -132,8 +133,9 @@ export default function Desktop() {
   }
 
   function detectInputType (event) {
+    console.log(event)
     if(event.detail === 2) return true // double click on mouse
-    if(event.isTrusted) return true // touch input
+    if(event.type === "touchend") return true // touch input
     if(event.target && event.target.className.includes("start-menu")) return true // Click in start menu
     return false;
   }
@@ -157,7 +159,7 @@ export default function Desktop() {
             windowDimensions: appList[appId].windowDimensions,
           },
         ]);
-        appIconSelection(-1); // resets icon selection
+        appIconSelection(-999); // resets icon selection
       }
     }
   };
