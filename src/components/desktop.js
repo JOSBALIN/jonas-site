@@ -12,14 +12,16 @@ import PhotoViewer from "./applications/photoViewer";
 import Contact from "./applications/contact.tsx";
 import Portfolio from "./applications/portfolio/portfolio";
 import References from "./applications/references";
+import AboutThisApp from "./applications/aboutThisApp"
 
 // File icons, can be improved via condensed via webpack, future refactor
 import AppIcon from "./appIcon";
-import wordPadIcon from "../images/app-icons/app-icon-wordpad.ico";
-import photosIcon from "../images/app-icons/app-icon-photos.ico";
-import contactIcon from "../images/app-icons/app-icon-contact.png";
-import portfolioIcon from "../images/app-icons/app-icon-portfolio.ico";
-import referencesIcon from "../images/app-icons/app-icon-references.ico";
+import iconWordPad from "../images/app-icons/app-icon-wordpad.ico";
+import iconPhotos from "../images/app-icons/app-icon-photos.ico";
+import iconContact from "../images/app-icons/app-icon-contact.png";
+import iconPortfolio from "../images/app-icons/app-icon-portfolio.ico";
+import iconReferences from "../images/app-icons/app-icon-references.ico";
+import iconAbout from "../images/app-icons/app-icon-about.ico";
 
 
 export default function Desktop() {
@@ -60,7 +62,7 @@ export default function Desktop() {
     {
       id: 0,
       title: "MyCV.doc",
-      icon: wordPadIcon,
+      icon: iconWordPad,
       component: <MyCV />,
       windowDimensions: {
         height: "90%",
@@ -70,7 +72,7 @@ export default function Desktop() {
     {
       id: 1,
       title: "My Photos",
-      icon: photosIcon,
+      icon: iconPhotos,
       component: <PhotoViewer />,
       windowDimensions: {
         height: "60%",
@@ -80,7 +82,7 @@ export default function Desktop() {
     {
       id: 2,
       title: "My References",
-      icon: referencesIcon,
+      icon: iconReferences,
       component: <References />,
       windowDimensions: {
         height: "450px",
@@ -91,7 +93,7 @@ export default function Desktop() {
     {
       id: 3,
       title: "Mail Me",
-      icon: contactIcon,
+      icon: iconContact,
       component: <Contact />,
       windowDimensions: {
         height: "70%",
@@ -101,10 +103,20 @@ export default function Desktop() {
     {
       id: 4,
       title: "Portfolio",
-      icon: portfolioIcon,
+      icon: iconPortfolio,
       component: <Portfolio />,
       windowDimensions: {
         height: "30%",
+        width: "50%",
+      },
+    },
+    {
+      id: 5,
+      title: "About this app",
+      icon: iconAbout,
+      component: <AboutThisApp/>,
+      windowDimensions: {
+        height: "90%",
         width: "50%",
       },
     },
