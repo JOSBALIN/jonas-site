@@ -42,7 +42,7 @@ export default function StartMenu(props) {
             </div>
           ))}
 
-          <div className="start-menu-button log-off"></div>
+          {/* <div className="start-menu-button log-off"></div> */}
           <div
             className="start-menu-button turn-off-computer"
             onClick={shutdownPC}

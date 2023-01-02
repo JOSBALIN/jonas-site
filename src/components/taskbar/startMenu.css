@@ -22,10 +22,10 @@
 }
 
 .turn-off-computer{
-    bottom:10px;
+    bottom:9px;
     width:160px;
     height:40px;
-    left:100px;
+    left:8px;
 }
 
 
@@ -36,25 +36,11 @@
     left:10px;
 }
 
-/* .a01{
-    bottom:482px;
+.start-menu-app{
+    left:10px;
+    width:240px;
+    height:54px;
 }
-
-.a02{
-    bottom:426px;
-}
-
-.a03{
-    bottom:371px;
-}
-
-.a04{
-    bottom:316px;
-}
-
-.a04{
-    bottom:316px;
-} */
 
 .start-menu-app-icon{
     float:left;
@@ -66,10 +52,4 @@
 .start-menu-app-title{
     display:inline;
     margin-left: 6px;
-}
-
-.start-menu-app{
-    left:10px;
-    width:240px;
-    height:54px;
 }
