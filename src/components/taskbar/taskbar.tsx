@@ -21,7 +21,7 @@ interface TaskbarProps {
     title: string,
     icon: string,
   }>,
-  launchApplication: (event, app: {
+  launchApplication: (event: any, app: {
     id: string,
     title: string,
     icon: string,
