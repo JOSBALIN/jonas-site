@@ -21,7 +21,7 @@ interface TaskbarProps {
     title: string,
     icon: string,
   }>,
-  launchApplication: (app: {
+  launchApplication: (event, app: {
     id: string,
     title: string,
     icon: string,
@@ -97,6 +97,11 @@ const Taskbar: React.FC<TaskbarProps> = (props) => {
     }
   }
 
+  function handleStartClick(event, appId){
+    props.launchApplication(event, appId);
+    hideStartMenu();
+  };
+
   return (
     <div className="taskbar noselect">
       <div className="start-menu-ref-wrapper" ref={ref}>
@@ -104,7 +109,7 @@ const Taskbar: React.FC<TaskbarProps> = (props) => {
         style={startMenuVisibility}
         outsideClick={startMenuClicked}
         appList={props.appList}
-        launchApplication={props.launchApplication}
+        launchApplication={handleStartClick}
       />
       <img className="start-bar" src={taskBar}></img>
       <img
