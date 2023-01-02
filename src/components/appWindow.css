@@ -89,6 +89,7 @@
         left:0;
         resize: none;
         border-radius: 0;
+        border:none;
     }
     #minimize, #maximize{
         display:none;

@@ -15,6 +15,12 @@ import researchProject from "../../../portfolio-appendix/Improvements to the usa
 
 export default function Portfolio() {
   const [showLockedModal, setShowLockedModal] = useState(false);
+  const [currentTextData, setCurrentTextData] = useState({
+    title: "",
+    description: "",
+    year: "",
+    course: ""
+  })
   const [displayedDocument, setDisplayedDocument] = useState(
     <PDFReader
       document={matMul}
@@ -24,7 +30,7 @@ export default function Portfolio() {
   );
   const mastersPortfolio = [
     {
-      title: "Applied Information Security",
+      title: "Video Game Information Security and RCE in Source Engine Games",
       document: infoSecPDF,
       year: "2022",
       course: "Applied Information Security",
@@ -40,7 +46,7 @@ export default function Portfolio() {
       description: "As part of the Master's in Software Design, a research project is undertaken in preparation for the Master's thesis. My partner, Katarzyna Toborek, and my thesis revolved around a VR implementation of a multimedia database. The purpose of our research project was to familiarize us with the multimedia database (theoretically and in practice), by having us improve the usability of the existing web-client."
     },
     {
-      title: "Applied Algorithms: Matrix Multiplication",
+      title: "Matrix Multiplication",
       document: matMul,
       year: "2022",
       course: "Applied Algorithms",
@@ -92,6 +98,12 @@ export default function Portfolio() {
         description={data.description}
       />
     );
+    setCurrentTextData({
+      title:data.title,
+      description:data.description,
+      year: data.year,
+      course:data.course,
+    })
   };
 
   return (
@@ -110,6 +122,12 @@ export default function Portfolio() {
               selectionPDF={selectionPDF}
             />
           </div>
+          <p>
+          Title: {currentTextData.title}<br/>
+          Description: {currentTextData.description}<br/>
+          Course: {currentTextData.course}<br/>
+          Year: {currentTextData.year}<br/>
+          </p>
         </div>
         <div className="portfolio-right-div">{displayedDocument}</div>
       </div>

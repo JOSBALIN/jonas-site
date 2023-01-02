@@ -11,6 +11,7 @@
 
 .react-pdf__Document {
     height: 90vh;
+    overflow: scroll;
 }
 
 .react-pdf__Page__canvas {

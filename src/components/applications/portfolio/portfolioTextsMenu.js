@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export default function PortfolioTextsMenu(props) {
   const [contentsHidden, setContentsHidden] = useState(false);
-  const [portfolio, setPortfolio] = useState(props.portfolio);
 
   function changeHoverState(e) {
     const title = e.target.firstElementChild;
@@ -20,11 +19,9 @@ export default function PortfolioTextsMenu(props) {
   }
 
   const handleClick = (selectedPDF) => {
-    console.log(selectedPDF)
     props.selectionPDF(selectedPDF)
   }
 
-  //(e) => changeHoverState(e)
   return (
     <div id="Masters" className="tabcontent">
       <div
@@ -42,7 +39,7 @@ export default function PortfolioTextsMenu(props) {
               ? { transform: "rotate(0deg)" }
               : { transform: "rotate(180deg)" }
           }
-        ></img>
+        />
       </div>
       <div
         className="tabcontent-content"
@@ -50,7 +47,7 @@ export default function PortfolioTextsMenu(props) {
         style={contentsHidden ? { display: "none" } : { display: "" }}
       >
         <ul className="portfolio-list">
-          {portfolio.map((subject, key) => (
+          {props.portfolio.map((subject, key) => (
             <li key={key} onClick={() => handleClick(subject)}>
               {subject.title}
             </li>

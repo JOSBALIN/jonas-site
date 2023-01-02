@@ -14,9 +14,7 @@ export default function PDFReader(props) {
   pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [openPDFs, setOpenPDFs] = useState([]);
   const [scale, setScale] = useState(0.8);
-  const [scalePercent, setScalePercent] = useState(scale * 100);
   const [rotation, setRotation] = useState(0);
 
   // Load document, reset page selection
@@ -25,7 +23,7 @@ export default function PDFReader(props) {
     setPageNumber(1);
   }
 
-  function changePage(direction, event) {
+  function changePage(direction) {
     if (direction === "next" && pageNumber < numPages)
       setPageNumber((pageNumber) => pageNumber + 1);
     if (direction === "previous" && pageNumber > 1)
@@ -35,10 +33,6 @@ export default function PDFReader(props) {
   function zoom(direction) {
     if (direction === "in" && scale < 4) setScale((scale) => scale + 0.2);
     if (direction === "out" && scale > 0.2) setScale((scale) => scale - 0.2);
-  }
-
-  function zoomChange(event) {
-    setScale(event.target.value);
   }
 
   // Edge cases used to avoid console.logging errors for going below 0* or exceeding 360*
@@ -71,6 +65,8 @@ export default function PDFReader(props) {
     );
   };
 
+  // If props.selfContained === true, the pdfReader will generate an output with buttons right next to it, to be implemented in any appWindow.
+  // If false, it will assume it's being used in the portfolio app and will generate buttons that fit within that app's top-bar
   const output = () => {
     if (props.selfContained) {
       return (
@@ -80,18 +76,18 @@ export default function PDFReader(props) {
             className="pdf-zoom"
             src={zoomOutIcon}
             onClick={() => zoom("out")}
-          ></img>
+          />
           <img
             className="pdf-zoom"
             src={zoomInIcon}
             onClick={() => zoom("in")}
-          ></img>
+          />
           <img
             src={rightArrowIcon}
             style={{ transform: "rotate(180deg)" }}
             className="page-arrow"
             onClick={() => changePage("previous")}
-          ></img>
+          />
           <input
             className="pdf-input"
             type="number"
@@ -103,18 +99,18 @@ export default function PDFReader(props) {
             src={rightArrowIcon}
             className="page-arrow"
             onClick={() => changePage("next")}
-          ></img>
+          />
           {downloadButton()}
           <img
             className="pdf-rotate"
             src={rotateClockwiseIcon}
             onClick={() => rotate("clockwise")}
-          ></img>
+          />
           <img
             className="pdf-rotate"
             src={rotateCounterClockwiseIcon}
             onClick={() => rotate("counterclockwise")}
-          ></img>
+          />
         </div>
       );
     } else {
@@ -123,14 +119,15 @@ export default function PDFReader(props) {
           <div
             id="embedded-previous-page"
             onClick={() => changePage("previous")}
-          ></div>
-          <div id="embedded-next-page" onClick={() => changePage("next")}></div>
+          />
+          <div id="embedded-next-page" onClick={() => changePage("next")}/>
           <p id="embedded-page-number">
             {" "}
             {pageNumber}/{numPages}
           </p>
-          <div id="embedded-zoom-in" onClick={() => zoom("in")}></div>
-          <div id="embedded-zoom-out" onClick={() => zoom("out")}></div>
+          <div id="embedded-zoom-in" onClick={() => zoom("in")}/>
+          <div id="embedded-zoom-out" onClick={() => zoom("out")}/>
+          {downloadButton}
           <div id="embedded-file-title">
             <p>
             C:\Document and Settings\JonasBalin\Documents\Portfolio\{props.title}
