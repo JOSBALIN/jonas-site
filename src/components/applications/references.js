@@ -16,11 +16,11 @@ export default function References(props) {
       expandedText: "I met Christian at Ørestad Gymnasium where we completed high school together over three years. We have regularly stayed in touch since then and I consider Christian to be one of the finest workers I've known and one of my best friends. I referred him to his current position at my former employer, Implement Consulting Group, so he owes me one."
     },
     {
-      name: "Marchen Jersild",
-      title: "Journalist, mom",
-      company: "Berlingske Media",
+      name: "Marchen & Michel",
+      title: "Mom & Dad",
+      company: "N/A",
       photo: christianProfil,
-      expandedText: "Marchen is my mother and I am relatively sure she will give me a decent reference."
+      expandedText: "Marchen and Michel are my parents. They will tell you that you should definitely hire me as I am the best boy."
     },
     {
       name: "Morten Rye Christensen",
