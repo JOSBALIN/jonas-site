@@ -25,7 +25,9 @@ export default function MyCV() {
           <br />
         </p>
         <h2 className="cv-headline">Education</h2>
-        <h3 className="cv-subheadline">IT University of Copenhagen</h3>
+        <h3 className="cv-subheadline">
+          IT University of Copenhagen, 2020-2022
+        </h3>
         <h4 className="cv-position-title">M.S in Software Design</h4>
         <ul className="cv-list">
           <li>
@@ -37,7 +39,7 @@ export default function MyCV() {
             software (C#, Unity) and software usability
           </li>
         </ul>
-        <h3 className="cv-subheadline">University of Copenhagen</h3>
+        <h3 className="cv-subheadline">University of Copenhagen, 2016-2019</h3>
         <h4 className="cv-position-title">B.S in Communication and IT</h4>
         <ul className="cv-list">
           <li>
@@ -48,7 +50,7 @@ export default function MyCV() {
           <li>Interaction design, designing software with HCI in mind</li>
         </ul>
         <h2 className="cv-headline">Professional Experience</h2>
-        <h3 className="cv-subheadline">Semler IT</h3>
+        <h3 className="cv-subheadline">Semler IT, 2021-2022</h3>
         <h4 className="cv-position-title">IT Consultant</h4>
         <ul className="cv-list">
           <li>
@@ -56,7 +58,9 @@ export default function MyCV() {
             development of several internal applications and RPA flows.
           </li>
         </ul>
-        <h3 className="cv-subheadline">Implement Consulting Group</h3>
+        <h3 className="cv-subheadline">
+          Implement Consulting Group, 2019-2021
+        </h3>
         <h4 className="cv-position-title">IT Assistant</h4>
         <ul className="cv-list">
           <li>IT Support with focus on O365, hardware, software issues</li>
@@ -65,7 +69,7 @@ export default function MyCV() {
             Automate RPAs (With the goal of process optimization)
           </li>
         </ul>
-        <h3 className="cv-subheadline">Avenue Trading</h3>
+        <h3 className="cv-subheadline">Avenue Trading, 2018-2019</h3>
         <h4 className="cv-position-title">Online Manager</h4>
         <ul className="cv-list">
           <li>
