@@ -17,7 +17,7 @@ const App: React.FC = () => {
   }, []);
 
   if(!alerted && device === "phone"){
-    window.alert("It has been detected that you are visiting this page on a phone or tablet.\nsome phone/tablet features are still in development and slight issues may therefore occur\nThank you for your understanding")
+    window.alert("Full phone/tablet compatability is currently in development and slight issues may therefore occur on such devices\nThank you for your understanding")
     setAlerted(true)
   }
 
