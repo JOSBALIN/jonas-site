@@ -77,6 +77,24 @@ export default function Portfolio() {
     },
   ];
 
+    // Detect whether device is phone or PC
+    const [device, setDevice] = useState(null);
+    const [alerted, setAlerted] = useState(false);
+  
+    useEffect(() => {
+      const userAgent = navigator.userAgent;
+      if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent)) {
+        setDevice('phone');
+      } else {
+        setDevice('pc');
+      }
+    }, []);
+  
+    if(!alerted && device === "phone"){
+      window.alert("NB. the portfolio app is not compatible with most mobile devices yet!")
+      setAlerted(true)
+    }
+
   const summonPDFReader = (document) => {
     setDisplayedDocument(
       <PDFReader document={document} selfContained={false}  />
