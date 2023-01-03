@@ -106,7 +106,7 @@ export default function Desktop() {
       icon: iconPortfolio,
       component: <Portfolio />,
       windowDimensions: {
-        height: "30%",
+        height: "90%",
         width: "50%",
       },
     },

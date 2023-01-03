@@ -28,6 +28,10 @@
     padding:0;
 }
 
+.portfolio-list > li {
+  padding-bottom:6px;
+}
+
 .tabcontent-content{
   padding:4px;
 }

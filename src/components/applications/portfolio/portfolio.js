@@ -12,23 +12,32 @@ import infoSecPDF from "../../../portfolio-appendix/Video Game Information Secur
 import mastersThesis from "../../../portfolio-appendix/VR Multimedia Analytics Softare Usability.pdf";
 import technicalExam from "../../../portfolio-appendix/Technical Interaction Design Final Report.pdf"
 import researchProject from "../../../portfolio-appendix/Improvements to the usability of PhotoCube.pdf"
+import bachelorPDF from "../../../portfolio-appendix/bachelorPDF.pdf"
 
 export default function Portfolio() {
   const [showLockedModal, setShowLockedModal] = useState(false);
   const [currentTextData, setCurrentTextData] = useState({
-    title: "Matrix Multiplication",
-    description: "This paper solves tasks regarding implementation and testing of different matrix multiplication algorithms, along with examining differences in speed and space complexity.",
+    title: "VR Multimedia Analytics Software Usability: Implementing and Assessing Novel Application Features in ViRMA",
+    description: "Katarzyna Toborek and I designed, implemented, and evaluated a number of changes to a VR multimedia database software with the intent of improving the usability of the software. To this end, we ported the software (ViRMA) from SteamVR to OculusVR and implemented a number of proprietary features such as pass-through technology, hand-tracking and keyboard implementation. The work was conducted in Unity, written in C#. We received top marks for our work and presentation.",
     year: "2022",
-    course: "Applied Algorithms"
+    course: "Master's thesis"
   })
   const [displayedDocument, setDisplayedDocument] = useState(
     <PDFReader
-      document={matMul}
+      document={mastersThesis}
       selfContained={false}
-      title={"ElemMatMul.pdf"}
+      title={"VR Multimedia Analytics Software Usability: Implementing and Assessing Novel Application Features in ViRMA"}
     />
   );
   const mastersPortfolio = [
+    {
+      title: "VR Multimedia Analytics Software Usability: Implementing and Assessing Novel Application Features in ViRMA",
+      document: mastersThesis,
+      year: "2022",
+      course: "Master's thesis",
+      ects: "30",
+      description: "Katarzyna Toborek and I designed, implemented, and evaluated a number of changes to a VR multimedia database software with the intent of improving the usability of the software. To this end, we ported the software (ViRMA) from SteamVR to OculusVR and implemented a number of proprietary features such as pass-through technology, hand-tracking and keyboard implementation. The work was conducted in Unity, written in C#. We received top marks for our work and presentation."
+    },
     {
       title: "Video Game Information Security and RCE in Source Engine Games",
       document: infoSecPDF,
@@ -62,18 +71,28 @@ export default function Portfolio() {
       description: "This paper presents the result of a longer design process based on a given case. This resulted in a rudimentary implementation of the proposed design, written in ReactJS."
     },
     {
-      title: "Master's thesis",
-      document: mastersThesis,
-      year: "2022",
-      course: "Applied Information Security",
-      ects: "30",
-      description: "Katarzyna Toborek and I designed, implemented, and evaluated a number of changes to a VR multimedia database software with the intent of improving the usability of the software. To this end, we ported the software (ViRMA) from SteamVR to OculusVR and implemented a number of proprietary features such as pass-through technology, hand-tracking and keyboard implementation. The work was conducted in Unity, written in C#. We received top marks for our work and presentation."
-    },
-    {
       title: "Master's diploma",
       document: mastersThesis,
       year: "2022",
       locked: true,
+    },
+  ];
+
+  const bachelorsPortfolio = [
+    {
+      title: "Quick draws, Duels, and Tombstones: Exploring the intermediality of Red Dead Redemption 2 and the ludic Western",
+      document: bachelorPDF,
+      year: "2019",
+      course: "Bachelor's thesis",
+      ects: "15",
+      description: "This paper explores the intermediality of the Western genre in relation to the video game medium, using Red Dead Redemption 2 as a case study."
+    
+    },
+    {
+      title: "Bachelor's diploma",
+      document: "",
+      year: "2019",
+      locked:true
     },
   ];
 
@@ -137,6 +156,12 @@ export default function Portfolio() {
               PDFReader={summonPDFReader}
               portfolio={mastersPortfolio}
               title={"Master's"}
+              selectionPDF={selectionPDF}
+            />
+                        <PortfolioTextsMenu
+              PDFReader={summonPDFReader}
+              portfolio={bachelorsPortfolio}
+              title={"Bachelor's"}
               selectionPDF={selectionPDF}
             />
           </div>
