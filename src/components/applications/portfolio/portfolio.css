@@ -44,6 +44,7 @@
 
 .portfolio-left-div{
   width:400px;
+  min-width: 250px;
   overflow-y: scroll;
   background-color: #6b84db;
 }
