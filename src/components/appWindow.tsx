@@ -34,7 +34,7 @@ const AppWindow: React.FC<Props> = (props) => {
   // maximizes application window; disables dragging
   function maximizeWindow() {
     if (maximized) {
-      setWindowDimensions({ height: "50%", width: "50%", transform:"", borderRadius:"20px" });
+      setWindowDimensions({ height: "50%", width: "50%", transform:"", borderRadius:"20px 20px 0px 0px" });
       setMaximized(false);
       setDraggable(true);
     } else {
@@ -81,7 +81,7 @@ const AppWindow: React.FC<Props> = (props) => {
           className={"topbar"}
           ref={draggableRef}
           style={
-            props.isSelected ? { filter: "grayscale(0%)" } : { filter: "brightness(130%)" }
+            props.isSelected ? { filter: "brightness(100%) grayscale(0%)" } : { filter: "brightness(130%) grayscale(60%)" }
           }
         >
           <img src={props.icon} className="topbar-icon" />
