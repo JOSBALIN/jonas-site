@@ -85,7 +85,7 @@ export default function Contact() {
           <input
             type="email"
             id="recipient-mail"
-            value="contact@jsjb.dk"
+            value="jonasbalin@gmail.com"
             readOnly
             disabled
           />
