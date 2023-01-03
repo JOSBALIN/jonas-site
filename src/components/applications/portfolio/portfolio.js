@@ -4,7 +4,7 @@ import photosIcon from "../../../images/app-icons/app-icon-photos.png";
 import lockedIcon from "../../../images/application-images/portfolio/locked.ico";
 import expandMenu from "../../../images/application-images/portfolio/expand-menu.png";
 import topBarImage from "../../../images/application-images/portfolio/portfolio-top-app-bar.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AppWindow } from "../../appWindow";
 import PortfolioTextsMenu from "./portfolioTextsMenu";
 import matMul from "../../../portfolio-appendix/MatrixMultiplication.pdf";
@@ -16,10 +16,10 @@ import researchProject from "../../../portfolio-appendix/Improvements to the usa
 export default function Portfolio() {
   const [showLockedModal, setShowLockedModal] = useState(false);
   const [currentTextData, setCurrentTextData] = useState({
-    title: "",
-    description: "",
-    year: "",
-    course: ""
+    title: "Matrix Multiplication",
+    description: "This paper solves tasks regarding implementation and testing of different matrix multiplication algorithms, along with examining differences in speed and space complexity.",
+    year: "2022",
+    course: "Applied Algorithms"
   })
   const [displayedDocument, setDisplayedDocument] = useState(
     <PDFReader
@@ -141,12 +141,15 @@ export default function Portfolio() {
             />
           </div>
           <div className="tabcontent">
+          <div className="tabcontent-title"><h2>Details</h2></div>
+            <div className="tabcontent-details">
             <h3>{currentTextData.title}</h3>
           <p>
-          Description: {currentTextData.description}<br/>
-          Course: {currentTextData.course}<br/>
-          Year: {currentTextData.year}<br/>
+          <strong>Description:</strong> {currentTextData.description}<br/>
+          <strong>Course:</strong> {currentTextData.course}<br/>
+          <strong>Year:</strong> {currentTextData.year}<br/>
           </p>
+          </div>
           </div>
         </div>
         <div className="portfolio-right-div">{displayedDocument}</div>
