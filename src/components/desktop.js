@@ -79,19 +79,19 @@ export default function Desktop() {
         width: "40%",
       },
     },
+    // {
+    //   id: 2,
+    //   title: "My References",
+    //   icon: iconReferences,
+    //   component: <References />,
+    //   windowDimensions: {
+    //     height: "450px",
+    //     width: "1000px",
+    //     resize: "horizontal",
+    //   },
+    // },
     {
       id: 2,
-      title: "My References",
-      icon: iconReferences,
-      component: <References />,
-      windowDimensions: {
-        height: "450px",
-        width: "1000px",
-        resize: "horizontal",
-      },
-    },
-    {
-      id: 3,
       title: "Mail Me",
       icon: iconContact,
       component: <Contact />,
@@ -101,7 +101,7 @@ export default function Desktop() {
       },
     },
     {
-      id: 4,
+      id: 3,
       title: "Portfolio",
       icon: iconPortfolio,
       component: <Portfolio />,
@@ -110,16 +110,16 @@ export default function Desktop() {
         width: "50%",
       },
     },
-    {
-      id: 5,
-      title: "About this app",
-      icon: iconAbout,
-      component: <AboutThisApp/>,
-      windowDimensions: {
-        height: "90%",
-        width: "50%",
-      },
-    },
+    // {
+    //   id: 4,
+    //   title: "About this app",
+    //   icon: iconAbout,
+    //   component: <AboutThisApp/>,
+    //   windowDimensions: {
+    //     height: "90%",
+    //     width: "50%",
+    //   },
+    // },
   ];
 
 
