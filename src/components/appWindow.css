@@ -16,6 +16,8 @@
 
 .topbar {
     height:60px;
+    padding-right:2px;
+    padding-left: 2px;
     font-weight: bold;
     background-image: url("../images/application-topbar/desktop-app-topbar-background.png");
     color:white;
